@@ -1,0 +1,51 @@
+{
+  "name": "hiberfile",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt-ts",
+    "build": "nuxt-ts build",
+    "start": "nuxt-ts start",
+    "generate": "nuxt-ts generate",
+    "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore .",
+    "lint:style": "stylelint **/*.{vue,css} --ignore-path .gitignore",
+    "lint": "npm run lint:js && npm run lint:style"
+  },
+  "dependencies": {
+    "@nuxt/typescript-runtime": "^2.0.0",
+    "@nuxtjs/axios": "^5.12.2",
+    "@nuxtjs/color-mode": "^2.0.3",
+    "@nuxtjs/dotenv": "^1.4.1",
+    "@types/crypto-js": "^4.0.1",
+    "@types/qrcode": "^1.4.0",
+    "core-js": "^3.6.5",
+    "crypto-js": "^4.0.0",
+    "dropzone": "^5.7.3",
+    "jszip": "^3.6.0",
+    "nuxt": "^2.14.6",
+    "nuxt-i18n": "^6.20.4",
+    "nuxt-property-decorator": "^2.9.1",
+    "qrcode": "^1.4.4",
+    "vue-sweetalert2": "^4.2.0"
+  },
+  "devDependencies": {
+    "@nuxt/types": "^2.14.6",
+    "@nuxt/typescript-build": "^2.0.3",
+    "@nuxtjs/eslint-config": "^3.1.0",
+    "@nuxtjs/eslint-config-typescript": "^3.0.0",
+    "@nuxtjs/eslint-module": "^2.0.0",
+    "@nuxtjs/pwa": "^3.3.5",
+    "@nuxtjs/stylelint-module": "^4.0.0",
+    "@nuxtjs/tailwindcss": "^3.1.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.10.0",
+    "eslint-config-prettier": "^6.12.0",
+    "eslint-plugin-nuxt": "^1.0.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "prettier": "^2.1.2",
+    "stylelint": "^13.7.2",
+    "stylelint-config-prettier": "^8.0.2",
+    "stylelint-config-standard": "^20.0.0",
+    "tailwindcss-dark-mode": "^1.1.7"
+  }
+}
