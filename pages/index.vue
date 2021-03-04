@@ -2,129 +2,157 @@
 	<div
 		class="px-8 font-sans bg-white dark:bg-black flex-grow min-h-screen text-dark dark:text-white flex flex-col max-w-full"
 	>
-		<header class="h-content my-4">
-			<div class="inline-block" @click="setAsHome">
-				<Logo class="hiberfile-logo cursor-pointer" />
-			</div>
-		</header>
-		<div
-			class="w-full md:w-auto mx-0 md:mx-24 dark:border-none md:dark:border px-0 md:px-6 rounded-none md:rounded-3xl shadow-none md:shadow-xl h-full p-6 md:bg-white md:dark:bg-grey-900 dark:border-grey-800 flex-grow flex"
-		>
-			<Dropzone
-				v-model="filelist"
+		<Header :onclicklogo="setAsHome" />
+		<MainCard>
+			<CardContent
 				v-if="!fileId"
-				class="dropzone border-grey-300 dark:border-grey-700 border-2 border-dashed rounded-2xl w-full dragover:border-blue-600 dragover:bg-blue-600 h-full flex flex-col justify-center"
+				class="dropzone dragover:border-blue-600 dragover:bg-blue-600"
+				DropzoneStyle
+				DropzoneExtend
 			>
-				<div class="send-area px-6 py-16 flex flex-col items-center">
-					<Plus class="send-area__plus" DropzoneClickable />
-					<h4 class="font-bold my-4 text-center">
-						{{ $t('send_now_desc') }}
-					</h4>
+				<Dropzone v-model="filelist" class="dropzone flex-grow flex flex-col">
 					<div
-						class="send-area__files border border-grey-100 dark:border-grey-700 rounded-2xl px-2 py-1 h-12 mb-3 text-lg leading-loose bg-white dark:bg-black text-grey-600 w-full md:w-9/12 inline-grid"
-						DropzoneClickable
+						class="send-area flex flex-wrap items-center flex-grow justify-center"
 					>
-						<p v-if="filelist.length === 0" class="truncate cursor-pointer">
-							{{ $t('select_files') }}
-						</p>
-						<p
-							v-else-if="filelist.length === 1"
-							class="truncate cursor-pointer"
+						<div class="flex flex-col items-center justify-center self-stretch">
+							<Plus class="send-area__plus" DropzoneClickable />
+							<h4 class="font-bold my-4 text-center">
+								{{ $t('send_now_desc') }}
+							</h4>
+							<div
+								class="send-area__files border border-grey-100 dark:border-grey-700 rounded-2xl px-2 py-1 h-12 mb-3 text-lg leading-loose bg-white dark:bg-black text-grey-600 w-full md:w-9/12 inline-grid"
+								DropzoneClickable
+							>
+								<p v-if="filelist.length === 0" class="truncate cursor-pointer">
+									{{ $t('select_files') }}
+								</p>
+								<p
+									v-else-if="filelist.length === 1"
+									class="truncate cursor-pointer"
+								>
+									{{ $t('file_selected') }}
+								</p>
+								<i18n
+									v-else
+									class="truncate cursor-pointer"
+									path="files_selected"
+									tag="p"
+								>
+									<template v-slot:number>
+										<span>{{ filelist.length }}</span>
+									</template>
+								</i18n>
+							</div>
+							<select
+								name="duration"
+								id="duration"
+								ref="duration"
+								class="send-area__duration border border-grey-100 dark:border-grey-700 rounded-2xl px-2 py-1 h-12 mb-3 text-lg leading-loose bg-white dark:bg-black text-grey-600 w-full md:w-9/12"
+							>
+								<option value="1_hour">{{ $t('dur_1_hour') }}</option>
+								<option value="1_day">{{ $t('dur_1_day') }}</option>
+								<option value="3_days">{{ $t('dur_3_days') }}</option>
+								<option value="7_days">{{ $t('dur_7_days') }}</option>
+								<option value="Never">{{ $t('dur_never') }}</option>
+							</select>
+							<input
+								type="button"
+								:value="$t('send_now_btn')"
+								class="send-area__send-btn outline-none rounded-2xl flex justify-center items-center mt-2 py-4 px-6 cursor-pointer bg-blue-600 hover:bg-blue-700 text-white font-medium w-auto"
+								@click="uploadFile"
+							/>
+						</div>
+						<div
+							class="px-6 text-sm self-end"
+							v-if="this.filelist.length > 0"
 						>
-							{{ $t('file_selected') }}
-						</p>
-						<i18n
-							v-else
-							class="truncate cursor-pointer"
-							path="files_selected"
-							tag="p"
-						>
-							<template v-slot:number>
-								<span>{{ filelist.length }}</span>
-							</template>
-						</i18n>
+							<i18n
+								class="mb-3 font-bold text-black dark:text-white"
+								path="file_list"
+								tag="h6"
+							>
+								<template v-slot:totalSize>
+									<span class="text-xs font-normal"
+										>({{ Math.round((filelistSize / 10 ** 6) * 100) / 100 }}Mb
+										{{ $t('in_total') }})</span
+									>
+								</template>
+							</i18n>
+
+							<ul v-cloak class="pb-4 py-0">
+								<li v-for="(file, key) in filelist" :key="key" class="mr-6">
+									{{ file.name }}
+									<span class="text-xs italic"
+										>({{
+											Math.round((file.size / 10 ** 6) * 100) / 100
+										}}Mb)</span
+									><button
+										type="button"
+										@click="removeFile(filelist.indexOf(file))"
+										title="Remove file"
+										class="ml-2"
+									>
+										✕
+									</button>
+								</li>
+							</ul>
+						</div>
 					</div>
-					<select
-						name="duration"
-						id="duration"
-						ref="duration"
-						class="send-area__duration border border-grey-100 dark:border-grey-700 rounded-2xl px-2 py-1 h-12 mb-3 text-lg leading-loose bg-white dark:bg-black text-grey-600 w-full md:w-9/12"
-					>
-						<option value="1_hour">{{ $t('dur_1_hour') }}</option>
-						<option value="1_day">{{ $t('dur_1_day') }}</option>
-						<option value="3_days">{{ $t('dur_3_days') }}</option>
-						<option value="7_days">{{ $t('dur_7_days') }}</option>
-						<option value="Never">{{ $t('dur_never') }}</option>
-					</select>
-					<input
-						type="button"
-						:value="$t('send_now_btn')"
-						class="send-area__send-btn outline-none rounded-2xl flex justify-center items-center mt-2 py-4 px-6 cursor-pointer bg-blue-600 hover:bg-blue-700 text-white font-medium w-auto"
-						@click="uploadFile"
-					/>
-				</div>
-			</Dropzone>
-			<div
-				class="border-grey-300 dark:border-grey-700 border-2 border-dashed rounded-2xl w-full flex flex-col justify-center"
-				v-else
-			>
-				<div class="file-ready px-6 py-16 flex flex-col items-center">
-					<Plus class="file-ready__check" />
-					<h4 class="font-bold my-4 text-center">
-						{{
-							state == 'error'
-								? $t('upload_error')
-								: 100 > uploadProgress
-								? $t('soon_ready')
-								: $t('ready')
-						}}
-					</h4>
-					<div
-						v-if="state != 'error'"
-						class="border border-grey-100 dark:border-grey-700 rounded-2xl px-2 py-1 h-12 mb-3 text-lg leading-loose bg-white dark:bg-black text-grey-600 w-auto md:w-9/12 inline-grid"
-					>
-						<p class="file-ready__link truncate" ref="downloadableLink">
+				</Dropzone>
+			</CardContent>
+			<CardContent v-else>
+				<div>
+					<div class="file-ready px-6 flex flex-col items-center">
+						<Check v-if="state != 'error'" class="file-ready__check" />
+						<Cross v-else class="file-ready__cross" />
+						<h4 class="font-bold my-4 text-center">
 							{{
-								host === 'hiberfile.com'
-									? 'https://hiber.click/'
-									: `${host}/d/`
-							}}{{ fileId }}
-						</p>
+								state == 'error'
+									? $t('upload_error')
+									: 100 > uploadProgress
+									? $t('soon_ready')
+									: $t('ready')
+							}}
+						</h4>
+						<div
+							v-if="state != 'error'"
+							class="border border-grey-100 dark:border-grey-700 rounded-2xl px-2 py-1 h-12 mb-3 text-lg leading-loose bg-white dark:bg-black text-grey-600 w-auto md:w-9/12 inline-grid"
+						>
+							<p class="file-ready__link truncate" ref="downloadableLink">
+								{{
+									host === 'hiberfile.com'
+										? 'https://hiber.click/'
+										: `${host}/d/`
+								}}{{ fileId }}
+							</p>
+						</div>
+						<Button
+							v-if="state != 'error'"
+							:value="$t('copy_in_clipboard')"
+							@click="copyLink"
+						/>
+						<Button
+							v-if="state != 'error' && !mobile"
+							:value="$t('show_qr')"
+							@click="showQR"
+						/>
+						<Button
+							v-else-if="state != 'error' && mobile"
+							:value="$t('share')"
+							@click="shareLink"
+						/>
+						<Button :value="$t('return_to_home')" @click="setAsHome" />
+						<progress
+							v-if="uploadProgress && 100 > uploadProgress"
+							class="rounded-sm w-full h-1 mt-6"
+							max="100"
+							:value="uploadProgress"
+						></progress>
 					</div>
-					<input
-						v-if="state != 'error'"
-						type="button"
-						:value="$t('copy_in_clipboard')"
-						class="file-ready__copy-link outline-none rounded-2xl flex justify-center items-center mt-2 py-4 px-6 cursor-pointer bg-blue-600 hover:bg-blue-700 text-white font-medium w-auto"
-						@click="copyLink"
-					/>
-					<input
-						v-if="state != 'error'"
-						type="button"
-						:value="$t('show_qr')"
-						class="file-ready__show-qr outline-none rounded-2xl flex justify-center items-center mt-2 py-4 px-6 cursor-pointer bg-blue-600 hover:bg-blue-700 text-white font-medium w-auto"
-						@click="showQR"
-					/>
-					<input
-						type="button"
-						:value="$t('return_to_home')"
-						class="file-ready__go-home outline-none rounded-2xl flex justify-center items-center mt-2 py-4 px-6 cursor-pointer bg-blue-600 hover:bg-blue-700 text-white font-medium w-auto"
-						@click="setAsHome"
-					/>
-					<progress
-						v-if="uploadProgress && 100 > uploadProgress"
-						class="rounded-sm w-full h-1 mt-6"
-						max="100"
-						:value="uploadProgress"
-					></progress>
 				</div>
-			</div>
-		</div>
-		<footer class="my-12 text-grey-500 font-semibold">
-			<nuxt-link to="/mentions" class="text-xs"
-				><u>{{ $t('legal_notice') }}</u> | © 2021 HiberFile Team</nuxt-link
-			>
-		</footer>
+			</CardContent>
+		</MainCard>
+		<Footer />
 	</div>
 </template>
 
@@ -132,26 +160,49 @@
 import { Component, Vue, Watch } from 'nuxt-property-decorator';
 import QRCode from 'qrcode';
 import JSZip from 'jszip';
+import isMobile from 'assets/scripts/isMobile';
 
 @Component
 export default class Index extends Vue {
 	filelist: Array<File> = [];
+	filelistSize: number = 0;
 	fileId: number | null = null;
+	filename: string | null = null;
 	uploadProgress: number | null = null;
 	host: string | null = null;
 	state: string | null = null;
+	mobile: boolean | null = null;
+
+	@Watch('filelist', {
+		deep: true
+	})
+	filelistChanged(filelist: Array<File>) {
+		if (filelist.length > 0)
+			this.filelistSize = filelist
+				.map((file) => file.size)
+				.reduce((previousValue, currentValue) => previousValue + currentValue);
+	}
 
 	beforeMount() {
+		this.mobile = isMobile();
 		this.host = window.location.host;
 
+		if (this.$el) {
+			document.querySelector('html')!.style.background = getComputedStyle(this.$el).background;
+			window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+				document.querySelector('html')!.style.background = getComputedStyle(this.$el).background;
+			});
+		}
+
 		window.addEventListener('beforeunload', async (event) => {
-			const stateResult = await this.$axios.$post(
-				`${process.env.HIBERAPI_URL}/file/upload-state`,
-				{
-					id: this.fileId,
-					abort: true
-				}
-			);
+			if (this.uploadProgress && this.uploadProgress > 0)
+				await this.$axios.$post(
+					`${process.env.HIBERAPI_URL}/file/upload-state`,
+					{
+						id: this.fileId,
+						abort: true
+					}
+				);
 		});
 	}
 
@@ -172,6 +223,10 @@ export default class Index extends Vue {
 				options
 			)
 		);
+	}
+
+	removeFile(i: number) {
+		this.filelist.splice(i, 1);
 	}
 
 	async uploadFile(event: Event) {
@@ -214,6 +269,8 @@ export default class Index extends Vue {
 					const formData = new FormData();
 					formData.append('file', fileToUpload, fileToUpload.name);
 
+					this.filename = fileToUpload?.name;
+
 					Object.keys(presignedResult.post.fields).forEach((field) => {
 						formData.append(field, presignedResult.post.fields[field]);
 					});
@@ -249,7 +306,6 @@ export default class Index extends Vue {
 
 					this.state = null;
 				} catch (err) {
-					console.log(err);
 					this.Toast({
 						icon: 'error',
 						title: "Une erreur est survenue lors de l'envoi de votre fichier."
@@ -304,12 +360,27 @@ export default class Index extends Vue {
 			text:
 				'Scannez ce code QR pour accéder au lien de téléchargement depuis un autre appareil sans devoir entrer le lien manuellement.',
 			imageUrl: await QRCode.toDataURL(
-				'http://' + (this.$refs.downloadableLink as HTMLElement).innerText,
+				'https://' + (this.$refs.downloadableLink as HTMLElement).innerText,
 				{
 					width: 300
 				}
 			)
 		});
+	}
+
+	shareLink() {
+		if (navigator.share && this.filename) {
+			navigator
+				.share({
+					title: this.filename,
+					text: this.$tc('share_link_text'),
+					url:
+						'https://' + (this.$refs.downloadableLink as HTMLElement).innerText
+				})
+				.catch(console.error);
+		} else {
+			// fallback
+		}
 	}
 
 	setAsHome(event: Event) {
@@ -335,7 +406,7 @@ export default class Index extends Vue {
 	@apply border-blue-600;
 }
 
-.file-ready__check {
+.file-ready__check, .file-ready__cross {
 	width: 48px;
 	height: 48px;
 }

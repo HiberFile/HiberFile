@@ -1,8 +1,8 @@
 export default {
 	// Target (https://go.nuxtjs.dev/config-target)
-	target: 'static',
+	target: 'server',
 
-	ssr: false,
+	// ssr: false,
 
 	server: {
 		port: 8000, // default: 3000
@@ -22,6 +22,11 @@ export default {
 					'HiberFile - Service de partage de fichiers rapide, simple et gratuit.'
 			}
 		],
+		script: [
+			{
+				src: 'matomo.js'
+			}
+		],
 		link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
 		noscript: [
 			{
@@ -32,7 +37,7 @@ export default {
 	},
 
 	// Global CSS (https://go.nuxtjs.dev/config-css)
-	css: ['@/assets/styles/fonts.css'],
+	css: ['@/assets/css/fonts.css'],
 
 	// Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
 	plugins: [],
@@ -63,9 +68,7 @@ export default {
 		// https://www.npmjs.com/package/vue-sweetalert2
 		'vue-sweetalert2/nuxt',
 		// https://i18n.nuxtjs.org/
-		'nuxt-i18n',
-		// https://pwa.nuxtjs.org/
-		'@nuxtjs/pwa'
+		'nuxt-i18n'
 	],
 
 	// Axios module configuration (https://go.nuxtjs.dev/config-axios)

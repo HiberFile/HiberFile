@@ -2,19 +2,12 @@
 	<div
 		class="px-8 font-sans bg-white dark:bg-black flex-grow min-h-screen text-dark dark:text-white flex flex-col max-w-full"
 	>
-		<header class="h-content my-4">
-			<div class="inline-block" @click="goToHome">
-				<Logo class="hiberfile-logo cursor-pointer" />
-			</div>
-		</header>
-		<div
-			class="w-full md:w-auto mx-0 md:mx-24 dark:border-none md:dark:border px-0 md:px-6 rounded-none md:rounded-3xl shadow-none md:shadow-xl h-full p-6 md:bg-white md:dark:bg-grey-900 dark:border-grey-800 flex-grow"
-		>
-			<div
-				class="border-grey-300 dark:border-grey-700 border-2 border-dashed rounded-2xl w-full h-full flex flex-col justify-center"
-			>
-				<div class="download-file px-6 py-16 flex flex-col items-center">
-					<Plus class="download-file__check" />
+		<Header :onclicklogo="goToHome" />
+		<MainCard>
+			<CardContent>
+				<div class="download-file flex flex-col items-center">
+					<Cross v-if="uploadState === 'error'" class="download-file__cross" />
+					<ArrowDown v-else class="download-file__arrow" />
 					<h4 class="font-bold my-4 text-center">
 						{{
 							uploadState === 'waiting'
@@ -59,28 +52,13 @@
 								: ''
 						}}
 					</h6>
-					<input
-						v-if="filename && expireIn != 'finish'"
-						type="button"
-						:value="$('download')"
-						class="download-file__copy-link outline-none rounded-2xl flex justify-center items-center mt-2 py-4 px-6 cursor-pointer bg-blue-600 hover:bg-blue-700 text-white font-medium w-auto"
-						@click="download"
-					/>
-					<input
-						v-if="filename"
-						type="button"
-						:value="$('show_qr')"
-						class="download-file__show-qr outline-none rounded-2xl flex justify-center items-center mt-2 py-4 px-6 cursor-pointer bg-blue-600 hover:bg-blue-700 text-white font-medium w-auto"
-						@click="showQR"
-					/>
+					<Button v-if="filename && expireIn != 'finish'" :value="$('download')" @click="download" />
+					<Button v-if="filename && !mobile" :value="$('show_qr')" @click="showQR" />
+					<Button v-else-if="filename && mobile" :value="$t('share')" @click="shareLink" />
 				</div>
-			</div>
-		</div>
-		<footer class="my-12 text-grey-500 font-semibold">
-			<nuxt-link to="/mentions" class="text-xs"
-				><u>{{ $t('legal_notice') }}</u> | © 2021 HiberFile Team</nuxt-link
-			>
-		</footer>
+			</CardContent>
+		</MainCard>
+		<Footer />
 	</div>
 </template>
 
@@ -205,14 +183,14 @@ export default class D extends Vue {
 							setTimeout(getState, 5000);
 						}
 					} catch (err) {
-						console.log(err);
+						console.error(err);
 						this.uploadState = 'error';
 					}
 				};
 				this.uploadState = 'waiting';
 				getState();
 			} catch (err) {
-				console.log(err);
+				console.error(err);
 				this.Toast({
 					icon: 'error',
 					title: 'Une erreur est survenue lors du chargement des informations.'
@@ -245,6 +223,21 @@ export default class D extends Vue {
 		});
 	}
 
+	shareLink() {
+		if (navigator.share && this.filename) {
+			navigator
+				.share({
+					title: this.filename,
+					text: this.$tc('share_link_text'),
+					url:
+						'https://' + (this.$refs.downloadableLink as HTMLElement).innerText
+				})
+				.catch(console.error);
+		} else {
+			// fallback
+		}
+	}
+
 	firePreview() {
 		this.$swal.fire({
 			title: 'Prévisualisation',
@@ -267,7 +260,7 @@ export default class D extends Vue {
 	height: auto;
 }
 
-.download-file__check {
+.download-file__arrow, .download-file__cross {
 	width: 48px;
 	height: 48px;
 }

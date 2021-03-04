@@ -2,18 +2,10 @@
 	<div
 		class="px-8 font-sans bg-white dark:bg-black flex-grow min-h-screen text-dark dark:text-white flex flex-col max-w-full"
 	>
-		<header class="h-content my-4">
-			<div class="inline-block" @click="goToHome">
-				<Logo class="hiberfile-logo cursor-pointer" />
-			</div>
-		</header>
-		<div
-			class="w-full md:w-auto mx-0 md:mx-24 dark:border-none md:dark:border px-0 md:px-6 rounded-none md:rounded-3xl shadow-none md:shadow-xl h-full p-6 md:bg-white md:dark:bg-grey-900 dark:border-grey-800 flex-grow"
-		>
-			<div
-				class="border-grey-300 dark:border-grey-700 border-2 border-dashed rounded-2xl w-full px-6 py-16 h-full flex flex-col justify-center"
-			>
-				<h1 class="text-center text-3xl font-bold">
+		<Header :onclicklogo="goToHome" />
+		<MainCard>
+			<CardContent>
+				<h1 class="text-center text-3xl font-bold mt-8">
 					{{ $t('legal_notice') }} - HiberFile
 				</h1>
 				<p class="mt-2 text-center">Version 1.7 du 22 janvier 2021</p>
@@ -101,8 +93,8 @@
 						</li>
 					</ul>
 				</div>
-			</div>
-		</div>
+			</CardContent>
+		</MainCard>
 		<footer class="my-12 text-grey-500 font-semibold">
 			<p class="text-xs font-medium text-grey-500">
 				{{ $t('hiberfile_created') }}

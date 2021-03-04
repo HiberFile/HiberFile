@@ -1,5 +1,6 @@
 <template>
-	<div @dragover="dragover" @dragleave="dragleave" @drop="drop">
+	<!-- @dragover="dragover" @dragleave="dragleave" @drop="drop" -->
+	<div>
 		<input
 			type="file"
 			multiple
@@ -11,29 +12,9 @@
 			required
 		/>
 
-		<label for="assetsFieldHandle" @click.prevent>
+		<label for="assetsFieldHandle" class="flex-grow flex" @click.prevent>
 			<slot></slot>
 		</label>
-
-		<div class="px-6 text-sm" v-if="this.filelist.length > 0">
-			<h6 class="mb-3 font-bold text-black dark:text-white">
-				{{ $t('file_list') }}
-			</h6>
-
-			<ul v-cloak class="pb-4 py-0">
-				<li v-for="(file, key) in filelist" :key="key" class="mr-6">
-					{{ file.name
-					}}<button
-						type="button"
-						@click="remove(filelist.indexOf(file))"
-						title="Remove file"
-						class="ml-2"
-					>
-						✕
-					</button>
-				</li>
-			</ul>
-		</div>
 	</div>
 </template>
 
@@ -114,6 +95,16 @@ export default class Dropzone extends Vue {
 						(this.$refs.file as HTMLElement).click();
 					};
 				});
+
+		const dropzoneExtend = document.querySelector(
+			'[DropzoneExtend]'
+		) as HTMLElement;
+
+		if (dropzoneExtend) {
+			dropzoneExtend.ondragover = this.dragover;
+			dropzoneExtend.ondragleave = this.dragleave;
+			dropzoneExtend.ondrop = this.drop;
+		}
 	}
 
 	async onChange() {
@@ -131,20 +122,18 @@ export default class Dropzone extends Vue {
 		}
 	}
 
-	remove(i: number) {
-		this.filelist.splice(i, 1);
-	}
-
 	dragover(event: Event) {
 		event.preventDefault();
-		(event.target as HTMLElement).classList.add('dragover');
+		// (event.target as HTMLElement).classList.add('dragover');
+		document.querySelector('[DropzoneStyle]')?.classList.add('dragover');
 
 		(this.$el as HTMLElement).classList.add('dragover');
 	}
 
 	dragleave(event: Event) {
 		event.preventDefault();
-		(event.target as HTMLElement).classList.remove('dragover');
+		// (event.target as HTMLElement).classList.remove('dragover');
+		document.querySelector('[DropzoneStyle]')?.classList.remove('dragover');
 
 		(this.$el as HTMLElement).classList.remove('dragover');
 	}
@@ -155,7 +144,8 @@ export default class Dropzone extends Vue {
 		if (event.dataTransfer) {
 			(this.$refs.file as HTMLInputElement).files = event.dataTransfer.files;
 			this.onChange();
-			(event.target as HTMLElement).classList.remove('dragover');
+			// (event.target as HTMLElement).classList.remove('dragover');
+			document.querySelector('[DropzoneStyle]')?.classList.remove('dragover');
 		}
 
 		(this.$el as HTMLElement).classList.remove('dragover');
