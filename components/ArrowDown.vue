@@ -7,13 +7,14 @@
 		<defs>
 			<linearGradient
 				id="blue"
-				y1="512"
-				x2="1024"
-				y2="512"
+				x1="0"
+				y1="0"
+				x2="517"
+				y2="1024"
 				gradientUnits="userSpaceOnUse"
 			>
-				<stop offset="0" stop-color="#3758a4" />
-				<stop offset="1" stop-color="#31a6d7" />
+				<stop offset="0" stop-color="#36b3cb" />
+				<stop offset="1" stop-color="#2d56d5" />
 			</linearGradient>
 		</defs>
 		<path

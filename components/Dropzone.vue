@@ -4,9 +4,9 @@
 		<input
 			type="file"
 			multiple
+			v-on="{ change: !dragging ? onChange : () => {} }"
 			name="fields[assetsFieldHandle][]"
 			id="assetsFieldHandle"
-			@change="onChange"
 			ref="file"
 			class="hidden"
 			required
@@ -25,6 +25,7 @@ import { Vue, Component, Watch } from 'vue-property-decorator';
 export default class Dropzone extends Vue {
 	filelist: File[] = [];
 	limitToast = true;
+	dragging = false;
 
 	isFile(file: File) {
 		return new Promise((resolve, reject) => {
@@ -73,11 +74,11 @@ export default class Dropzone extends Vue {
 			1024 * 1024 * 30
 		) {
 			if (this.limitToast) {
-				this.Toast({
-					icon: 'warning',
-					title:
-						'Les fichiers seront chiffrés sur un serveur distant au-delà de 30Mo.'
-				});
+				// this.Toast({
+				// 	icon: 'warning',
+				// 	title:
+				// 		'Les fichiers seront chiffrés sur un serveur distant au-delà de 30Mo.'
+				// });
 
 				this.limitToast = false;
 			}
@@ -105,6 +106,10 @@ export default class Dropzone extends Vue {
 			dropzoneExtend.ondragleave = this.dragleave;
 			dropzoneExtend.ondrop = this.drop;
 		}
+
+		setInterval(() => {
+			console.log(this.dragging);
+		}, 500);
 	}
 
 	async onChange() {
@@ -128,6 +133,8 @@ export default class Dropzone extends Vue {
 		document.querySelector('[DropzoneStyle]')?.classList.add('dragover');
 
 		(this.$el as HTMLElement).classList.add('dragover');
+
+		this.dragging = true;
 	}
 
 	dragleave(event: Event) {
@@ -136,6 +143,8 @@ export default class Dropzone extends Vue {
 		document.querySelector('[DropzoneStyle]')?.classList.remove('dragover');
 
 		(this.$el as HTMLElement).classList.remove('dragover');
+
+		this.dragging = false;
 	}
 
 	drop(event: DragEvent) {
@@ -149,6 +158,8 @@ export default class Dropzone extends Vue {
 		}
 
 		(this.$el as HTMLElement).classList.remove('dragover');
+
+		this.dragging = false;
 	}
 
 	handleInput() {

@@ -28,6 +28,10 @@ module.exports = {
 			1: '0.25rem',
 			full: '100%'
 		},
+		maxHeight: {
+			144: '36rem',
+			160: '40rem'
+		},
 		boxShadow: {
 			xl:
 				'0 12px 18px 2px rgb(0 12 51 / 4%), 0 6px 22px 4px rgb(7 27 114 / 12%), 0 6px 10px -4px rgb(14 13 26 / 12%)'

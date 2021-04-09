@@ -7,6 +7,28 @@
 	</div>
 </template>
 
+<script lang='ts'>
+import { Vue, Component, Prop } from 'vue-property-decorator';
+
+@Component
+export default class Default extends Vue {
+	beforeMount() {
+		if (this.$el) {
+			document.querySelector('html')!.style.background = getComputedStyle(
+				this.$el
+			).background;
+			window
+				.matchMedia('(prefers-color-scheme: dark)')
+				.addEventListener('change', (e) => {
+					document.querySelector('html')!.style.background = getComputedStyle(
+						this.$el
+					).background;
+				});
+		}
+	}
+}
+</script>
+
 <style>
 html {
 	/* font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',

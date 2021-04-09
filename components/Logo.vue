@@ -1,8 +1,5 @@
 <template>
 	<svg
-		class="hiberfile-logo"
-		width="245"
-		height="180"
 		xmlns="http://www.w3.org/2000/svg"
 		xmlns:xlink="http://www.w3.org/1999/xlink"
 		viewBox="0 0 369.91 208.15"
@@ -10,16 +7,14 @@
 		<defs>
 			<linearGradient
 				id="blue"
-				x1="16.43"
-				y1="9.69"
-				x2="322.67"
-				y2="181.2"
+				x1="0"
+				y1="0"
+				x2="369.91"
+				y2="208.15"
 				gradientUnits="userSpaceOnUse"
 			>
-				<stop offset="0.16" stop-color="#31a4d9" />
-				<stop offset="0.37" stop-color="#348ac7" />
-				<stop offset="0.67" stop-color="#386ab0" />
-				<stop offset="0.83" stop-color="#395ea8" />
+				<stop offset="0" stop-color="#36b3cb" />
+				<stop offset="1" stop-color="#2d56d5" />
 			</linearGradient>
 		</defs>
 		<path

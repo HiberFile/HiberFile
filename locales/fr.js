@@ -12,9 +12,8 @@ export default {
 	file_list: 'Liste de vo(s) fichier(s) {totalSize} :',
 	in_total: 'au total',
 	legal_notice: 'Mentions légales',
-	soon_ready:
-		'Votre fichier est bientôt prêt. Partagez le lien dès maintenant.',
-	ready: 'Votre fichier est prêt. Partagez le lien dès maintenant.',
+	soon_ready: 'Votre lien est bientôt prêt. Partagez-le dès maintenant.',
+	ready: 'Votre lien est prêt. Partagez-le dès maintenant.',
 	upload_error: "Une erreur est survenue lors de l'envoi de votre fichier.",
 	copy_in_clipboard: 'Copier dans le presse-papier',
 	show_qr: 'Afficher le code QR',
@@ -32,12 +31,13 @@ export default {
 	link_expire_never: "Le lien n'expire jamais.",
 	link_expired: 'Le lien est expiré.',
 	download: 'Télécharger',
-	valid_since: 'Valables dès le 20 février 2021',
+	version: 'Version 2021.1 du 04 Mars 2021',
+	valid_since: 'Valables dès le 04 Mars 2021',
 	what_you_should_know:
 		'Voici absolument tout ce que vous devez savoir sur le service de partage de fichiers HiberFile.',
 	data: 'Données',
 	data_content:
-		" : HiberFile reçoit vos fichiers et les transmet au cloud « Amazon S3 » de Scaleway, à Paris, en France, qui se charge de les stocker. Les fichiers de moins de 1 Go sont chiffrés de bout en bout à l'aide de la méthode de chiffrement AES (Advanced Encryption Standard). Personne, ni même le créateur de HiberFile, n'a accès au contenu de vos fichiers. À noter que même après expiration du lien, le fichier reste toujours sur notre serveur et n'est pas supprimé (pour le moment).",
+		" : HiberFile reçoit vos fichiers et les transmet au cloud « Amazon S3 » de Scaleway, à Paris, en France, qui se charge de les stocker. Personne, ni même le créateur de HiberFile, n'a accès au contenu de vos fichiers.",
 	personal_data: 'Données personnelles',
 	personal_data_phrase:
 		' : Voici les données récoltées pour garantir le fonctionnement de HiberFile :',
@@ -48,7 +48,8 @@ export default {
 	personal_id_content:
 		' : Matomo, le service externe intégré à HiberFile à des fins analytiques, génère un identifiant non traçable permettant de vous identifier anonymement.',
 	cookies: 'Cookies',
-	cookies_content: " : HiberFile n'utilise aucun cookie vous traçant.",
+	cookies_content:
+		' : HiberFile utilise des cookies uniquement pour se souvenir de votre langage préféré. Aucun cookie ne servira à vous tracer.',
 	to_note: 'À noter',
 	to_note_content:
 		' : Nous ne récolterons et traiterons absolument JAMAIS vos données personnelles. Chez HiberFile, nous pensons que la vie privée est strictement confidentielle et doit rester PRIVÉE.',
@@ -61,9 +62,6 @@ export default {
 	support: 'Support',
 	support_content:
 		" : Si vous avez besoin d'aide, que vous voulez un renseignement divers ou que vous avez une question sur HiberFile, n'hésitez pas à nous écrire à l'adresse e-mail suivante : {mail} ou à nous envoyer un message privé sur Twitter : {twitter}.",
-	thanks: 'Remerciements',
-	thanks_content:
-		' : Merci à Arthur Fontaine pour son travail lié au chiffrement de bout en bout des fichiers sur HiberFile. Retrouvez-le sur Twitter : {arthur_twitter}',
 	host_legal_notice: "Mentions légales de l'hébergeur",
 	host_legal_notice_content: ' : {legal_notice}.',
 	scaleway_legal_notice: 'Mentions légales de Scaleway',

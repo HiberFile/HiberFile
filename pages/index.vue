@@ -14,7 +14,7 @@
 					<div
 						class="send-area flex flex-wrap items-center flex-grow justify-center"
 					>
-						<div class="flex flex-col items-center justify-center self-stretch">
+						<div class="flex flex-col items-center justify-center self-stretch w-full">
 							<Plus class="send-area__plus" DropzoneClickable />
 							<h4 class="font-bold my-4 text-center">
 								{{ $t('send_now_desc') }}
@@ -23,31 +23,30 @@
 								class="send-area__files border border-grey-100 dark:border-grey-700 rounded-2xl px-2 py-1 h-12 mb-3 text-lg leading-loose bg-white dark:bg-black text-grey-600 w-full md:w-9/12 inline-grid"
 								DropzoneClickable
 							>
-								<p v-if="filelist.length === 0" class="truncate cursor-pointer">
-									{{ $t('select_files') }}
+								<p class="truncate cursor-pointer">
+									<span v-if="filelist.length === 0">{{
+										$t('select_files')
+									}}</span>
+									<span v-else-if="filelist.length === 1">{{
+										$t('file_selected')
+									}}</span>
+									<i18n
+										v-else
+										class="truncate cursor-pointer"
+										path="files_selected"
+										tag="span"
+									>
+										<template v-slot:number>
+											<span>{{ filelist.length }}</span>
+										</template>
+									</i18n>
 								</p>
-								<p
-									v-else-if="filelist.length === 1"
-									class="truncate cursor-pointer"
-								>
-									{{ $t('file_selected') }}
-								</p>
-								<i18n
-									v-else
-									class="truncate cursor-pointer"
-									path="files_selected"
-									tag="p"
-								>
-									<template v-slot:number>
-										<span>{{ filelist.length }}</span>
-									</template>
-								</i18n>
 							</div>
 							<select
 								name="duration"
 								id="duration"
 								ref="duration"
-								class="send-area__duration border border-grey-100 dark:border-grey-700 rounded-2xl px-2 py-1 h-12 mb-3 text-lg leading-loose bg-white dark:bg-black text-grey-600 w-full md:w-9/12"
+								class="send-area__duration border border-grey-100 dark:border-grey-700 rounded-2xl px-2 py-1 h-12 mb-3 text-lg leading-loose bg-white dark:bg-black text-grey-600 w-full md:w-9/12 appearance-none"
 							>
 								<option value="1_hour">{{ $t('dur_1_hour') }}</option>
 								<option value="1_day">{{ $t('dur_1_day') }}</option>
@@ -55,17 +54,12 @@
 								<option value="7_days">{{ $t('dur_7_days') }}</option>
 								<option value="Never">{{ $t('dur_never') }}</option>
 							</select>
-							<input
-								type="button"
+							<Button
 								:value="$t('send_now_btn')"
-								class="send-area__send-btn outline-none rounded-2xl flex justify-center items-center mt-2 py-4 px-6 cursor-pointer bg-blue-600 hover:bg-blue-700 text-white font-medium w-auto"
-								@click="uploadFile"
+								@click.native="uploadFile"
 							/>
 						</div>
-						<div
-							class="px-6 text-sm self-end"
-							v-if="this.filelist.length > 0"
-						>
+						<div class="px-6 text-sm self-end" v-if="this.filelist.length > 0">
 							<i18n
 								class="mb-3 font-bold text-black dark:text-white"
 								path="file_list"
@@ -118,30 +112,33 @@
 							v-if="state != 'error'"
 							class="border border-grey-100 dark:border-grey-700 rounded-2xl px-2 py-1 h-12 mb-3 text-lg leading-loose bg-white dark:bg-black text-grey-600 w-auto md:w-9/12 inline-grid"
 						>
-							<p class="file-ready__link truncate" ref="downloadableLink">
+							<!-- <p class="file-ready__link truncate" ref="downloadableLink">
 								{{
 									host === 'hiberfile.com'
 										? 'https://hiber.click/'
 										: `${host}/d/`
 								}}{{ fileId }}
+							</p> -->
+							<p class="file-ready__link truncate overflow-x-scroll" ref="downloadableLink">
+								hiberfile.com/d/{{ fileId }}
 							</p>
 						</div>
 						<Button
 							v-if="state != 'error'"
 							:value="$t('copy_in_clipboard')"
-							@click="copyLink"
+							@click.native="copyLink"
 						/>
 						<Button
 							v-if="state != 'error' && !mobile"
 							:value="$t('show_qr')"
-							@click="showQR"
+							@click.native="showQR"
 						/>
 						<Button
 							v-else-if="state != 'error' && mobile"
 							:value="$t('share')"
-							@click="shareLink"
+							@click.native="shareLink"
 						/>
-						<Button :value="$t('return_to_home')" @click="setAsHome" />
+						<Button :value="$t('return_to_home')" @click.native="setAsHome" />
 						<progress
 							v-if="uploadProgress && 100 > uploadProgress"
 							class="rounded-sm w-full h-1 mt-6"
@@ -161,6 +158,7 @@ import { Component, Vue, Watch } from 'nuxt-property-decorator';
 import QRCode from 'qrcode';
 import JSZip from 'jszip';
 import isMobile from 'assets/scripts/isMobile';
+import isOld from 'assets/scripts/isOld';
 
 @Component
 export default class Index extends Vue {
@@ -186,13 +184,6 @@ export default class Index extends Vue {
 	beforeMount() {
 		this.mobile = isMobile();
 		this.host = window.location.host;
-
-		if (this.$el) {
-			document.querySelector('html')!.style.background = getComputedStyle(this.$el).background;
-			window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-				document.querySelector('html')!.style.background = getComputedStyle(this.$el).background;
-			});
-		}
 
 		window.addEventListener('beforeunload', async (event) => {
 			if (this.uploadProgress && this.uploadProgress > 0)
@@ -276,11 +267,7 @@ export default class Index extends Vue {
 					});
 
 					const uploadResult = await this.$axios.$post(
-						`${
-							process.env.NODE_ENV === 'production'
-								? 'https://cors-anywhere.herokuapp.com/'
-								: ''
-						}${presignedResult.post.url}`,
+						presignedResult.post.url,
 						formData,
 						{
 							headers: {
@@ -406,7 +393,8 @@ export default class Index extends Vue {
 	@apply border-blue-600;
 }
 
-.file-ready__check, .file-ready__cross {
+.file-ready__check,
+.file-ready__cross {
 	width: 48px;
 	height: 48px;
 }

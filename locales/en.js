@@ -12,14 +12,14 @@ export default {
 	file_list: 'List of your file(s) {totalSize}:',
 	in_total: 'in total',
 	legal_notice: 'Legal notice',
-	soon_ready: 'Your file is soon ready. Share the link now.',
-	ready: 'Votre fichier est prêt. Partagez le lien dès maintenant.',
+	soon_ready: 'Your link is soon ready. Share it now.',
+	ready: 'Your link is ready. Share it now.',
 	upload_error: 'An error occurred while sending your file.',
 	copy_in_clipboard: 'Copy to clipboard',
 	show_qr: 'Show QR code',
-	share: 'Partager le lien',
+	share: 'Share your link',
 	// share_link_title: '',
-	share_link_text: 'Téléchargez maintenant mon fichier sur HiberFile.',
+	share_link_text: 'Download now my file on HiberFile.',
 	return_to_home: 'Back to home page',
 	download_now: 'Download your file now.',
 	download_soon: 'You will soon be able to download your file.',
@@ -31,7 +31,8 @@ export default {
 	link_expire_never: 'The link never expires.',
 	link_expired: 'The link has expired.',
 	download: 'Download',
-	valid_since: 'Valid as of February 20, 2021',
+	version: 'Version 2021.1 of March 04, 2021',
+	valid_since: 'Valid as of March 04, 2021',
 	what_you_should_know:
 		'Here is absolutely everything you need to know about the HiberFile file sharing service.',
 	data: 'Data',
@@ -47,7 +48,8 @@ export default {
 	personal_id_content:
 		': Matomo, the external service integrated into HiberFile for analytical purposes, generates a non-traceable identifier allowing you to identify yourself anonymously.',
 	cookies: 'Cookies',
-	cookies_content: ': HiberFile does not use any cookies to track you.',
+	cookies_content:
+		': HiberFile uses cookies only to remember your preferred language. No cookies are used to track you.',
 	to_note: 'Please note',
 	to_note_content:
 		': We will absolutely NEVER collect or process your personal data. At HiberFile, we believe that privacy is strictly confidential and must remain PRIVATE.',
@@ -60,9 +62,6 @@ export default {
 	support: 'Support',
 	support_content:
 		': If you need help, want more information, or have a question about HiberFile, feel free to write to us at the following email address: {mail} or send us a private message on Twitter: {twitter}.',
-	thanks: 'Acknowledgements',
-	thanks_content:
-		': Thanks to Arthur Fontaine for his work related to end-to-end encryption of files on HiberFile. Find him on Twitter: {arthur_twitter}',
 	host_legal_notice: 'Legal notice of the host',
 	host_legal_notice_content: ': {legal_notice}.',
 	scaleway_legal_notice: 'Legal notice of Scaleway',

@@ -52,9 +52,21 @@
 								: ''
 						}}
 					</h6>
-					<Button v-if="filename && expireIn != 'finish'" :value="$('download')" @click="download" />
-					<Button v-if="filename && !mobile" :value="$('show_qr')" @click="showQR" />
-					<Button v-else-if="filename && mobile" :value="$t('share')" @click="shareLink" />
+					<Button
+						v-if="filename && expireIn != 'finish'"
+						:value="$t('download')"
+						@click.native="download"
+					/>
+					<Button
+						v-if="filename && !mobile"
+						:value="$t('show_qr')"
+						@click.native="showQR"
+					/>
+					<Button
+						v-else-if="filename && mobile"
+						:value="$t('share')"
+						@click.native="shareLink"
+					/>
 				</div>
 			</CardContent>
 		</MainCard>
@@ -65,6 +77,7 @@
 <script lang="ts">
 import { Component, Emit, Prop, Vue, Watch } from 'nuxt-property-decorator';
 import QRCode from 'qrcode';
+import isOld from 'assets/scripts/isOld';
 
 interface RemainingTime {
 	day: number;
@@ -87,13 +100,21 @@ export default class D extends Vue {
 	uploadState: string | null = null;
 	filePreview: string | null = null;
 
+	created() {
+		const id = ((this as unknown) as { id: string }).id;
+		if (isOld(id))
+			window.location.href = `https://old.hiberfile.com/${id}?p=${new URLSearchParams(
+				window.location.search
+			).get('p')}`;
+	}
+
 	@Emit()
 	expireCalc() {
 		if (this.expire) {
 			const date = new Date(this.expire);
 			const difference = date.getTime() - new Date().getTime();
 
-			if (date == new Date(8640000000000000)) this.expireIn = 'never';
+			if (date >= new Date('3333-12-31')) this.expireIn = 'never';
 			else if (difference < 0) this.expireIn = 'finish';
 			else {
 				this.expireIn = {
@@ -138,6 +159,8 @@ export default class D extends Vue {
 							}`
 						);
 
+						if (stateResult.redirectTo) location.href = stateResult.redirectTo;
+
 						if (
 							stateResult.uploaded ||
 							stateResult.error ||
@@ -146,10 +169,12 @@ export default class D extends Vue {
 							if (stateResult.uploaded) {
 								this.uploadState = 'loading';
 
+								const p = new URLSearchParams(window.location.search).get('p');
+
 								const result = await this.$axios.$get(
 									`${process.env.HIBERAPI_URL}/file/presigned?id=${
 										((this as unknown) as { id: string }).id
-									}`
+									}${p ? '&p=' + p : ''}`
 								);
 
 								this.fileUrl = result.url;
@@ -161,23 +186,17 @@ export default class D extends Vue {
 
 								if (
 									this.expireIn != 'finish' &&
-									/[\/.](gif|jpg|jpeg|tiff|png)$/i.test(this.filename!)
+									/[\/.](gif|jpg|jpeg|tiff|png)$/i.test(this.filename!) &&
+									this.fileUrl
 								) {
-									const preview = await this.$axios.$get(
-										`${
-											process.env.NODE_ENV === 'production'
-												? 'https://cors-anywhere.herokuapp.com/'
-												: ''
-										}${this.fileUrl}`,
-										{
-											responseType: 'blob'
-										}
-									);
+									const preview = await this.$axios.$get(this.fileUrl, {
+										responseType: 'blob'
+									});
 
 									this.filePreview = URL.createObjectURL(preview);
 								}
 							} else {
-								this.uploadState = 'error';
+								this.uploadState = 'loading';
 							}
 						} else {
 							setTimeout(getState, 5000);
@@ -260,7 +279,8 @@ export default class D extends Vue {
 	height: auto;
 }
 
-.download-file__arrow, .download-file__cross {
+.download-file__arrow,
+.download-file__cross {
 	width: 48px;
 	height: 48px;
 }
