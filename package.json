@@ -43,7 +43,7 @@
     "eslint-plugin-nuxt": "^2.0.0",
     "eslint-plugin-prettier": "^3.4.0",
     "prettier": "^2.1.2",
-    "stylelint": "^13.12.0",
+    "stylelint": "^13.13.0",
     "stylelint-config-prettier": "^8.0.2",
     "stylelint-config-standard": "^21.0.0",
     "tailwindcss-dark-mode": "^1.1.7"
