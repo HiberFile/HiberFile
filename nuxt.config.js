@@ -81,7 +81,7 @@ export default {
 			{ code: 'fr', iso: 'fr-FR', file: 'fr.js' }
 		],
 		lazy: true,
-		langDir: '/locales/',
+		langDir: './locales/',
 		detectBrowserLanguage: {
 			useCookie: true,
 			cookieKey: 'i18n_redirected',
