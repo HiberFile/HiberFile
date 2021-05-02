@@ -106,10 +106,6 @@ export default class Dropzone extends Vue {
 			dropzoneExtend.ondragleave = this.dragleave;
 			dropzoneExtend.ondrop = this.drop;
 		}
-
-		setInterval(() => {
-			console.log(this.dragging);
-		}, 500);
 	}
 
 	async onChange() {

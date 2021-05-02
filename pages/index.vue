@@ -14,7 +14,9 @@
 					<div
 						class="send-area flex flex-wrap items-center flex-grow justify-center"
 					>
-						<div class="flex flex-col items-center justify-center self-stretch w-full">
+						<div
+							class="flex flex-col items-center justify-center self-stretch w-full"
+						>
 							<Plus class="send-area__plus" DropzoneClickable />
 							<h4 class="font-bold my-4 text-center">
 								{{ $t('send_now_desc') }}
@@ -54,10 +56,7 @@
 								<option value="7_days">{{ $t('dur_7_days') }}</option>
 								<option value="Never">{{ $t('dur_never') }}</option>
 							</select>
-							<Button
-								:value="$t('send_now_btn')"
-								@click.native="uploadFile"
-							/>
+							<Button :value="$t('send_now_btn')" @click.native="uploadFile" />
 						</div>
 						<div class="px-6 text-sm self-end" v-if="this.filelist.length > 0">
 							<i18n
@@ -119,7 +118,10 @@
 										: `${host}/d/`
 								}}{{ fileId }}
 							</p> -->
-							<p class="file-ready__link truncate overflow-x-scroll" ref="downloadableLink">
+							<p
+								class="file-ready__link truncate overflow-x-scroll"
+								ref="downloadableLink"
+							>
 								hiberfile.com/d/{{ fileId }}
 							</p>
 						</div>
@@ -158,7 +160,6 @@ import { Component, Vue, Watch } from 'nuxt-property-decorator';
 import QRCode from 'qrcode';
 import JSZip from 'jszip';
 import isMobile from 'assets/scripts/isMobile';
-import isOld from 'assets/scripts/isOld';
 
 @Component
 export default class Index extends Vue {
@@ -184,17 +185,6 @@ export default class Index extends Vue {
 	beforeMount() {
 		this.mobile = isMobile();
 		this.host = window.location.host;
-
-		window.addEventListener('beforeunload', async (event) => {
-			if (this.uploadProgress && this.uploadProgress > 0)
-				await this.$axios.$post(
-					`${process.env.HIBERAPI_URL}/file/upload-state`,
-					{
-						id: this.fileId,
-						abort: true
-					}
-				);
-		});
 	}
 
 	Toast(options: any) {
@@ -220,27 +210,28 @@ export default class Index extends Vue {
 		this.filelist.splice(i, 1);
 	}
 
+	async convertToZip(filelist: File[]) {
+		const zip = new JSZip();
+
+		this.filelist.forEach((file) => {
+			zip.file(file.name, file);
+		});
+
+		const content = await zip.generateAsync({
+			type: 'blob'
+		});
+
+		return new File([content], 'generated_by_hf--to_be_remplaced.zip');
+	}
+
 	async uploadFile(event: Event) {
 		if (process.env.HIBERAPI_URL && !this.uploadProgress) {
 			if (this.filelist.length > 0) {
 				let fileToUpload: File;
 
-				this.state = 'zip';
 				if (this.filelist.length > 1) {
-					const zip = new JSZip();
-
-					this.filelist.forEach((file) => {
-						zip.file(file.name, file);
-					});
-
-					const content = await zip.generateAsync({
-						type: 'blob'
-					});
-
-					fileToUpload = new File(
-						[content],
-						'generated_by_hf--to_be_remplaced.zip'
-					);
+					this.state = 'zip';
+					fileToUpload = await this.convertToZip(this.filelist);
 				} else {
 					fileToUpload = this.filelist[0];
 				}
@@ -266,8 +257,8 @@ export default class Index extends Vue {
 						formData.append(field, presignedResult.post.fields[field]);
 					});
 
-					const uploadResult = await this.$axios.$post(
-						presignedResult.post.url,
+					await this.$axios.$post(
+						'https://cors-anywhere.herokuapp.com/' + presignedResult.post.url,
 						formData,
 						{
 							headers: {
@@ -283,14 +274,6 @@ export default class Index extends Vue {
 						}
 					);
 
-					const stateResult = await this.$axios.$post(
-						`${process.env.HIBERAPI_URL}/file/upload-state`,
-						{
-							id: this.fileId,
-							uploaded: true
-						}
-					);
-
 					this.state = null;
 				} catch (err) {
 					this.Toast({
@@ -299,14 +282,6 @@ export default class Index extends Vue {
 					});
 
 					this.state = 'error';
-
-					const stateResult = await this.$axios.$post(
-						`${process.env.HIBERAPI_URL}/file/upload-state`,
-						{
-							id: this.fileId,
-							error: true
-						}
-					);
 
 					this.fileId = null;
 					this.uploadProgress = null;

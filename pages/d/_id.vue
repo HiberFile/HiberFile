@@ -78,6 +78,7 @@
 import { Component, Emit, Prop, Vue, Watch } from 'nuxt-property-decorator';
 import QRCode from 'qrcode';
 import isOld from 'assets/scripts/isOld';
+import isMobile from 'assets/scripts/isMobile';
 
 interface RemainingTime {
 	day: number;
@@ -99,6 +100,7 @@ export default class D extends Vue {
 	expireIn: string | RemainingTime | null = null;
 	uploadState: string | null = null;
 	filePreview: string | null = null;
+	mobile: boolean | null = null;
 
 	created() {
 		const id = ((this as unknown) as { id: string }).id;
@@ -106,6 +108,10 @@ export default class D extends Vue {
 			window.location.href = `https://old.hiberfile.com/${id}?p=${new URLSearchParams(
 				window.location.search
 			).get('p')}`;
+	}
+
+	beforeMount() {
+		this.mobile = isMobile();
 	}
 
 	@Emit()
@@ -153,60 +159,45 @@ export default class D extends Vue {
 			try {
 				const getState = async () => {
 					try {
-						const stateResult = await this.$axios.$get(
-							`${process.env.HIBERAPI_URL}/file/upload-state?id=${
+						const p = new URLSearchParams(window.location.search).get('p');
+
+						this.uploadState = 'loading';
+
+						const result = await this.$axios.$get(
+							`${process.env.HIBERAPI_URL}/file/presigned?id=${
 								((this as unknown) as { id: string }).id
-							}`
+							}${p ? '&p=' + p : ''}`
 						);
 
-						if (stateResult.redirectTo) location.href = stateResult.redirectTo;
+						if (result.redirectTo) location.href = result.redirectTo;
+
+						this.fileUrl = result.url;
+						this.filename = result.filename;
+						this.expire = result.expire;
+
+						this.expireCalc();
+						setInterval(this.expireCalc, 1000);
 
 						if (
-							stateResult.uploaded ||
-							stateResult.error ||
-							stateResult.abort
+							this.expireIn != 'finish' &&
+							/[\/.](gif|jpg|jpeg|tiff|png)$/i.test(this.filename!) &&
+							this.fileUrl
 						) {
-							if (stateResult.uploaded) {
-								this.uploadState = 'loading';
-
-								const p = new URLSearchParams(window.location.search).get('p');
-
-								const result = await this.$axios.$get(
-									`${process.env.HIBERAPI_URL}/file/presigned?id=${
-										((this as unknown) as { id: string }).id
-									}${p ? '&p=' + p : ''}`
-								);
-
-								this.fileUrl = result.url;
-								this.filename = result.filename;
-								this.expire = result.expire;
-
-								this.expireCalc();
-								setInterval(this.expireCalc, 1000);
-
-								if (
-									this.expireIn != 'finish' &&
-									/[\/.](gif|jpg|jpeg|tiff|png)$/i.test(this.filename!) &&
-									this.fileUrl
-								) {
-									const preview = await this.$axios.$get(this.fileUrl, {
-										responseType: 'blob'
-									});
-
-									this.filePreview = URL.createObjectURL(preview);
+							const preview = await this.$axios.$get(
+								'https://cors-anywhere.herokuapp.com/' + this.fileUrl,
+								{
+									responseType: 'blob'
 								}
-							} else {
-								this.uploadState = 'loading';
-							}
-						} else {
-							setTimeout(getState, 5000);
+							);
+
+							this.filePreview = URL.createObjectURL(preview);
 						}
 					} catch (err) {
 						console.error(err);
 						this.uploadState = 'error';
 					}
 				};
-				this.uploadState = 'waiting';
+
 				getState();
 			} catch (err) {
 				console.error(err);
