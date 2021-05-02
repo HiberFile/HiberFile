@@ -77,7 +77,6 @@
 <script lang="ts">
 import { Component, Emit, Prop, Vue, Watch } from 'nuxt-property-decorator';
 import QRCode from 'qrcode';
-import isOld from 'assets/scripts/isOld';
 import isMobile from 'assets/scripts/isMobile';
 
 interface RemainingTime {
@@ -101,14 +100,6 @@ export default class D extends Vue {
 	uploadState: string | null = null;
 	filePreview: string | null = null;
 	mobile: boolean | null = null;
-
-	created() {
-		const id = ((this as unknown) as { id: string }).id;
-		if (isOld(id))
-			window.location.href = `https://old.hiberfile.com/${id}?p=${new URLSearchParams(
-				window.location.search
-			).get('p')}`;
-	}
 
 	beforeMount() {
 		this.mobile = isMobile();
