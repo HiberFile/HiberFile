@@ -257,22 +257,18 @@ export default class Index extends Vue {
 						formData.append(field, presignedResult.post.fields[field]);
 					});
 
-					await this.$axios.$post(
-						'https://cors-anywhere.herokuapp.com/' + presignedResult.post.url,
-						formData,
-						{
-							headers: {
-								// 'x-amz-server-side-encryption': 'AES256',
-							},
-							// headers: formData.getHeaders(),
-							onUploadProgress: (progressEvent) => {
-								const percentCompleted = Math.round(
-									(progressEvent.loaded * 100) / progressEvent.total
-								);
-								this.uploadProgress = percentCompleted;
-							}
+					await this.$axios.$post(presignedResult.post.url, formData, {
+						headers: {
+							// 'x-amz-server-side-encryption': 'AES256',
+						},
+						// headers: formData.getHeaders(),
+						onUploadProgress: (progressEvent) => {
+							const percentCompleted = Math.round(
+								(progressEvent.loaded * 100) / progressEvent.total
+							);
+							this.uploadProgress = percentCompleted;
 						}
-					);
+					});
 
 					this.state = null;
 				} catch (err) {

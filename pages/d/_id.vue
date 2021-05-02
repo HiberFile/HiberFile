@@ -174,12 +174,9 @@ export default class D extends Vue {
 							/[\/.](gif|jpg|jpeg|tiff|png)$/i.test(this.filename!) &&
 							this.fileUrl
 						) {
-							const preview = await this.$axios.$get(
-								'https://cors-anywhere.herokuapp.com/' + this.fileUrl,
-								{
-									responseType: 'blob'
-								}
-							);
+							const preview = await this.$axios.$get(this.fileUrl, {
+								responseType: 'blob'
+							});
 
 							this.filePreview = URL.createObjectURL(preview);
 						}
