@@ -7,6 +7,7 @@ export default {
 	dur_1_day: '1 jour',
 	dur_3_days: '3 jours',
 	dur_7_days: '7 jours',
+	dur_30_days: '30 jours',
 	dur_never: 'Jamais',
 	send_now_btn: 'Envoyer maintenant',
 	file_list: 'Liste de vo(s) fichier(s) {totalSize} :',

@@ -7,6 +7,7 @@ export default {
 	dur_1_day: '1 day',
 	dur_3_days: '3 days',
 	dur_7_days: '7 days',
+	dur_30_days: '30 days',
 	dur_never: 'Never',
 	send_now_btn: 'Send now',
 	file_list: 'List of your file(s) {totalSize}:',

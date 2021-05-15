@@ -54,7 +54,7 @@
 								<option value="1_day">{{ $t('dur_1_day') }}</option>
 								<option value="3_days">{{ $t('dur_3_days') }}</option>
 								<option value="7_days">{{ $t('dur_7_days') }}</option>
-								<option value="Never">{{ $t('dur_never') }}</option>
+								<option value="30_days">{{ $t('dur_30_days') }}</option>
 							</select>
 							<Button :value="$t('send_now_btn')" @click.native="uploadFile" />
 						</div>
