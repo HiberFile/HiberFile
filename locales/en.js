@@ -10,6 +10,7 @@ export default {
 	dur_30_days: '30 days',
 	dur_never: 'Never',
 	send_now_btn: 'Send now',
+	secure_sending: "The transfer is secured.",
 	file_list: 'List of your file(s) {totalSize}:',
 	in_total: 'in total',
 	legal_notice: 'Legal notice',

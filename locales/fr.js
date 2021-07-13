@@ -10,6 +10,7 @@ export default {
 	dur_30_days: '30 jours',
 	dur_never: 'Jamais',
 	send_now_btn: 'Envoyer maintenant',
+	secure_sending: "L'envoi est sécurisé.",
 	file_list: 'Liste de vo(s) fichier(s) {totalSize} :',
 	in_total: 'au total',
 	legal_notice: 'Mentions légales',
