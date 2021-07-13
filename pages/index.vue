@@ -57,6 +57,7 @@
 								<option value="30_days">{{ $t('dur_30_days') }}</option>
 							</select>
 							<Button :value="$t('send_now_btn')" @click.native="uploadFile" />
+							<p class="my-4 text-grey-500 text-xs text-center">{{ $t('secure_sending') }}</p>
 						</div>
 						<div class="px-6 text-sm self-end" v-if="this.filelist.length > 0">
 							<i18n
