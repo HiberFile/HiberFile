@@ -289,7 +289,7 @@ export default class Index extends Vue {
 					catch (err) {
 						this.Toast({
 							icon: 'error',
-							title: "Une erreur est survenue lors de l'envoi de votre fichier."
+							title: this.$tc('toast_send_error')
 						});
 
 						this.state = 'error';
@@ -303,13 +303,13 @@ export default class Index extends Vue {
 			} else {
 				this.Toast({
 					icon: 'info',
-					title: 'Ajoutez un ou plusieurs fichiers avant de les envoyer.'
+					title: this.$tc('toast_add_files')
 				});
 			}
 		} else {
 			this.Toast({
 				icon: 'error',
-				title: "Impossible d'accéder à HiberAPI."
+				title: this.$tc('toast_hiberapi_error')
 			});
 		}
 	}
@@ -325,7 +325,7 @@ export default class Index extends Vue {
 
 		this.Toast({
 			icon: 'success',
-			title: 'Lien copié'
+			title: this.$tc('toast_link_copy')
 		});
 	}
 

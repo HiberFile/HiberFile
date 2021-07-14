@@ -68,6 +68,10 @@ export default {
 	host_legal_notice_content: ': {legal_notice}.',
 	scaleway_legal_notice: 'Legal notice of Scaleway',
 	hiberfile_created: 'HiberFile was created with ❤️ in 🇨🇭.',
-	toast_max_size: 'The file(s) are too large. The size must not exceed 5 GB.'
+	toast_max_size: 'The file(s) are too large. The size must not exceed 5 GB.',
+	toast_send_error: 'An error occurred while sending your file.',
+	toast_add_files: 'Add one or more files before sending them.',
+	toast_hiberapi_error: "Unable to access HiberAPI.",
+	toast_link_copy: 'Link copied.'
 };
 
