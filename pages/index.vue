@@ -245,7 +245,7 @@ export default class Index extends Vue {
 				{
 					this.Toast({
 					icon: 'info',
-					title: "Le ou les fichiers sont trop lourds. La taille ne doit pas dépasser 5 Go."
+					title: "$t('toast_max_size')"
 					});
 				}
 				else

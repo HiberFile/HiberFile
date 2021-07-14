@@ -67,5 +67,7 @@ export default {
 	host_legal_notice: 'Legal notice of the host',
 	host_legal_notice_content: ': {legal_notice}.',
 	scaleway_legal_notice: 'Legal notice of Scaleway',
-	hiberfile_created: 'HiberFile was created with ❤️ in 🇨🇭.'
+	hiberfile_created: 'HiberFile was created with ❤️ in 🇨🇭.',
+	toast_max_size: 'The file(s) are too large. The size must not exceed 5 GB.'
 };
+

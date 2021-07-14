@@ -67,5 +67,6 @@ export default {
 	host_legal_notice: "Mentions légales de l'hébergeur",
 	host_legal_notice_content: ' : {legal_notice}.',
 	scaleway_legal_notice: 'Mentions légales de Scaleway',
-	hiberfile_created: 'HiberFile a été créé avec ❤️ en 🇨🇭.'
+	hiberfile_created: 'HiberFile a été créé avec ❤️ en 🇨🇭.',
+	toast_max_size: 'Le ou les fichiers sont trop lourds. La taille ne doit pas dépasser 5 Go.'
 };
