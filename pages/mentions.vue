@@ -28,10 +28,6 @@
 										{{ $t('ip_adress_content') }}
 									</li>
 									<li>
-										<u>{{ $t('personal_id') }}</u>
-										{{ $t('personal_id_content') }}
-									</li>
-									<li>
 										<u>{{ $t('cookies') }}</u>
 										{{ $t('cookies_content') }}
 									</li>

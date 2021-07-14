@@ -60,7 +60,7 @@ export default {
 		': The use of this website is completely free of charge. No paid service will be offered to you.',
 	third_party: 'Third-Party services',
 	third_party_content:
-		': We use {Scaleway} for hosting, {Matomo} for analytical data and {S3} technology for file storage.',
+		': We use {Scaleway} for hosting and {S3} technology for file storage.',
 	support: 'Support',
 	support_content:
 		': If you need help, want more information, or have a question about HiberFile, feel free to write to us at the following email address: {mail} or send us a private message on Twitter: {twitter}.',

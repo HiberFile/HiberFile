@@ -60,7 +60,7 @@ export default {
 		' : L’utilisation de ce site web est totalement gratuite. Aucun service payant ne vous sera proposé.',
 	third_party: 'Services tiers',
 	third_party_content:
-		" : Nous utilisons {Scaleway} pour l'hébergement, {Matomo} pour les données analytiques ainsi que la technologie {S3} pour le stockage des fichiers.",
+		" : Nous utilisons {Scaleway} pour l'hébergement ainsi que la technologie {S3} pour le stockage des fichiers.",
 	support: 'Support',
 	support_content:
 		" : Si vous avez besoin d'aide, que vous voulez un renseignement divers ou que vous avez une question sur HiberFile, n'hésitez pas à nous écrire à l'adresse e-mail suivante : {mail} ou à nous envoyer un message privé sur Twitter : {twitter}.",
