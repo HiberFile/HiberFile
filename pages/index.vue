@@ -226,6 +226,7 @@ export default class Index extends Vue {
 	}
 
 	async uploadFile(event: Event) {
+
 		if (process.env.HIBERAPI_URL && !this.uploadProgress) {
 			if (this.filelist.length > 0) {
 				let fileToUpload: File;
@@ -236,6 +237,11 @@ export default class Index extends Vue {
 				} else {
 					fileToUpload = this.filelist[0];
 				}
+
+				this.Toast({
+					icon: 'info',
+					title: 'La largeur du fichier est de ' + String(fileToUpload.size)
+				});
 
 				try {
 					this.state = 'upload';
