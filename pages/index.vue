@@ -348,7 +348,7 @@ export default class Index extends Vue {
 			navigator
 				.share({
 					title: this.filename,
-					text: this.$t('share_link_text'),
+					text: this.$tc('share_link_text'),
 					url:
 						'https://' + (this.$refs.downloadableLink as HTMLElement).innerText
 				})
