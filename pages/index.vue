@@ -245,7 +245,7 @@ export default class Index extends Vue {
 				{
 					this.Toast({
 					icon: 'info',
-					title: this.$i18n.t('toast_max_size')
+					title: this.$t('toast_max_size')
 					});
 				}
 				else
