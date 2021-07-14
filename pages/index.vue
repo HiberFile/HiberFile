@@ -168,6 +168,7 @@ export default class Index extends Vue {
 	filelistSize: number = 0;
 	fileId: number | null = null;
 	filename: string | null = null;
+	filesize: number | null = null;
 	uploadProgress: number | null = null;
 	host: string | null = null;
 	state: string | null = null;
@@ -238,58 +239,67 @@ export default class Index extends Vue {
 					fileToUpload = this.filelist[0];
 				}
 
-				this.Toast({
-					icon: 'info',
-					title: 'La largeur du fichier est de ' + String(fileToUpload.size)
-				});
+				this.filesize = fileToUpload.size / 1000000000;
 
-				try {
-					this.state = 'upload';
-					const presignedResult = await this.$axios.$post(
-						`${process.env.HIBERAPI_URL}/file/presigned`,
-						{
-							expireIn: (this.$refs.duration as HTMLInputElement).value,
-							filename: fileToUpload.name
-						}
-					);
-
-					this.fileId = presignedResult.fileId;
-
-					const formData = new FormData();
-					formData.append('file', fileToUpload, fileToUpload.name);
-
-					this.filename = fileToUpload?.name;
-
-					Object.keys(presignedResult.post.fields).forEach((field) => {
-						formData.append(field, presignedResult.post.fields[field]);
-					});
-
-					await this.$axios.$post(presignedResult.post.url, formData, {
-						headers: {
-							// 'x-amz-server-side-encryption': 'AES256',
-						},
-						// headers: formData.getHeaders(),
-						onUploadProgress: (progressEvent) => {
-							const percentCompleted = Math.round(
-								(progressEvent.loaded * 100) / progressEvent.total
-							);
-							this.uploadProgress = percentCompleted;
-						}
-					});
-
-					this.state = null;
-				} catch (err) {
+				if (this.filesize >= 4.85)
+				{
 					this.Toast({
-						icon: 'error',
-						title: "Une erreur est survenue lors de l'envoi de votre fichier."
+					icon: 'info',
+					title: "Le ou les fichiers sont trop lourds. La taille ne doit pas dépasser 5 Go."
 					});
-
-					this.state = 'error';
-
-					this.fileId = null;
-					this.uploadProgress = null;
-					this.host = null;
 				}
+				else
+				{
+					try {
+						this.state = 'upload';
+						const presignedResult = await this.$axios.$post(
+							`${process.env.HIBERAPI_URL}/file/presigned`,
+							{
+								expireIn: (this.$refs.duration as HTMLInputElement).value,
+								filename: fileToUpload.name
+							}
+						);
+
+						this.fileId = presignedResult.fileId;
+
+						const formData = new FormData();
+						formData.append('file', fileToUpload, fileToUpload.name);
+
+						this.filename = fileToUpload?.name;
+
+						Object.keys(presignedResult.post.fields).forEach((field) => {
+							formData.append(field, presignedResult.post.fields[field]);
+						});
+
+						await this.$axios.$post(presignedResult.post.url, formData, {
+							headers: {
+								// 'x-amz-server-side-encryption': 'AES256',
+							},
+							// headers: formData.getHeaders(),
+							onUploadProgress: (progressEvent) => {
+								const percentCompleted = Math.round(
+									(progressEvent.loaded * 100) / progressEvent.total
+								);
+								this.uploadProgress = percentCompleted;
+							}
+						});
+
+						this.state = null;
+					} 
+					catch (err) {
+						this.Toast({
+							icon: 'error',
+							title: "Une erreur est survenue lors de l'envoi de votre fichier."
+						});
+
+						this.state = 'error';
+
+						this.fileId = null;
+						this.uploadProgress = null;
+						this.host = null;
+					}
+				}
+
 			} else {
 				this.Toast({
 					icon: 'info',
