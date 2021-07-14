@@ -245,7 +245,7 @@ export default class Index extends Vue {
 				{
 					this.Toast({
 					icon: 'info',
-					title: "$t('toast_max_size')"
+					title: this.$i18n.t('toast_max_size')
 					});
 				}
 				else
@@ -348,7 +348,7 @@ export default class Index extends Vue {
 			navigator
 				.share({
 					title: this.filename,
-					text: this.$tc('share_link_text'),
+					text: this.$t('share_link_text'),
 					url:
 						'https://' + (this.$refs.downloadableLink as HTMLElement).innerText
 				})
