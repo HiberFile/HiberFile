@@ -25,7 +25,7 @@ export default class LanguageSwitcher extends Vue {
 	
 }
 </script>
-<style lang="scss" scoped>
+<style scoped>
 	select {
 		background: none;
 		outline: none;
