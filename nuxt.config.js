@@ -79,7 +79,9 @@ export default {
 		locales: [
 			{ code: 'en', iso: 'en-US', file: 'en.js', dir: 'ltr' },
 			{ code: 'fr', iso: 'fr-FR', file: 'fr.js' },
-			{ code: 'it', iso: 'it-IT', file: 'it.js' }
+			{ code: 'it', iso: 'it-IT', file: 'it.js' },
+			{ code: 'de', iso: 'de-DE', file: 'de.js' },
+			{ code: 'pt', iso: 'pt-PT', file: 'pt.js' }
 		],
 		lazy: true,
 		langDir: './locales/',

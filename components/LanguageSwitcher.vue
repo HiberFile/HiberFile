@@ -3,6 +3,8 @@
 		<p v-if="language == 'fr'" @click="changeLanguage('en')">🇺🇸 EN</p>
 		<p v-else-if="language == 'en'" @click="changeLanguage('it')">🇮🇹 IT</p>
 		<p v-else-if="language == 'it'" @click="changeLanguage('fr')">🇫🇷 FR</p>
+		<p v-else-if="language == 'fr'" @click="changeLanguage('de')">🇩🇪 DE</p>
+		<p v-else-if="language == 'de'" @click="changeLanguage('pt')">🇵🇹 PT</p>
 	</div>
 </template>
 
