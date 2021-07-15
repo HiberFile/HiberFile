@@ -333,7 +333,7 @@ export default class Index extends Vue {
 		this.$swal.fire({
 			title: 'Code QR',
 			text:
-				'Scannez ce code QR pour accéder au lien de téléchargement depuis un autre appareil sans devoir entrer le lien manuellement.',
+				this.$tc('toast_qr_code'),
 			imageUrl: await QRCode.toDataURL(
 				'https://' + (this.$refs.downloadableLink as HTMLElement).innerText,
 				{

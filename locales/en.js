@@ -72,6 +72,7 @@ export default {
 	toast_send_error: 'An error occurred while sending your file.',
 	toast_add_files: 'Add one or more files before sending them.',
 	toast_hiberapi_error: "Unable to access HiberAPI.",
-	toast_link_copy: 'Link copied.'
+	toast_link_copy: 'Link copied',
+	toast_qr_code: 'Scan this QR code to access the download link from another device without having to enter the link manually.'
 };
 

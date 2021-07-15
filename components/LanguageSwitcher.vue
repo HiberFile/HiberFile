@@ -2,6 +2,7 @@
     <div class="cursor-pointer text-grey-600 text-xs font-medium h-content">
         <p v-if="language == 'fr'" @click="changeLanguage('en')">🇺🇸 EN</p>
         <p v-else-if="language == 'en'" @click="changeLanguage('fr')">🇫🇷 FR</p>
+		<p v-else-if="language == 'it'" @click="changeLanguage('fr')">🇮🇹 IT</p>
     </div>
 </template>
 
