@@ -57,7 +57,9 @@
 								<option value="30_days">{{ $t('dur_30_days') }}</option>
 							</select>
 							<Button :value="$t('send_now_btn')" @click.native="uploadFile" />
-							<p class="my-4 text-grey-500 text-xs text-center">{{ $t('secure_sending') }}</p>
+							<p class="my-4 text-grey-500 text-xs text-center">
+								{{ $t('secure_sending') }}
+							</p>
 						</div>
 						<div class="px-6 text-sm self-end" v-if="this.filelist.length > 0">
 							<i18n
@@ -161,12 +163,13 @@ import { Component, Vue, Watch } from 'nuxt-property-decorator';
 import QRCode from 'qrcode';
 import JSZip from 'jszip';
 import isMobile from 'assets/scripts/isMobile';
+import uploadFile from './../utils/uploadFile';
 
 @Component
 export default class Index extends Vue {
 	filelist: Array<File> = [];
 	filelistSize: number = 0;
-	fileId: number | null = null;
+	fileId: string | null = null;
 	filename: string | null = null;
 	filesize: number | null = null;
 	uploadProgress: number | null = null;
@@ -227,7 +230,6 @@ export default class Index extends Vue {
 	}
 
 	async uploadFile(event: Event) {
-
 		if (process.env.HIBERAPI_URL && !this.uploadProgress) {
 			if (this.filelist.length > 0) {
 				let fileToUpload: File;
@@ -239,54 +241,39 @@ export default class Index extends Vue {
 					fileToUpload = this.filelist[0];
 				}
 
-				this.filesize = fileToUpload.size / 1000000000;
+				this.filesize = fileToUpload.size / 1_000_000_000;
 
-				if (this.filesize >= 4.85)
-				{
+				if (this.filesize >= 19.85) {
 					this.Toast({
-					icon: 'info',
-					title: this.$tc('toast_max_size')
+						icon: 'info',
+						title: this.$tc('toast_max_size')
 					});
-				}
-				else
-				{
+				} else {
 					try {
 						this.state = 'upload';
-						const presignedResult = await this.$axios.$post(
-							`${process.env.HIBERAPI_URL}/file/presigned`,
-							{
-								expireIn: (this.$refs.duration as HTMLInputElement).value,
-								filename: fileToUpload.name
-							}
-						);
-
-						this.fileId = presignedResult.fileId;
-
-						const formData = new FormData();
-						formData.append('file', fileToUpload, fileToUpload.name);
 
 						this.filename = fileToUpload?.name;
 
-						Object.keys(presignedResult.post.fields).forEach((field) => {
-							formData.append(field, presignedResult.post.fields[field]);
-						});
+						const expireStr = (this.$refs.duration as HTMLInputElement).value;
+						let expire: number;
 
-						await this.$axios.$post(presignedResult.post.url, formData, {
-							headers: {
-								// 'x-amz-server-side-encryption': 'AES256',
-							},
-							// headers: formData.getHeaders(),
-							onUploadProgress: (progressEvent) => {
-								const percentCompleted = Math.round(
-									(progressEvent.loaded * 100) / progressEvent.total
-								);
-								this.uploadProgress = percentCompleted;
-							}
-						});
+						if (expireStr === '1_hour') expire = 3600;
+						else if (expireStr === '1_day') expire = 3600 * 24;
+						else if (expireStr === '3_days') expire = 3600 * 24 * 3;
+						else if (expireStr === '7_days') expire = 3600 * 24 * 7;
+						else if (expireStr === '30_days') expire = 3600 * 24 * 30;
+						else expire = 3600;
+
+						await uploadFile(
+							fileToUpload,
+							expire,
+							process.env.HIBERAPI_URL!,
+							(hiberfileId) => (this.fileId = hiberfileId),
+							(progress) => (this.uploadProgress = progress)
+						);
 
 						this.state = null;
-					} 
-					catch (err) {
+					} catch (err) {
 						this.Toast({
 							icon: 'error',
 							title: this.$tc('toast_send_error')
@@ -299,7 +286,6 @@ export default class Index extends Vue {
 						this.host = null;
 					}
 				}
-
 			} else {
 				this.Toast({
 					icon: 'info',
@@ -332,8 +318,7 @@ export default class Index extends Vue {
 	async showQR() {
 		this.$swal.fire({
 			title: 'Code QR',
-			text:
-				this.$tc('toast_qr_code'),
+			text: this.$tc('toast_qr_code'),
 			imageUrl: await QRCode.toDataURL(
 				'https://' + (this.$refs.downloadableLink as HTMLElement).innerText,
 				{

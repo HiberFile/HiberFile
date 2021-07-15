@@ -76,6 +76,7 @@
 import { Component, Emit, Prop, Vue, Watch } from 'nuxt-property-decorator';
 import QRCode from 'qrcode';
 import isMobile from 'assets/scripts/isMobile';
+import downloadFile from './../../utils/downloadFile';
 
 interface RemainingTime {
 	day: number;
@@ -151,15 +152,12 @@ export default class D extends Vue {
 
 						this.uploadState = 'loading';
 
-						const result = await this.$axios.$get(
-							`${process.env.HIBERAPI_URL}/file/presigned?id=${
-								((this as unknown) as { id: string }).id
-							}${p ? '&p=' + p : ''}`
+						const result = await downloadFile(
+							((this as unknown) as { id: string }).id,
+							process.env.HIBERAPI_URL!
 						);
 
-						if (result.redirectTo) location.href = result.redirectTo;
-
-						this.fileUrl = result.url;
+						this.fileUrl = result.downloadUrl;
 						this.filename = result.filename;
 						this.expire = result.expire;
 
