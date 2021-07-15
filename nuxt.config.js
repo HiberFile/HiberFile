@@ -81,7 +81,8 @@ export default {
 			{ code: 'fr', iso: 'fr-FR', file: 'fr.js' },
 			{ code: 'it', iso: 'it-IT', file: 'it.js' },
 			{ code: 'de', iso: 'de-DE', file: 'de.js' },
-			{ code: 'pt', iso: 'pt-PT', file: 'pt.js' }
+			{ code: 'pt', iso: 'pt-PT', file: 'pt.js' },
+			{ code: 'es', iso: 'es-ES', file: 'es.js' }
 		],
 		lazy: true,
 		langDir: './locales/',

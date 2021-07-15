@@ -6,6 +6,7 @@
 		<option value="it" :selected="language == 'it'">🇮🇹 Italiano</option>
 		<option value="de" :selected="language == 'de'">🇩🇪 Deutsch</option>
 		<option value="pt" :selected="language == 'pt'">🇵🇹 Português</option>
+		<option value="es" :selected="language == 'es'">🇪🇸 Español</option>
 	</select>
 
 </template>
