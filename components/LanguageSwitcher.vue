@@ -2,9 +2,9 @@
 	<div class="cursor-pointer text-grey-600 text-xs font-medium h-content">
 		<p v-if="language == 'fr'" @click="changeLanguage('en')">🇺🇸 EN</p>
 		<p v-else-if="language == 'en'" @click="changeLanguage('it')">🇮🇹 IT</p>
-		<p v-else-if="language == 'it'" @click="changeLanguage('de')">🇫🇷 FR</p>
-		<p v-else-if="language == 'de'" @click="changeLanguage('pt')">🇩🇪 DE</p>
-		<p v-else-if="language == 'pt'" @click="changeLanguage('fr')">🇩🇪 DE</p>
+		<p v-else-if="language == 'it'" @click="changeLanguage('de')">🇩🇪 DE</p>
+		<p v-else-if="language == 'de'" @click="changeLanguage('pt')">🇵🇹 PT</p>
+		<p v-else-if="language == 'pt'" @click="changeLanguage('fr')">🇫🇷 FR</p>
 	</div>
 </template>
 
