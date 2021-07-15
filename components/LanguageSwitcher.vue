@@ -1,11 +1,13 @@
 <template>
-	<div class="cursor-pointer text-grey-600 text-xs font-medium h-content">
-		<p v-if="language == 'fr'" @click="changeLanguage('en')">🇺🇸 EN</p>
-		<p v-else-if="language == 'en'" @click="changeLanguage('it')">🇮🇹 IT</p>
-		<p v-else-if="language == 'it'" @click="changeLanguage('de')">🇩🇪 DE</p>
-		<p v-else-if="language == 'de'" @click="changeLanguage('pt')">🇵🇹 PT</p>
-		<p v-else-if="language == 'pt'" @click="changeLanguage('fr')">🇫🇷 FR</p>
-	</div>
+
+	<select name="language" @change="changeLanguage">
+		<option value="fr">🇫🇷 FR</option>
+		<option value="en">🇺🇸 EN</option>
+		<option value="it">🇮🇹 IT</option>
+		<option value="de">🇩🇪 DE</option>
+		<option value="pt">🇵🇹 PT</option>
+	</select>
+
 </template>
 
 <script lang="ts">
@@ -17,8 +19,9 @@ export default class LanguageSwitcher extends Vue {
 		return this.$i18n.locale;
 	}
 
-	changeLanguage(language: string) {
-		this.$i18n.setLocale(language);
+	changeLanguage(event: Event) {
+		this.$i18n.setLocale((event.target as HTMLSelectElement).value);
 	}
+	
 }
 </script>
