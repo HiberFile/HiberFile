@@ -1,11 +1,11 @@
 <template>
 
 	<select name="language" @change="changeLanguage">
-		<option value="fr">🇫🇷 FR</option>
-		<option value="en">🇺🇸 EN</option>
-		<option value="it">🇮🇹 IT</option>
-		<option value="de">🇩🇪 DE</option>
-		<option value="pt">🇵🇹 PT</option>
+		<option value="fr" selected="language==fr">🇫🇷 FR</option>
+		<option value="en" selected="language==en">🇺🇸 EN</option>
+		<option value="it" selected="language==it">🇮🇹 IT</option>
+		<option value="de" selected="language==de">🇩🇪 DE</option>
+		<option value="pt" selected="language==pt">🇵🇹 PT</option>
 	</select>
 
 </template>
@@ -25,3 +25,10 @@ export default class LanguageSwitcher extends Vue {
 	
 }
 </script>
+<style lang="scss" scoped>
+	select {
+		background: none;
+		outline: none;
+		border: none;
+	}
+</style>
