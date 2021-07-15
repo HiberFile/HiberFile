@@ -76,7 +76,7 @@ We created HiberFile to make it easy for casual users to share large files (up t
    cd hiberfile && npm install
    ```
 
-3. Launch the dev server:
+3. Launch the dev server (optional):
 
    ```sh
    npm run dev
