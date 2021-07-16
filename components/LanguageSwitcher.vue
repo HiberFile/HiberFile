@@ -32,4 +32,7 @@ export default class LanguageSwitcher extends Vue {
 		outline: none;
 		border: none;
 	}
+	options {
+	  color: black;
+	}
 </style>
