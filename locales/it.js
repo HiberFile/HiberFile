@@ -68,7 +68,7 @@ export default {
 	host_legal_notice_content: ' : {legal_notice}.',
 	scaleway_legal_notice: 'Avviso legale di Scaleway',
 	hiberfile_created: 'HiberFile è stato creato con ❤️ in 🇨🇭.',
-	toast_max_size: 'I file sono troppo grandi. La dimensione non dovrebbe superare i 5 GB.',
+	toast_max_size: 'I file sono troppo grandi. La dimensione non dovrebbe superare i 20 GB.',
 	toast_send_error: "Si è verificato un errore durante l'invio del tuo file.",
 	toast_add_files: 'Aggiungi uno o più file prima di inviarli.',
 	toast_hiberapi_error: "Impossibile accedere a HiberAPI.",

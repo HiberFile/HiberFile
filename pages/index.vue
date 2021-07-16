@@ -252,7 +252,7 @@ export default class Index extends Vue {
 
 				this.filesize = fileToUpload.size / 1_000_000_000;
 
-				if (this.filesize >= 19.85) {
+				if (this.filesize >= 21.85) {
 					this.Toast({
 						icon: 'info',
 						title: this.$tc('toast_max_size')
