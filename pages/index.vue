@@ -58,10 +58,9 @@
 							</select>
 							<Button
 								:value="
-									(state =
-										'zip' || state == 'upload'
-											? $t('loading')
-											: $t('send_now_btn'))
+									state == 'zip' || state == 'upload'
+										? $t('loading')
+										: $t('send_now_btn')
 								"
 								@click.native="uploadFile"
 							/>
