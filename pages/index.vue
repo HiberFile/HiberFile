@@ -56,7 +56,15 @@
 								<option value="7_days">{{ $t('dur_7_days') }}</option>
 								<option value="30_days">{{ $t('dur_30_days') }}</option>
 							</select>
-							<Button :value="$t('send_now_btn')" @click.native="uploadFile" />
+							<Button
+								:value="
+									(state =
+										'zip' || state == 'upload'
+											? $t('loading')
+											: $t('send_now_btn'))
+								"
+								@click.native="uploadFile"
+							/>
 							<p class="my-4 text-grey-500 text-xs text-center">
 								{{ $t('secure_sending') }}
 							</p>
@@ -105,7 +113,7 @@
 							{{
 								state == 'error'
 									? $t('upload_error')
-									: 100 > uploadProgress
+									: state != null
 									? $t('soon_ready')
 									: $t('ready')
 							}}
@@ -144,12 +152,14 @@
 							@click.native="shareLink"
 						/>
 						<Button :value="$t('return_to_home')" @click.native="setAsHome" />
-						<progress
-							v-if="uploadProgress && 100 > uploadProgress"
-							class="rounded-sm w-full h-1 mt-6"
-							max="100"
-							:value="uploadProgress"
-						></progress>
+						<template v-if="state != null">
+							<progress
+								v-if="uploadProgress && 100 > uploadProgress"
+								class="rounded-sm w-full h-1 mt-6"
+								max="100"
+								:value="uploadProgress"
+							></progress>
+						</template>
 					</div>
 				</div>
 			</CardContent>

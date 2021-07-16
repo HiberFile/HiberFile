@@ -9,15 +9,15 @@ export default async (
 	onUploadProgress: (progress: number) => void
 ) => {
 	const minChunksSize = 10_000_000;
-	const maxChunksSize = 500_000_000;
-	const maxChunksNumber = 20;
+	const maxChunksSize = 10_000_000;
+	const minChunksNumber = 20;
 
 	const chunksSize =
-		file.size / maxChunksNumber <= minChunksSize
+		file.size / minChunksNumber <= minChunksSize
 			? minChunksSize
-			: file.size / maxChunksNumber >= maxChunksSize
+			: file.size / minChunksNumber >= maxChunksSize
 			? maxChunksSize
-			: file.size / maxChunksNumber;
+			: file.size / minChunksNumber;
 	const chunksNumber = Math.ceil(file.size / chunksSize);
 
 	const chunks = createChunks(file, chunksSize);
@@ -28,7 +28,6 @@ export default async (
 		hiberfileId: string;
 	}>(`${apiUrl}/files/create`, {
 		name: file.name,
-		expire,
 		chunksNumber
 	});
 	const { uploadUrls, uploadId, hiberfileId } = data;
@@ -38,18 +37,23 @@ export default async (
 	let uploadProgress = 0;
 
 	const uploadResults = await Promise.all(
-		chunks.map((chunk, i) =>
-			axios.put(uploadUrls[i], chunk, {
+		chunks.map((chunk, i) => {
+			let chunkProgressing = 0;
+
+			return axios.put(uploadUrls[i], chunk, {
 				onUploadProgress: (progressEvent) => {
-					const percentCompleted =
+					uploadProgress -= chunkProgressing;
+
+					chunkProgressing =
 						Math.round((progressEvent.loaded * 100) / progressEvent.total) *
-						Math.round((chunk.size * 100) / file.size);
-					uploadProgress += percentCompleted;
+						(chunk.size / file.size);
+
+					uploadProgress += chunkProgressing;
 
 					onUploadProgress(uploadProgress);
 				}
-			})
-		)
+			});
+		})
 	);
 
 	await axios.post(`${apiUrl}/files/${hiberfileId}/finish`, {
@@ -57,7 +61,8 @@ export default async (
 			ETag: result.headers.etag,
 			PartNumber: i + 1
 		})),
-		uploadId
+		uploadId,
+		expire
 	});
 
 	return hiberfileId;
