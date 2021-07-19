@@ -329,7 +329,7 @@ export default class Index extends Vue {
 			title: 'Code QR',
 			text: this.$tc('toast_qr_code'),
 			imageUrl: await QRCode.toDataURL(
-				'https://' + (this.$refs.downloadableLink as HTMLElement).innerText,
+				'https://' + (this.$ref.downloadableLink as HTMLElement).innerText,
 				{
 					width: 300
 				}
