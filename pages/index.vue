@@ -132,7 +132,7 @@
 								class="file-ready__link truncate overflow-x-scroll"
 								ref="downloadableLink"
 							>
-								https://hiberfile.com/d/{{ fileId }}
+								hiberfile.com/d/{{ fileId }}
 							</p>
 						</div>
 						<Button
