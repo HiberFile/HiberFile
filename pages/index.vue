@@ -132,7 +132,7 @@
 								class="file-ready__link truncate overflow-x-scroll"
 								ref="downloadableLink"
 							>
-								hiberfile.com/d/{{ fileId }}
+								https://hiberfile.com/d/{{ fileId }}
 							</p>
 						</div>
 						<Button
@@ -329,7 +329,7 @@ export default class Index extends Vue {
 			title: 'Code QR',
 			text: this.$tc('toast_qr_code'),
 			imageUrl: await QRCode.toDataURL(
-				'https://' + (this.$refs.downloadableLink as HTMLElement).innerText,
+				(this.$refs.downloadableLink as HTMLElement).innerText,
 				{
 					width: 300
 				}
