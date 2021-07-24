@@ -86,7 +86,7 @@
 											name="duration"
 											id="duration"
 											ref="duration"
-											class="send-area__duration text-blue-700 outline-none text-lg text-blue-700 font-medium bg-opacity-0 bg-white appearance-none"
+											class="send-area__duration text-blue-700 outline-none text-lg text-blue-700 font-medium bg-opacity-0 bg-white"
 										>
 											<option value="1_hour">{{ $t('dur_1_hour') }}</option>
 											<option value="1_day">{{ $t('dur_1_day') }}</option>
