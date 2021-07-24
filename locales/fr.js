@@ -35,8 +35,8 @@ export default {
 	link_expire_never: "Le lien n'expire jamais.",
 	link_expired: 'Le lien est expiré.',
 	download: 'Télécharger',
-	version: 'Version 2021.2 du 04 Mars 2021',
-	valid_since: 'Valables dès le 04 Mars 2021',
+	version: 'Version 2021.2 du 24 juillet 2021',
+	valid_since: 'Valables dès le 24 juillet 2021',
 	what_you_should_know:
 		'Voici absolument tout ce que vous devez savoir sur le service de partage de fichiers HiberFile.',
 	data: 'Données',
