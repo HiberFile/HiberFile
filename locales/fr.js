@@ -1,4 +1,5 @@
 export default {
+	share_file_header: 'Partagez vos fichiers de façon sécurisée et rapide.',
 	send_now_desc: 'Envoyez vos fichiers dès maintenant.',
 	select_files: 'Sélectionnez un ou plusieurs fichiers.',
 	file_selected: '1 fichier sélectionné',
@@ -17,6 +18,7 @@ export default {
 	soon_ready: 'Votre lien est bientôt prêt. Partagez-le dès maintenant.',
 	ready: 'Votre lien est prêt. Partagez-le dès maintenant.',
 	upload_error: "Une erreur est survenue lors de l'envoi de votre fichier.",
+	your_links: 'Vos liens :',
 	copy_in_clipboard: 'Copier dans le presse-papier',
 	show_qr: 'Afficher le code QR',
 	share: 'Partager le lien',
@@ -33,7 +35,7 @@ export default {
 	link_expire_never: "Le lien n'expire jamais.",
 	link_expired: 'Le lien est expiré.',
 	download: 'Télécharger',
-	version: 'Version 2021.1 du 04 Mars 2021',
+	version: 'Version 2021.2 du 04 Mars 2021',
 	valid_since: 'Valables dès le 04 Mars 2021',
 	what_you_should_know:
 		'Voici absolument tout ce que vous devez savoir sur le service de partage de fichiers HiberFile.',
@@ -68,10 +70,12 @@ export default {
 	host_legal_notice_content: ' : {legal_notice}.',
 	scaleway_legal_notice: 'Mentions légales de Scaleway',
 	hiberfile_created: 'HiberFile a été créé avec ❤️ en 🇨🇭.',
-	toast_max_size: 'Le ou les fichiers sont trop lourds. La taille ne doit pas dépasser 20 Go.',
+	toast_max_size:
+		'Le ou les fichiers sont trop lourds. La taille ne doit pas dépasser 20 Go.',
 	toast_send_error: "Une erreur est survenue lors de l'envoi de votre fichier.",
 	toast_add_files: 'Ajoutez un ou plusieurs fichiers avant de les envoyer.',
 	toast_hiberapi_error: "Impossible d'accéder à HiberAPI.",
 	toast_link_copy: 'Lien copié',
-	toast_qr_code: 'Scannez ce code QR pour accéder au lien de téléchargement depuis un autre appareil sans devoir entrer le lien manuellement.'
+	toast_qr_code:
+		'Scannez ce code QR pour accéder au lien de téléchargement depuis un autre appareil sans devoir entrer le lien manuellement.'
 };

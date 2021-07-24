@@ -1,5 +1,5 @@
 <template>
-	<div class="flex">
+	<div id="root" class="overflow-hidden">
 		<Nuxt />
 
 		<!-- make tailwind doesn't purge dark-mode -->
@@ -7,7 +7,7 @@
 	</div>
 </template>
 
-<script lang='ts'>
+<script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator';
 
 @Component
@@ -47,6 +47,14 @@ html {
 *::after {
 	box-sizing: border-box;
 	margin: 0;
+}
+
+#root {
+	background-image: radial-gradient(
+		circle at top left,
+		var(--gradient-color-stops)
+	);
+	@apply from-blue-500 to-blue-600;
 }
 
 /* .button--green {

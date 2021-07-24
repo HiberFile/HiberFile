@@ -1,11 +1,12 @@
 {
   "name": "hiberfile",
-  "version": "2021.1.2",
+  "version": "2021.2.0",
   "private": true,
   "scripts": {
-    "dev": "nuxt-ts",
+    "current-git-sha": "NUXT_ENV_CURRENT_GIT_SHA=`git rev-parse --short HEAD`",
+    "dev": "npm run current-git-sha nuxt-ts",
     "build": "nuxt-ts build",
-    "start": "nuxt-ts start",
+    "start": "npm run current-git-sha nuxt-ts start",
     "generate": "nuxt-ts generate",
     "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "lint:style": "stylelint **/*.{vue,css} --ignore-path .gitignore",

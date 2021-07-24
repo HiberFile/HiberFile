@@ -1,17 +1,17 @@
 <template>
-	<input
-		type="button"
-		:value="value"
-		class="outline-none rounded-2xl flex justify-center items-center mt-2 py-4 px-6 cursor-pointer bg-blue-600 hover:bg-blue-700 text-white font-medium w-auto"
-	/>
+	<p
+		class="outline-none bg-opacity-0 bg-white text-blue-700 underline text-center cursor-pointer font-medium w-auto text-lg"
+	>
+		{{ value }}
+	</p>
 </template>
 
-<script lang='ts'>
+<script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator';
 
 @Component
 export default class Button extends Vue {
-    @Prop({
+	@Prop({
 		required: true
 	})
 	readonly value: string | undefined;

@@ -1,4 +1,5 @@
 export default {
+	share_file_header: 'Share your files securely and securely and quickly.',
 	send_now_desc: 'Send your files now.',
 	select_files: 'Select one or more files.',
 	file_selected: '1 selected file',
@@ -10,13 +11,14 @@ export default {
 	dur_30_days: '30 days',
 	dur_never: 'Never',
 	send_now_btn: 'Send now',
-	secure_sending: "The transfer is secured.",
+	secure_sending: 'The transfer is secured.',
 	file_list: 'List of your file(s) {totalSize}:',
 	in_total: 'in total',
 	legal_notice: 'Legal notice',
 	soon_ready: 'Your link is soon ready. Share it now.',
 	ready: 'Your link is ready. Share it now.',
 	upload_error: 'An error occurred while sending your file.',
+	your_links: 'Your links :',
 	copy_in_clipboard: 'Copy to clipboard',
 	show_qr: 'Show QR code',
 	share: 'Share your link',
@@ -33,7 +35,7 @@ export default {
 	link_expire_never: 'The link never expires.',
 	link_expired: 'The link has expired.',
 	download: 'Download',
-	version: 'Version 2021.1 of March 04, 2021',
+	version: 'Version 2021.2 of March 04, 2021',
 	valid_since: 'Valid as of March 04, 2021',
 	what_you_should_know:
 		'Here is absolutely everything you need to know about the HiberFile file sharing service.',
@@ -71,8 +73,8 @@ export default {
 	toast_max_size: 'The file(s) are too large. The size must not exceed 20 GB.',
 	toast_send_error: 'An error occurred while sending your file.',
 	toast_add_files: 'Add one or more files before sending them.',
-	toast_hiberapi_error: "Unable to access HiberAPI.",
+	toast_hiberapi_error: 'Unable to access HiberAPI.',
 	toast_link_copy: 'Link copied',
-	toast_qr_code: 'Scan this QR code to access the download link from another device without having to enter the link manually.'
+	toast_qr_code:
+		'Scan this QR code to access the download link from another device without having to enter the link manually.'
 };
-

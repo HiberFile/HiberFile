@@ -117,6 +117,7 @@ export default class Dropzone extends Vue {
 			} else {
 				this.Toast({
 					icon: 'warning',
+					iconColor: '#FCE762',
 					title: "Ce type de fichier n'est pas supporté."
 				});
 			}

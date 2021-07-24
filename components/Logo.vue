@@ -1,3 +1,3 @@
 <template>
-	<img src="./../assets/images/png/logos/compactedTransparentGradient.png" alt="" />
+	<img src="./../assets/images/svg/logo.svg" alt="" />
 </template>

@@ -1,74 +1,86 @@
 <template>
 	<div
-		class="px-8 font-sans bg-white dark:bg-black flex-grow min-h-screen text-dark dark:text-white flex flex-col max-w-full"
+		class="p-8 font-sans gradient-radial flex-grow min-h-screen text-white flex flex-col max-w-full"
+		:style="{
+			'min-height': mobile ? 'calc(var(--vh, 1vh) * 100)' : '',
+			'overflow-y': mobile ? 'hidden' : ''
+		}"
 	>
-		<Header :onclicklogo="goToHome" />
-		<MainCard>
-			<CardContent>
-				<div class="download-file flex flex-col items-center">
-					<Cross v-if="uploadState === 'error'" class="download-file__cross" />
-					<ArrowDown v-else class="download-file__arrow" />
-					<h4 class="font-bold my-4 text-center">
-						{{
-							uploadState === 'waiting'
-								? $t('download_soon')
-								: uploadState === 'error'
-								? ''
-								: $t('download_now')
-						}}
-					</h4>
-					<div class="mb-4 text-center">
-						<h3 class="font-bold text-black dark:text-white text-xl">
-							{{
-								uploadState === 'waiting'
-									? $t('waiting_for_file')
-									: uploadState === 'error'
-									? $t('file_does_not_exist')
-									: filename
-									? filename
-									: $t('loading')
-							}}
-						</h3>
-						<p
-							v-if="filePreview && expireIn != 'finish'"
-							class="text-xs font-light cursor-pointer underline"
-							@click="firePreview"
-						>
-							({{ $t('preview') }})
-						</p>
-					</div>
-					<h6
-						class="mb-3 text-center font-bold text-xs text-black dark:text-white"
-					>
-						{{
-							expireIn
-								? expireIn == 'finish'
-									? $t('link_expired')
-									: `${$t('link_expire_in')}${expireIn.day}j ${
-											expireIn.hour
-									  }h ${expireIn.minute}m ${expireIn.second}s`
-								: ''
-						}}
-					</h6>
-					<Button
-						v-if="filename && expireIn != 'finish'"
-						:value="$t('download')"
-						@click.native="download"
-					/>
-					<Button
-						v-if="filename && !mobile"
-						:value="$t('show_qr')"
-						@click.native="showQR"
-					/>
-					<Button
-						v-else-if="filename && mobile"
-						:value="$t('share')"
-						@click.native="shareLink"
-					/>
-				</div>
-			</CardContent>
-		</MainCard>
-		<Footer />
+		<Header
+			:onclicklogo="goToHome"
+			:class="{ absolute: mobile, 'top-0': mobile, 'pt-8': mobile }"
+		/>
+		<div class="flex-grow flex flex-row items-center justify-start my-8">
+			<div class="flex flex-row items-start justify-start w-full">
+				<MainCard
+					:style="{
+						transform: !mobile ? 'translateX(calc(50vw - 50% - 2rem))' : ''
+					}"
+				>
+					<CardContent>
+						<div class="download-file flex flex-col items-center">
+							<Cross
+								v-if="uploadState === 'error'"
+								class="download-file__cross w-8 h-8"
+							/>
+							<ArrowDown v-else class="download-file__arrow w-8 h-8" />
+							<div class="my-6 text-center">
+								<h3 class="text-lg text-center text-blue-700 font-medium">
+									{{
+										uploadState === 'waiting'
+											? $t('waiting_for_file')
+											: uploadState === 'error'
+											? $t('file_does_not_exist')
+											: filename
+											? filename
+											: $t('loading')
+									}}
+								</h3>
+								<p
+									v-if="filePreview && expireIn != 'finish'"
+									class="text-xs font-light cursor-pointer underline text-blue-700 mb-2"
+									@click="firePreview"
+								>
+									({{ $t('preview') }})
+								</p>
+								<h6 class="mb-3 text-center font-medium text-xs text-blue-700">
+									{{
+										expireIn
+											? expireIn == 'finish'
+												? $t('link_expired')
+												: `${$t('link_expire_in')} ${
+														expireIn.day > 0 ? `${expireIn.day}j` : ''
+												  } ${expireIn.hour > 0 ? `${expireIn.hour}h` : ''} ${
+														expireIn.minute > 0 ? `${expireIn.minute}m` : ''
+												  } ${expireIn.second > 0 ? `${expireIn.second}s` : ''}`
+											: ''
+									}}
+								</h6>
+							</div>
+							<Button
+								v-if="filename && expireIn != 'finish'"
+								:value="$t('download')"
+								@click.native="download"
+							/>
+							<Button
+								v-if="filename && !mobile"
+								:value="$t('show_qr')"
+								@click.native="showQR"
+							/>
+							<Button
+								v-else-if="filename && mobile"
+								:value="$t('share')"
+								@click.native="shareLink"
+							/>
+						</div>
+					</CardContent>
+				</MainCard>
+			</div>
+		</div>
+		<Footer
+			:class="{ absolute: mobile, 'bottom-0': mobile, 'pb-8': mobile }"
+			:style="{ width: mobile ? 'calc(100% - 4rem)' : 'inherit' }"
+		/>
 	</div>
 </template>
 
@@ -102,6 +114,11 @@ export default class D extends Vue {
 
 	beforeMount() {
 		this.mobile = isMobile();
+
+		document.documentElement.style.setProperty(
+			'--vh',
+			`${window.innerHeight * 0.01}px`
+		);
 	}
 
 	@Emit()
@@ -186,6 +203,7 @@ export default class D extends Vue {
 				console.error(err);
 				this.Toast({
 					icon: 'error',
+					iconColor: '#F63F3C',
 					title: 'Une erreur est survenue lors du chargement des informations.'
 				});
 			}
@@ -251,12 +269,6 @@ export default class D extends Vue {
 .hiberfile-logo {
 	width: 89px;
 	height: auto;
-}
-
-.download-file__arrow,
-.download-file__cross {
-	width: 48px;
-	height: 48px;
 }
 
 progress::-webkit-progress-value {

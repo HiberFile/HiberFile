@@ -1,7 +1,7 @@
 <template>
-	<main class="flex justify-center flex-grow items-center">
+	<main class="max-w-full" style="width: 28rem; min-height: 20rem">
 		<div
-			class="w-full max-w-5xl md:w-auto mx-0 md:mx-24 dark:border-none md:dark:border rounded-none md:rounded-3xl shadow-none md:shadow-xl h-full p-0 md:p-6 px-0 md:px-6 md:bg-white md:dark:bg-grey-900 dark:border-grey-800 flex-grow flex md:max-h-160 md:min-h-144"
+			class="w-full inline-block rounded-3xl shadow-xl h-full p-4 md:max-h-160 md:min-h-144 bg-white"
 		>
 			<slot></slot>
 		</div>

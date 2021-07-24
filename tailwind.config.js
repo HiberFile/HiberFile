@@ -22,11 +22,16 @@ module.exports = {
 	},
 	theme: {
 		darkSelector: '.dark-mode',
+		backgroundImage: {
+			'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))'
+		},
 		height: {
 			content: 'min-content',
 			12: '3rem',
 			1: '0.25rem',
-			full: '100%'
+			8: '2rem',
+			full: '100%',
+			auto: 'auto'
 		},
 		maxHeight: {
 			144: '36rem',
@@ -38,6 +43,7 @@ module.exports = {
 		},
 		fontFamily: {
 			sans: [
+				'Poppins',
 				'Inter',
 				'system-ui',
 				'-apple-system',
@@ -67,8 +73,9 @@ module.exports = {
 				900: '#0c0c0d'
 			},
 			blue: {
-				600: '#0060df',
-				700: '#003eaa'
+				500: '#009BF5',
+				600: '#2D56D5',
+				700: '#2851CC'
 			}
 		}
 	},
