@@ -1,6 +1,6 @@
 <template>
 
-	<select class="appearance-none" name="language" @change="changeLanguage">
+	<select name="language" @change="changeLanguage">
 		<option value="fr" :selected="language == 'fr'">🇫🇷 Français</option>
 		<option value="en" :selected="language == 'en'">🇺🇸 English</option>
 		<option value="it" :selected="language == 'it'">🇮🇹 Italiano</option>
