@@ -35,8 +35,8 @@ export default {
 	link_expire_never: 'El link nunca caduca.',
 	link_expired: 'El enlace ha caducado.',
 	download: 'Descargar',
-	version: 'Versión 2021.2 del 04 de marzo de 2021',
-	valid_since: 'Válido a partir del 04 de marzo de 2021',
+	version: 'Versión 2021.2 del 24 de julio de 2021',
+	valid_since: 'Válido a partir del 24 de julio de 2021',
 	what_you_should_know:
 		'Aquí está todo lo que necesitas saber sobre el servicio de intercambio de archivos HiberFile.',
 	data: 'Datos',
