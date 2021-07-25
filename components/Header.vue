@@ -12,12 +12,16 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'nuxt-property-decorator';
+import isMobile from '~/assets/scripts/isMobile';
 
 @Component
 export default class Index extends Vue {
-	@Prop({
-		required: true
-	})
+	@Prop({ required: true })
 	readonly onclicklogo: void | undefined;
+	mobile: boolean | null = null;
+
+	beforeMount() {
+		this.mobile = isMobile();
+	}
 }
 </script>
