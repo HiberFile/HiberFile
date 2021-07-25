@@ -392,27 +392,25 @@ export default class Index extends Vue {
 							fileToUpload,
 							expire,
 							process.env.HIBERAPI_URL!,
-							(hiberfileId) => {
-								this.fileId = hiberfileId;
-
-								if (this.filename) {
-									this.fileHistory = (this.fileHistory ?? []).concat({
-										fileId: hiberfileId,
-										filename:
-											this.filename === 'generated_by_hf--to_be_remplaced.zip'
-												? `hf_${this.fileId}.zip`
-												: this.filename,
-										expire: new Date(new Date().getTime() + expire * 1000)
-									});
-
-									localStorage.setItem(
-										'fileHistory',
-										JSON.stringify(this.fileHistory)
-									);
-								}
-							},
+							(hiberfileId) => (this.fileId = hiberfileId),
 							(progress) => (this.uploadProgress = progress)
 						);
+
+						if (this.filename && this.fileId) {
+							this.fileHistory = (this.fileHistory ?? []).concat({
+								fileId: this.fileId,
+								filename:
+									this.filename === 'generated_by_hf--to_be_remplaced.zip'
+										? `hf_${this.fileId}.zip`
+										: this.filename,
+								expire: new Date(new Date().getTime() + expire * 1000)
+							});
+
+							localStorage.setItem(
+								'fileHistory',
+								JSON.stringify(this.fileHistory)
+							);
+						}
 
 						this.state = null;
 					} catch (err) {
