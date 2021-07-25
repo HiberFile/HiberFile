@@ -57,6 +57,10 @@ html {
 	@apply from-blue-500 to-blue-600;
 }
 
+select {
+	@apply appearance-none;
+}
+
 /* .button--green {
 	display: inline-block;
 	border-radius: 4px;
