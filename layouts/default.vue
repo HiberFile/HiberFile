@@ -1,6 +1,8 @@
 <template>
 	<div id="root" class="overflow-hidden">
-		<Nuxt />
+		<client-only>
+			<Nuxt />
+		</client-only>
 
 		<!-- make tailwind doesn't purge dark-mode -->
 		<div class="dark-mode hidden"></div>
