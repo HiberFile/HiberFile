@@ -167,7 +167,7 @@
 					</CardContent>
 				</MainCard>
 				<div
-					v-if="!filelistNotEmpty && fileHistory && fileHistory.length > 0"
+					v-show="!filelistNotEmpty && fileHistory && fileHistory.length > 0"
 					class="ml-8 min-w-0 absolute h-full overflow-scroll"
 					style="left: 28rem; width: calc(100% - 30rem)"
 				>
@@ -209,7 +209,7 @@
 					</table>
 				</div>
 				<div
-					v-else-if="filelistNotEmpty && !fileId && !mobile"
+					v-show="filelistNotEmpty && !fileId && !mobile"
 					class="ml-8 min-w-0 absolute h-full overflow-scroll"
 					style="left: 28rem; width: calc(100% - 30rem)"
 				>
