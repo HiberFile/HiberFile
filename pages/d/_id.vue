@@ -242,8 +242,7 @@ export default class D extends Vue {
 				.share({
 					title: this.filename,
 					text: this.$tc('share_link_text'),
-					url:
-						'https://' + (this.$refs.downloadableLink as HTMLElement).innerText
+					url: window.location.href
 				})
 				.catch(console.error);
 		} else {
