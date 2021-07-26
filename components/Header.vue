@@ -5,7 +5,7 @@
 	>
 		<div class="inline-block" @click="onclicklogo">
 			<Logo class="hiberfile-logo cursor-pointer" />
-			<p class="font-light mt-8" style="width: 14rem" v-if="!mobile">
+			<p class="font-light mt-8" style="width: 14rem" v-show="!mobile">
 				{{ $t('share_file_header') }}
 			</p>
 		</div>
