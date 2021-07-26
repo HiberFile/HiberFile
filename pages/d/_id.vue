@@ -24,8 +24,10 @@
 								class="download-file__cross w-8 h-8"
 							/>
 							<ArrowDown v-else class="download-file__arrow w-8 h-8" />
-							<div class="my-6 text-center">
-								<h3 class="text-lg text-center text-blue-700 font-medium">
+							<div class="my-6 text-center w-full">
+								<h3
+									class="text-lg text-center text-blue-700 font-medium truncate"
+								>
 									{{
 										uploadState === 'waiting'
 											? $t('waiting_for_file')
