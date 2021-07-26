@@ -15,7 +15,7 @@ import { Component, Prop, Vue } from 'nuxt-property-decorator';
 import isMobile from '~/assets/scripts/isMobile';
 
 @Component
-export default class Index extends Vue {
+export default class Header extends Vue {
 	@Prop({ required: true })
 	readonly onclicklogo: void | undefined;
 	mobile: boolean | null = null;
