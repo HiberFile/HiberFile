@@ -509,7 +509,7 @@ export default class Index extends Vue {
 		this.filelist = [];
 		this.fileId = null;
 		this.uploadProgress = null;
-    window.open("https://www.hiberfile.com","_self")
+    window.open("https://www.hiberfile.com","_self");
 	}
 }
 </script>
