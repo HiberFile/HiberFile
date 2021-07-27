@@ -173,7 +173,7 @@
 						fileHistory.length > 0 &&
 						!mobile
 					"
-					class="ml-8 min-w-0 absolute h-full overflow-scroll"
+					class="ml-8 min-w-0 absolute h-full overflow-auto"
 					style="left: 28rem; width: calc(100% - 30rem)"
 				>
 					<p class="text-lg font-medium mb-8">{{ $t('your_links') }}</p>
@@ -215,7 +215,7 @@
 				</div>
 				<div
 					v-show="filelistNotEmpty && !fileId && !mobile"
-					class="ml-8 min-w-0 absolute h-full overflow-scroll"
+					class="ml-8 min-w-0 absolute h-full overflow-auto"
 					style="left: 28rem; width: calc(100% - 30rem)"
 				>
 					<p class="text-lg font-medium mb-8">
