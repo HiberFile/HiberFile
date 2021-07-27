@@ -88,8 +88,7 @@ export default {
 		langDir: './locales/',
 		detectBrowserLanguage: {
 			useCookie: true,
-			cookieKey: 'i18n_redirected',
-			onlyOnRoot: true
+			alwaysRedirect: true
 		},
 		defaultLocale: 'en'
 	},
