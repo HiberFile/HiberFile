@@ -91,7 +91,7 @@ export default {
 			cookieKey: 'i18n_redirected',
 			onlyOnRoot: true
 		},
-		defaultLocale: 'fr'
+		defaultLocale: 'en'
 	},
 
 	// Build Configuration (https://go.nuxtjs.dev/config-build)
