@@ -64,15 +64,15 @@ select {
 }
 
 .swal2-success-ring {
-	border-color: #2d56d5 !important;
+	border-color: #0060df !important;
 }
 
 .swal2-success-line-tip {
-	background-color: #2d56d5 !important;
+	background-color: #0060df !important;
 }
 
 .swal2-success-line-long {
-	background-color: #2d56d5 !important;
+	background-color: #0060df !important;
 }
 
 /* .button--green {
