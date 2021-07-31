@@ -93,9 +93,7 @@ import { Vue, Component, Prop } from 'vue-property-decorator';
 @Component
 export default class Mentions extends Vue {
 	goToHome() {
-		this.$router.push({
-			path: '/'
-		});
+		window.open("https://www.hiberfile.com","_self");
 	}
 }
 </script>
