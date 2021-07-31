@@ -60,9 +60,6 @@ html {
 }
 
 select {
-	background: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20width%3D%2224%22%20height%3D%2224%22%3E%3Cpath%20fill%3D%22none%22%20d%3D%22M0%200h24v24H0z%22%2F%3E%3Cpath%20d%3D%22M12%2015l-4.243-4.243%201.415-1.414L12%2012.172l2.828-2.829%201.415%201.414z%22%20fill%3D%22rgba(40%2C81%2C204%2C1)%22%2F%3E%3C%2Fsvg%3E')
-		no-repeat 95% 50%;
-	padding-right: 20px;
 	@apply appearance-none;
 }
 

@@ -526,6 +526,12 @@ export default class Index extends Vue {
 	opacity: 0;
 }
 
+select#duration {
+	background: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20width%3D%2224%22%20height%3D%2224%22%3E%3Cpath%20fill%3D%22none%22%20d%3D%22M0%200h24v24H0z%22%2F%3E%3Cpath%20d%3D%22M12%2015l-4.243-4.243%201.415-1.414L12%2012.172l2.828-2.829%201.415%201.414z%22%20fill%3D%22rgba(40%2C81%2C204%2C1)%22%2F%3E%3C%2Fsvg%3E')
+		no-repeat 95% 50%;
+	padding-right: 20px;
+}
+
 main.dragover > div {
 	/* @apply bg-blue-600; */
 	background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='96' height='96'%3E%3Cpath fill='none' d='M0 0h24v24H0z'/%3E%3Cpath d='M16 13l6.964 4.062-2.973.85 2.125 3.681-1.732 1-2.125-3.68-2.223 2.15L16 13zm-2-7h2v2h5a1 1 0 0 1 1 1v4h-2v-3H10v10h4v2H9a1 1 0 0 1-1-1v-5H6v-2h2V9a1 1 0 0 1 1-1h5V6zM4 14v2H2v-2h2zm0-4v2H2v-2h2zm0-4v2H2V6h2zm0-4v2H2V2h2zm4 0v2H6V2h2zm4 0v2h-2V2h2zm4 0v2h-2V2h2z' fill='rgba(255,255,255,1)'/%3E%3C/svg%3E")
