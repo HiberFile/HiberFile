@@ -104,7 +104,7 @@ export default class D extends Vue {
 	filename: string | null = null;
 	expire: string | null = null;
 	expireIn: string | RemainingTime | null = null;
-	uploadState: string | null = null;
+	uploadState: 'waiting' | 'error' | 'loading' | null = null;
 	filePreview: string | null = null;
 	mobile: boolean | null = null;
 
@@ -165,7 +165,7 @@ export default class D extends Vue {
 
 						this.uploadState = 'loading';
 
-						const result = await downloadFile(
+						let result = await downloadFile(
 							((this as unknown) as { id: string }).id,
 							process.env.HIBERAPI_URL!
 						);
@@ -190,11 +190,24 @@ export default class D extends Vue {
 						}
 					} catch (err) {
 						console.error(err);
+						if (err.message.includes('code 425')) return 'waiting';
 						this.uploadState = 'error';
 					}
 				};
 
-				getState();
+				let downloadState = await getState();
+				if (downloadState === 'waiting') {
+					this.uploadState = 'waiting';
+					const downloadStateInterval = setInterval(async () => {
+						downloadState = await getState();
+						if (downloadState !== 'waiting') {
+							this.uploadState = null;
+							clearInterval(downloadStateInterval);
+						} else {
+							this.uploadState = 'waiting';
+						}
+					}, 10000);
+				}
 			} catch (err) {
 				console.error(err);
 				this.Toast({
