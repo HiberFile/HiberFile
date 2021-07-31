@@ -6,10 +6,7 @@
 			'overflow-y': mobile ? 'hidden' : ''
 		}"
 	>
-		<Header
-			:onclicklogo="goToHome"
-			:class="{ absolute: mobile, 'top-0': mobile, 'pt-8': mobile }"
-		/>
+		<Header :onclicklogo="goToHome" />
 		<div class="flex-grow flex flex-row items-center justify-start my-8">
 			<div class="flex flex-row items-start justify-start w-full">
 				<MainCard
@@ -79,10 +76,7 @@
 				</MainCard>
 			</div>
 		</div>
-		<Footer
-			:class="{ absolute: mobile, 'bottom-0': mobile, 'pb-8': mobile }"
-			:style="{ width: mobile ? 'calc(100% - 4rem)' : 'inherit' }"
-		/>
+		<Footer />
 	</div>
 </template>
 
