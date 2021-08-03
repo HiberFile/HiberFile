@@ -45,7 +45,9 @@
 								<h6 class="mb-3 text-center font-medium text-xs text-blue-700">
 									{{
 										expireIn
-											? expireIn == 'finish'
+											? expireIn === 'never'
+												? $t('link_expire_never')
+												: expireIn == 'finish'
 												? $t('link_expired')
 												: `${$t('link_expire_in')} ${
 														expireIn.day > 0 ? `${expireIn.day}j` : ''
@@ -123,7 +125,8 @@ export default class D extends Vue {
 			const date = new Date(this.expire);
 			const difference = date.getTime() - new Date().getTime();
 
-			if (difference < 0) this.expireIn = 'finish';
+			if (date >= new Date('3333-12-31')) this.expireIn = 'never';
+			else if (difference < 0) this.expireIn = 'finish';
 			else {
 				this.expireIn = {
 					day: Math.floor(difference / (1000 * 3600 * 24)),

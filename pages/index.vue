@@ -90,6 +90,7 @@
 											<option value="3_days">{{ $t('dur_3_days') }}</option>
 											<option value="7_days">{{ $t('dur_7_days') }}</option>
 											<option value="30_days">{{ $t('dur_30_days') }}</option>
+											<option value="never">{{ $t('dur_never') }}</option>
 										</select>
 									</div>
 									<Button
@@ -385,6 +386,10 @@ export default class Index extends Vue {
 						else if (expireStr === '3_days') expire = 3600 * 24 * 3;
 						else if (expireStr === '7_days') expire = 3600 * 24 * 7;
 						else if (expireStr === '30_days') expire = 3600 * 24 * 30;
+						else if (expireStr === 'never')
+							expire =
+								(new Date('3333-12-31').getTime() - new Date().getTime()) /
+								1000;
 						else expire = 3600;
 
 						await uploadFile(
