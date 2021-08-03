@@ -1,5 +1,5 @@
 export default {
-	share_file_header: 'Share your files securely and securely and quickly.',
+	share_file_header: 'Share your files securely and quickly.',
 	send_now_desc: 'Send your files now.',
 	select_files: 'Select one or more files.',
 	file_selected: '1 selected file',
