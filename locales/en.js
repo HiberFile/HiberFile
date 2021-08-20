@@ -15,7 +15,7 @@ export default {
 	file_list: 'List of your file(s) {totalSize}:',
 	in_total: 'in total',
 	legal_notice: 'Legal notice',
-	soon_ready: 'Your link is soon ready. Share it now.',
+	soon_ready: 'Your link is soon ready.',
 	ready: 'Your link is ready. Share it now.',
 	upload_error: 'An error occurred while sending your file.',
 	your_links: 'Your links :',

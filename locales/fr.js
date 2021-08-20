@@ -15,7 +15,7 @@ export default {
 	file_list: 'Liste de vo(s) fichier(s) {totalSize} :',
 	in_total: 'au total',
 	legal_notice: 'Mentions légales',
-	soon_ready: 'Votre lien est bientôt prêt. Partagez-le dès maintenant.',
+	soon_ready: 'Votre lien est bientôt prêt.',
 	ready: 'Votre lien est prêt. Partagez-le dès maintenant.',
 	upload_error: "Une erreur est survenue lors de l'envoi de votre fichier.",
 	your_links: 'Vos liens :',

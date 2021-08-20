@@ -15,7 +15,7 @@ export default {
 	file_list: 'Lista do(s) seu(s) ficheiro(s) {totalSize} :',
 	in_total: 'no total',
 	legal_notice: 'Menções legais',
-	soon_ready: 'O seu link está quase pronto. Partilhe-o agora.',
+	soon_ready: 'O seu link está quase pronto.',
 	ready: 'O seu link está pronto. Partilhe-o agora.',
 	upload_error: 'Ocorreu um erro durante o envio do seu ficheiro.',
 	your_links: 'Seus links:',
