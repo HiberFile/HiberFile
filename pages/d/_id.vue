@@ -16,11 +16,12 @@
 				>
 					<CardContent>
 						<div class="download-file flex flex-col items-center">
+							<Loader v-if="uploadState === 'waiting'" class="w-8 h-8" />
 							<Cross
-								v-if="uploadState === 'error'"
-								class="download-file__cross w-8 h-8"
+								v-else-if="uploadState === 'error' || expireIn == 'finish'"
+								class="w-8 h-8"
 							/>
-							<ArrowDown v-else class="download-file__arrow w-8 h-8" />
+							<ArrowDown v-else class="w-8 h-8" />
 							<div class="my-6 text-center w-full">
 								<h3
 									class="text-lg text-center text-blue-700 font-medium truncate"
@@ -106,7 +107,7 @@ export default class D extends Vue {
 	filename: string | null = null;
 	expire: string | null = null;
 	expireIn: string | RemainingTime | null = null;
-	uploadState: 'waiting' | 'error' | 'loading' | null = null;
+	uploadState: 'waiting' | 'error' | 'loading' | null = 'waiting';
 	filePreview: string | null = null;
 	mobile: boolean | null = null;
 

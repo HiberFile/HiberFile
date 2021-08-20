@@ -108,11 +108,9 @@
 					<CardContent v-else>
 						<div>
 							<div class="file-ready flex flex-col items-center">
-								<Check
-									v-if="state != 'error'"
-									class="file-ready__check w-8 h-8"
-								/>
-								<Cross v-else class="file-ready__cross w-8 h-8" />
+								<Loader v-if="state === 'upload'" class="w-8 h-8" />
+								<Check v-else-if="state != 'error'" class="w-8 h-8" />
+								<Cross v-else class="w-8 h-8" />
 								<div class="my-12 flex flex-col items-center w-full">
 									<h4
 										class="text-lg text-center text-blue-700 font-medium mb-6"
@@ -508,7 +506,7 @@ export default class Index extends Vue {
 		this.filelist = [];
 		this.fileId = null;
 		this.uploadProgress = null;
-    window.open("https://www.hiberfile.com","_self");
+		// window.open('https://www.hiberfile.com', '_self');
 	}
 }
 </script>
