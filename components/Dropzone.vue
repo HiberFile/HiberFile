@@ -12,7 +12,11 @@
 			required
 		/>
 
-		<label for="assetsFieldHandle" class="flex-grow flex" @click.prevent>
+		<label
+			for="assetsFieldHandle"
+			class="flex-grow flex flex-col md:flex-row"
+			@click.prevent
+		>
 			<slot></slot>
 		</label>
 	</div>

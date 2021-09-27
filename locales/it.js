@@ -77,5 +77,15 @@ export default {
 	toast_hiberapi_error: 'Impossibile accedere a HiberAPI.',
 	toast_link_copy: 'Link copiato',
 	toast_qr_code:
-		'Scannerizzate questo codice QR per accedere al link di download da un altro dispositivo senza dover inserire il link manualmente.'
+		'Scannerizzate questo codice QR per accedere al link di download da un altro dispositivo senza dover inserire il link manualmente.',
+
+	show_options: 'Mostra opzioni',
+	hide_options: 'Nascondi opzioni',
+	more_options: 'Mostra opzioni avanzate',
+	expiration_time: 'Tempo di scadenza del file',
+	private_file: 'File privato',
+	rename_file: 'Rinomina file',
+	webhook_uploading: 'Webhook: il caricamento è iniziato',
+	webhook_uploaded: 'Webhook: upload finito',
+	webhook_downloading: 'Webhook: il caricamento è iniziato'
 };

@@ -16,11 +16,12 @@
 					style="transition: 0.2s"
 					:style="{
 						transform:
-							!mobile &&
-							!(
-								(filelistNotEmpty && !fileId && !mobile) ||
-								(!filelistNotEmpty && fileHistory && fileHistory.length > 0)
-							)
+							optionsShown ||
+							(!mobile &&
+								!(
+									(filelistNotEmpty && !fileId && !mobile) ||
+									(!filelistNotEmpty && fileHistory && fileHistory.length > 0)
+								))
 								? 'translateX(calc(50vw - 50% - 2rem))'
 								: 'translateX(0)'
 					}"
@@ -53,7 +54,6 @@
 											DropzoneClickable
 										>
 											<p class="text-center" v-if="mobile">
-												<!-- <template v-if="mobile"> -->
 												<span v-if="filelist.length === 0">{{
 													$t('select_files')
 												}}</span>
@@ -70,28 +70,17 @@
 														<span>{{ filelist.length }}</span>
 													</template>
 												</i18n>
-												<!-- </template>
-												<template v-else-if="!mobile">
-													{{ $t('select_files') }}
-												</template> -->
 											</p>
 											<p v-else-if="!mobile" class="text-center">
 												{{ $t('select_files') }}
 											</p>
 										</div>
-										<select
-											name="duration"
-											id="duration"
-											ref="duration"
-											class="send-area__duration text-blue-700 outline-none text-lg text-blue-700 font-medium bg-opacity-0 bg-white"
-										>
-											<option value="1_hour">{{ $t('dur_1_hour') }}</option>
-											<option value="1_day">{{ $t('dur_1_day') }}</option>
-											<option value="3_days">{{ $t('dur_3_days') }}</option>
-											<option value="7_days">{{ $t('dur_7_days') }}</option>
-											<option value="30_days">{{ $t('dur_30_days') }}</option>
-											<option value="never">{{ $t('dur_never') }}</option>
-										</select>
+										<Button
+											:value="
+												!optionsShown ? $t('show_options') : $t('hide_options')
+											"
+											@click.native="toggleOptions"
+										/>
 									</div>
 									<Button
 										:value="
@@ -101,6 +90,69 @@
 										"
 										@click.native="uploadFile"
 									/>
+								</div>
+							</div>
+							<div
+								class="pt-8 md:p-0 md:pl-8 w-full md:w-64 overflow-x-hidden relative"
+								v-show="optionsShown"
+							>
+								<div class="overflow-y-auto h-full max-h-full absolute">
+									<Option :name="$t('expiration_time')">
+										<select
+											name="duration"
+											id="duration"
+											ref="duration"
+											class="send-area__duration outline-none text-base text-blue-700 font-light bg-opacity-0 bg-white"
+										>
+											<option value="1_hour">{{ $t('dur_1_hour') }}</option>
+											<option value="1_day">{{ $t('dur_1_day') }}</option>
+											<option value="3_days">{{ $t('dur_3_days') }}</option>
+											<option value="7_days">{{ $t('dur_7_days') }}</option>
+											<option value="30_days">{{ $t('dur_30_days') }}</option>
+											<option value="never">{{ $t('dur_never') }}</option>
+										</select>
+									</Option>
+									<Option :name="$t('private_file')">
+										<HFSwitch v-model="privateFile" />
+									</Option>
+									<Option>
+										<Input
+											v-model="renamedFile"
+											:placeholder="$t('rename_file')"
+											:value="
+												filelist.length === 1
+													? filelist[0].name
+															.split('.')
+															.slice(0, filelist[0].name.split('.').length - 1)
+															.join('.')
+													: undefined
+											"
+										/>
+									</Option>
+									<Button
+										:value="$t('more_options')"
+										class="more-options__btn"
+										v-show="!moreOptionsShown"
+										@click.native="showMoreOptions"
+									/>
+									<Option v-show="moreOptionsShown">
+										<Input
+											v-model="whUploading"
+											:placeholder="$t('webhook_uploading')"
+										/>
+									</Option>
+									<Option v-show="moreOptionsShown">
+										<Input
+											v-model="whUploaded"
+											:placeholder="$t('webhook_uploaded')"
+										/>
+									</Option>
+									<Option v-show="moreOptionsShown">
+										<Input
+											v-model="whDownloading"
+											:placeholder="$t('webhook_downloading')"
+										/>
+									</Option>
 								</div>
 							</div>
 						</Dropzone>
@@ -210,7 +262,7 @@
 					</table>
 				</div>
 				<div
-					v-show="filelistNotEmpty && !fileId && !mobile"
+					v-show="filelistNotEmpty && !fileId && !mobile && !optionsShown"
 					class="ml-8 min-w-0 absolute h-full overflow-auto"
 					style="left: 28rem; width: calc(100% - 30rem)"
 				>
@@ -262,6 +314,11 @@ export default class Index extends Vue {
 	fileId: string | null = null;
 	filename: string | null = null;
 	filesize: number | null = null;
+	privateFile: boolean | null = null;
+	renamedFile: string | null = null;
+	whUploading: string | null = null;
+	whUploaded: string | null = null;
+	whDownloading: string | null = null;
 	uploadProgress: number | null = null;
 	host: string | null = null;
 	origin: string | null = null;
@@ -270,6 +327,8 @@ export default class Index extends Vue {
 	fileHistory:
 		| { fileId: string; filename: string; expire: Date }[]
 		| null = null;
+	optionsShown: boolean = false;
+	moreOptionsShown: boolean = false;
 
 	get filelistNotEmpty() {
 		return this.filelist.length > 0;
@@ -311,6 +370,18 @@ export default class Index extends Vue {
 			'--vh',
 			`${window.innerHeight * 0.01}px`
 		);
+	}
+
+	toggleOptions() {
+		this.optionsShown = !this.optionsShown;
+
+		if (!this.optionsShown) {
+			this.moreOptionsShown = false;
+		}
+	}
+
+	showMoreOptions() {
+		this.moreOptionsShown = true;
 	}
 
 	Toast(options: any) {
@@ -554,6 +625,10 @@ main.dragover > div > div {
 	visibility: visible;
 	display: inherit;
 } */
+
+.more-options__btn {
+	@apply text-base text-left;
+}
 
 @keyframes progressloading {
 	from {
