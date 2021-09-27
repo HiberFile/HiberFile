@@ -29,13 +29,15 @@ module.exports = {
 			content: 'min-content',
 			12: '3rem',
 			1: '0.25rem',
+			4: '1rem',
 			8: '2rem',
 			full: '100%',
 			auto: 'auto'
 		},
 		maxHeight: {
 			144: '36rem',
-			160: '40rem'
+			160: '40rem',
+			full: '100%'
 		},
 		boxShadow: {
 			xl:
