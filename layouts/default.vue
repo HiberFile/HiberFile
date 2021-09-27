@@ -49,6 +49,7 @@ html {
 *::after {
 	box-sizing: border-box;
 	margin: 0;
+	transition: 0.2s;
 }
 
 #root {
