@@ -22,11 +22,6 @@
       src="https://img.shields.io/github/languages/top/hiberfile/hiberfile?style=flat-square"
       alt="Top language"/></a
   ><br />
-  <a href="https://discord.gg/ctCa8H9"
-    ><img
-      src="https://img.shields.io/discord/694930747953381516?label=discord&logoColor=7289da&style=flat-square"
-      alt="Chat on Discord"
-  /></a>
   <a href="https://twitter.com/HiberFile"
     ><img
       src="https://img.shields.io/badge/twitter-@HiberFile-1DA1F3?style=flat-square"
