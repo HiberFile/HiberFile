@@ -21,7 +21,6 @@
     ><img
       src="https://img.shields.io/github/languages/top/hiberfile/hiberfile?style=flat-square"
       alt="Top language"/></a
-  ><br />
   <a href="https://twitter.com/HiberFile"
     ><img
       src="https://img.shields.io/badge/twitter-@HiberFile-1DA1F3?style=flat-square"
