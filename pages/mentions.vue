@@ -60,8 +60,8 @@
 							<b>{{ $t('support') }}</b
 							><i18n path="support_content" tag="span">
 								<template v-slot:mail>
-									<a href="mailto:hiberfile.team@gmail.com"
-										><u>hiberfile.team@gmail.com</u></a
+									<a href="mailto:hiberfile@hiberfile.com"
+										><u>hiberfile@hiberfile.com</u></a
 									>
 								</template>
 								<template v-slot:twitter>
