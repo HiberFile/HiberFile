@@ -90,7 +90,7 @@ We created HiberFile to make it easy for casual users to share large files (up t
 
 ## 🤝 Contributing
 
-If you are interested in helping contribute to **HiberFile**, feel free to let us know on our [Discord server](https://discord.gg/ctCa8H9).
+If you are interested in helping contribute to **HiberFile**, feel free to open a pull request.
 
 If you are fluent in a non-English or non-French language, we greatly appreciate any help translating our website in other languages.
 
