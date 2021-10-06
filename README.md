@@ -5,32 +5,26 @@
     alt="HiberFile"
   />
 </p>
-
 <p align="center">
   <a href="https://github.com/hiberfile/hiberfile/stargazers"
     ><img
       src="https://img.shields.io/github/stars/hiberfile/hiberfile?style=flat-square"
       alt="GitHub Stars"
-  /></a>
-  
+  /></a> 
   <a href="LICENSE"
     ><img
       src="https://img.shields.io/github/license/hiberfile/hiberfile?style=flat-square"
       alt="GPL-3.0 License"
-  /></a>
-  
-  <br>
-  
+  /></a>  
   <a href=""
     ><img
       src="https://img.shields.io/github/languages/top/hiberfile/hiberfile?style=flat-square"
-      alt="Top language"/></a
+          alt="Top language"/></a>
   <a href="https://twitter.com/HiberFile"
     ><img
       src="https://img.shields.io/badge/twitter-@HiberFile-1DA1F3?style=flat-square"
       alt="Follow @HiberFile on Twitter"
-  /></a>
-  
+  /></a> 
 </p>
 
 <p align="center">
