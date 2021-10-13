@@ -14,7 +14,7 @@
         <!-- <div class="w-1/2 max-w-sm">
 					<h3 class="mb-8 font-medium text-lg">{{ $t('change_email') }}</h3>
 					<div class="mb-10">
-						<Input
+						<HFInput
 							:pad="true"
 							v-model="emailAddress"
 							:value="emailAddress"
@@ -33,7 +33,7 @@
         <div class="w-1/2 max-w-sm">
           <h3 class="mb-8 font-medium text-lg">{{ $t('change_password') }}</h3>
           <div class="mb-10">
-            <Input
+            <HFInput
               v-model="currentPassword"
               :pad="true"
               :placeholder="$t('current_password')"
@@ -41,7 +41,7 @@
               autocomplete="current-password"
               class="mb-4"
             />
-            <Input
+            <HFInput
               v-model="newPassword"
               :pad="true"
               :placeholder="$t('new_password')"
@@ -50,7 +50,7 @@
               :error="!newPasswordConfirmed"
               class="mb-4"
             />
-            <Input
+            <HFInput
               v-model="confirmNewPassword"
               :pad="true"
               :placeholder="$t('confirm_new_password')"
@@ -69,7 +69,7 @@
         <div class="w-1/2 max-w-sm">
           <h3 class="mb-8 font-medium text-lg">{{ $t('delete_account') }}</h3>
           <div class="mb-10">
-            <Input
+            <HFInput
               v-model="password"
               :pad="true"
               :placeholder="$t('password')"

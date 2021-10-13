@@ -18,7 +18,7 @@
             <div class="download-file flex flex-col items-center">
               <Loader v-if="uploadState === 'waiting'" class="w-8 h-8" />
               <Cross
-                v-else-if="uploadState === 'error' || expireIn == 'finish'"
+                v-else-if="uploadState === 'error' || expireIn === 'finish'"
                 class="w-8 h-8"
               />
               <ArrowDown v-else class="w-8 h-8" />
@@ -37,7 +37,7 @@
                   }}
                 </h3>
                 <p
-                  v-if="filePreview && expireIn != 'finish'"
+                  v-if="filePreview && expireIn !== 'finish'"
                   class="text-xs font-light cursor-pointer underline text-blue-700 mb-2"
                   @click="firePreview"
                 >
@@ -48,7 +48,7 @@
                     expireIn
                       ? expireIn === 'never'
                         ? $t('link_expire_never')
-                        : expireIn == 'finish'
+                        : expireIn === 'finish'
                         ? $t('link_expired')
                         : `${$t('link_expire_in')} ${
                             expireIn.day > 0 ? `${expireIn.day}j` : ''
@@ -59,17 +59,17 @@
                   }}
                 </h6>
               </div>
-              <Button
-                v-if="filename && expireIn != 'finish'"
+              <HFButton
+                v-if="filename && expireIn !== 'finish'"
                 :value="$t('download')"
                 @click.native="download"
               />
-              <Button
+              <HFButton
                 v-if="filename && !mobile"
                 :value="$t('show_qr')"
                 @click.native="showQR"
               />
-              <Button
+              <HFButton
                 v-else-if="filename && mobile"
                 :value="$t('share')"
                 @click.native="shareLink"
