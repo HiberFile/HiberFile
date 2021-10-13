@@ -306,6 +306,7 @@ import QRCode from 'qrcode';
 import JSZip from 'jszip';
 import isMobile from 'assets/scripts/isMobile';
 import uploadFile from './../utils/uploadFile';
+import { accountStore } from '~/store';
 
 @Component
 export default class Index extends Vue {
@@ -366,14 +367,21 @@ export default class Index extends Vue {
 			expire: Date;
 		}[];
 
-		document.documentElement.style.setProperty(
-			'--vh',
-			`${window.innerHeight * 0.01}px`
-		);
-	}
+    this.fetchUserFiles();
 
-	toggleOptions() {
-		this.optionsShown = !this.optionsShown;
+    document.documentElement.style.setProperty(
+      '--vh',
+      `${window.innerHeight * 0.01}px`
+    );
+  }
+
+  async fetchUserFiles() {
+    if (accountStore.loggedIn)
+      this.syncFileHistory = await accountStore.files();
+  }
+
+  toggleOptions() {
+    this.optionsShown = !this.optionsShown;
 
 		if (!this.optionsShown) {
 			this.moreOptionsShown = false;
