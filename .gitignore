@@ -88,3 +88,6 @@ sw.*
 
 # Vim swap files
 *.swp
+
+# nuxt-storm files
+.components.gen.js
