@@ -102,9 +102,4 @@ export default class Mentions extends Vue {
 .card-content {
 	display: block !important;
 }
-
-.hiberfile-logo {
-	width: 89px;
-	height: auto;
-}
 </style>

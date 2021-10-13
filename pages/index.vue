@@ -583,11 +583,6 @@ export default class Index extends Vue {
 </script>
 
 <style>
-.hiberfile-logo {
-	width: 89px;
-	height: auto;
-}
-
 [DropzoneClickable] {
 	cursor: pointer;
 }

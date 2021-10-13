@@ -278,11 +278,6 @@ export default class D extends Vue {
 </script>
 
 <style>
-.hiberfile-logo {
-	width: 89px;
-	height: auto;
-}
-
 progress::-webkit-progress-value {
 	@apply rounded-sm;
 
