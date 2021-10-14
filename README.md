@@ -68,14 +68,16 @@ We created HiberFile to make it easy for casual users to share large files (up t
    ```sh
    cd hiberfile && npm install
    ```
+   
+3. Create the .env file (here is [an example](/.env.example))
 
-3. Launch the dev server (optional):
+4. Launch the dev server (optional):
 
    ```sh
    npm run dev
    ```
 
-4. Build and deploy:
+5. Build and deploy:
 
    ```sh
    npm run build && npm run generate && npm run start
