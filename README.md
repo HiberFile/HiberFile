@@ -69,12 +69,14 @@ We created HiberFile to make it easy for casual users to share large files (up t
    cd hiberfile && npm install
    ```
    
-3. Create the .env file and modify it (if you want) (here is [an example](/.env.example))
+3. Create the .env file and edit it (here is [an example](/.env.example)):
 
    ```sh
    cp .env.example .env
-   (OPTIONAL) $EDITOR .env (this can be nano, vi, mcedit, choose the right editor for you)
+   [OPTIONAL] nano .env
    ```
+   
+   > Note that you can use your favorite editor instead of `nano`, like `vi` or `mcedit`.
 
 4. Launch the dev server (optional):
 
