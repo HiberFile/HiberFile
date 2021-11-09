@@ -8,7 +8,7 @@ export default async (
   storeHiberfileId: (hiberfileId: string) => unknown,
   onUploadProgress: (
     progress: number,
-    remaining: Date | undefined,
+    remaining: Date | null,
     elapsed: Date
   ) => void
 ) => {
@@ -39,7 +39,7 @@ export default async (
   storeHiberfileId(hiberfileId);
 
   let uploadProgress = 0;
-  let remainingTime: Date | undefined;
+  let remainingTime: Date | null = null;
   let uploadTimer = 0;
 
   setInterval(() => {

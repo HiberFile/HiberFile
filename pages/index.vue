@@ -12,6 +12,7 @@
         class="flex flex-row items-start justify-start w-full relative h-auto"
       >
         <MainCard
+          ref="mainCard"
           class="flex-shrink-0 relative h-auto"
           style="transition: 0.2s"
           :style="{
@@ -23,7 +24,8 @@
                   (!filelistNotEmpty && fileHistory && fileHistory.length > 0)
                 ))
                 ? 'translateX(calc(50vw - 50% - 2rem))'
-                : 'translateX(0)'
+                : 'translateX(0)',
+            width: fileId && vuePetsShown ? '100%' : '28rem'
           }"
           dropzone-style
           dropzone-extend
@@ -158,13 +160,29 @@
           </CardContent>
           <CardContent v-else>
             <div>
-              <div class="file-ready flex flex-col items-center">
+              <div
+                class="file-ready flex flex-col"
+                :class="{
+                  'items-center': !(fileId && vuePetsShown),
+                  'items-start': fileId && vuePetsShown
+                }"
+              >
                 <Loader v-if="state === 'upload'" class="w-8 h-8" />
                 <Check v-else-if="state !== 'error'" class="w-8 h-8" />
                 <Cross v-else class="w-8 h-8" />
-                <div class="my-12 flex flex-col items-center w-full">
+                <div
+                  class="my-12 flex flex-col w-full"
+                  :class="{
+                    'items-center': !(fileId && vuePetsShown),
+                    'items-start': fileId && vuePetsShown
+                  }"
+                >
                   <h4
                     class="text-lg text-center text-blue-700 font-medium mb-6"
+                    :class="{
+                      'text-center': !(fileId && vuePetsShown),
+                      'text-start': fileId && vuePetsShown
+                    }"
                   >
                     {{
                       state === 'error'
@@ -177,18 +195,34 @@
                   <HFButton
                     ref="downloadableLink"
                     :value="`${origin}/d/${fileId}`"
-                    class="file-ready__link block w-full truncate"
+                    class="file-ready__link block truncate"
+                    :class="{
+                      'w-full': !(fileId && vuePetsShown),
+                      'w-auto': fileId && vuePetsShown
+                    }"
                     @click.native="copyLink"
                   />
                 </div>
-                <div v-if="state !== 'error'" class="w-full">
+                <div
+                  v-if="state !== 'error'"
+                  :class="{
+                    'w-full': !(fileId && vuePetsShown),
+                    'w-auto': fileId && vuePetsShown
+                  }"
+                >
                   <HFButton
                     :value="$t('copy_in_clipboard')"
+                    :style="{
+                      'text-align': fileId && vuePetsShown ? 'start' : 'center'
+                    }"
                     @click.native="copyLink"
                   />
                   <HFButton
                     v-if="!mobile"
                     :value="$t('show_qr')"
+                    :style="{
+                      'text-align': fileId && vuePetsShown ? 'start' : 'center'
+                    }"
                     @click.native="showQR"
                   />
                   <HFButton
@@ -293,6 +327,17 @@
             </li>
           </ul>
         </div>
+        <div
+          v-if="vuePetsShown && fileId"
+          class="absolute"
+          style="left: 100%; transform: translate(-100%, -100%)"
+          :style="{
+            width: `${(mainCardPosition.left + mainCardPosition.right) / 2}px`,
+            height: `calc(${mainCardPosition.top}px - 3rem)`
+          }"
+        >
+          <VuePets class="w-full h-full" />
+        </div>
       </div>
     </div>
     <Footer />
@@ -304,11 +349,13 @@ import { Component, Vue, Watch } from 'nuxt-property-decorator';
 import QRCode from 'qrcode';
 import JSZip from 'jszip';
 import isMobile from 'assets/scripts/isMobile';
+import VuePets from 'vue-pets';
+import 'vue-pets/dist/style.css';
 import uploadFile from './../utils/uploadFile';
 import { accountStore } from '~/store';
-import HFOption from '~/components/HFOption.vue';
+
 @Component({
-  components: { HFOption }
+  components: { VuePets }
 })
 export default class Index extends Vue {
   filelist: Array<File> = [];
@@ -316,6 +363,8 @@ export default class Index extends Vue {
   fileId: string | null = null;
   filename: string | null = null;
   filesize: number | null = null;
+  elapsed: Date | null = null;
+  remaining: Date | null = null;
   privateFile: boolean | null = null;
   renamedFile: string | null = null;
   whUploading: string | null = null;
@@ -336,6 +385,17 @@ export default class Index extends Vue {
 
   optionsShown: boolean = false;
   moreOptionsShown: boolean = false;
+  timeToShowVuePets: boolean = false;
+
+  get vuePetsShown() {
+    return (
+      !this.mobile && this.elapsed && this.remaining && this.timeToShowVuePets
+    );
+  }
+
+  get mainCardPosition() {
+    return (this.$refs.mainCard as Vue).$el.getBoundingClientRect();
+  }
 
   get filelistNotEmpty() {
     return this.filelist.length > 0;
@@ -480,7 +540,21 @@ export default class Index extends Vue {
               expire,
               process.env.HIBERAPI_URL!,
               (hiberfileId) => (this.fileId = hiberfileId),
-              (progress) => (this.uploadProgress = progress)
+              (progress, remaining, elapsed) => {
+                this.uploadProgress = progress;
+                this.remaining = remaining;
+                this.elapsed = elapsed;
+
+                if (
+                  !this.timeToShowVuePets &&
+                  this.remaining?.getTime() &&
+                  this.elapsed.getTime() > 10_000 &&
+                  this.remaining?.getTime() > 60_000 - this.elapsed.getTime() &&
+                  this.remaining?.getTime() > 20_000
+                ) {
+                  this.timeToShowVuePets = true;
+                }
+              }
             );
 
             if (this.filename && this.fileId) {
