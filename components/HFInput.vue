@@ -1,22 +1,24 @@
 <template>
   <div
-    class="w-full"
+    class="w-full flex bg-white"
     :class="{
       'border-blue-700': error === undefined || error === true,
       'border-red-700': error === false,
       'border-b-0': pad,
-      'border-b': !pad
+      'border-b': !pad,
+      'rounded-lg': pad,
+      'pr-2': pad
     }"
   >
     <input
       v-model="value"
       :type="_type"
-      class="text-base font-light outline-none w-full"
+      class="text-base font-light outline-none w-full flex-grow pr-0"
       :class="{
         'p-2': pad,
-        'rounded-lg': pad,
         'text-blue-700': !pad || error === false || error === undefined,
-        'text-red-700': pad && error === true
+        'text-red-700': pad && error === true,
+        'rounded-lg': pad
       }"
       :value="value"
       :autocomplete="autocomplete"
@@ -24,6 +26,7 @@
       :aria-placeholder="placeholder"
       @input="handleInput"
     />
+    <slot class="flex-shrink-0"></slot>
   </div>
 </template>
 
