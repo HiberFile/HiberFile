@@ -6,8 +6,19 @@
         {{ $t('share_file_header') }}
       </p>
     </div>
-    <div class="flex">
-      <div v-if="token === null" class="flex mr-4">
+    <div
+      class="flex"
+      :class="{
+        'flex-col-reverse': mobile
+      }"
+    >
+      <div
+        v-if="token === null"
+        class="flex"
+        :class="{
+          'mr-4': !mobile
+        }"
+      >
         <LittleButton
           :value="$t('login')"
           class="mr-4"
