@@ -63,7 +63,7 @@
                     <div class="my-12 flex flex-col items-center">
                       <div
                         class="send-area__files mb-6 text-lg text-blue-700 w-full inline-grid font-medium"
-                        DropzoneClickable
+                        dropzone-clickable
                       >
                         <p v-if="mobile" class="text-center">
                           <span v-if="filelist.length === 0">{{
@@ -698,7 +698,7 @@ export default class Index extends Vue {
 </script>
 
 <style>
-[DropzoneClickable] {
+[dropzone-clickable] {
   cursor: pointer;
 }
 
