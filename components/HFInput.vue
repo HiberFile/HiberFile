@@ -9,7 +9,7 @@
     }"
   >
     <input
-      v-model="inputValue"
+      v-model="value"
       :type="_type"
       class="text-base font-light outline-none w-full"
       :class="{

@@ -425,6 +425,15 @@ export default class Index extends Vue {
       this.filelistSize = filelist
         .map((file) => file.size)
         .reduce((previousValue, currentValue) => previousValue + currentValue);
+
+    if (filelist.length === 1) {
+      this.renamedFile = filelist[0].name
+        .split('.')
+        .slice(0, filelist[0].name.split('.').length - 1)
+        .join('.');
+    } else {
+      this.renamedFile = '';
+    }
   }
 
   beforeMount() {
