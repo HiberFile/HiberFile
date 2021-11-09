@@ -471,7 +471,7 @@ export default class Index extends Vue {
   }
 
   async fetchUserFiles() {
-    if (accountStore.loggedIn)
+    if (accountStore && accountStore.loggedIn)
       this.syncFileHistory = await accountStore.files();
   }
 
@@ -531,7 +531,7 @@ export default class Index extends Vue {
 
         if (this.filelist.length > 1) {
           this.state = 'zip';
-          fileToUpload = await this.convertToZip(this.filelist);
+          fileToUpload = await this.convertToZip();
         } else {
           fileToUpload = this.filelist[0];
         }
@@ -675,16 +675,14 @@ export default class Index extends Vue {
 
   shareLink(spec?: { link: string; name: string }) {
     if (navigator.share && this.filename) {
-      navigator
-        .share({
-          title: spec?.name ?? this.filename,
-          text: this.$tc('share_link_text'),
-          url:
-            typeof spec?.link === 'string'
-              ? spec?.link
-              : (this.$refs.downloadableLink as HTMLElement).innerText
-        })
-        .catch(console.error);
+      navigator.share({
+        title: spec?.name ?? this.filename,
+        text: this.$tc('share_link_text'),
+        url:
+          typeof spec?.link === 'string'
+            ? spec?.link
+            : (this.$refs.downloadableLink as HTMLElement).innerText
+      });
     } else {
       // fallback
     }
