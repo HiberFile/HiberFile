@@ -22,6 +22,12 @@
       </div>
       <div v-else class="flex mr-4">
         <LittleButton
+          :value="$t('logout')"
+          class="mr-4"
+          color="white"
+          @click.native="logout"
+        />
+        <LittleButton
           :value="$t('account')"
           color="white"
           @click.native="goToAccount"
@@ -68,6 +74,10 @@ export default class Header extends Vue {
     this.$router.push({
       path: '/account'
     });
+  }
+
+  logout() {
+    accountStore.logOut();
   }
 }
 </script>
