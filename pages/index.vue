@@ -36,124 +36,140 @@
             dropzone-style
             dropzone-extend
           >
-            <!-- <div
-							class="dragover-layer bg-blue-700 flex justify-center items-center"
-						>
-							Hello World
-						</div> -->
             <Dropzone
               v-model="filelist"
               class="dropzone flex flex-col items-center"
             >
-              <div class="send-area flex flex-wrap justify-center">
+              <div
+                class="flex-grow flex flex-row w-full w-max-content min-w-max-content"
+                :class="{
+                  transform: mobile,
+                  'translate-x-0': mobile && !optionsShown,
+                  '-translate-x-full': mobile && optionsShown,
+                  'justify-start': mobile,
+                  'justify-center': !mobile
+                }"
+              >
                 <div
-                  class="flex flex-col items-center justify-between self-stretch"
+                  class="send-area flex flex-wrap justify-center flex-shrink-0"
+                  :class="{
+                    'w-full': mobile
+                  }"
                 >
-                  <Plus class="w-8 h-8" dropzone-clickable />
-                  <div class="my-12 flex flex-col items-center">
-                    <div
-                      class="send-area__files mb-6 text-lg text-blue-700 w-full inline-grid font-medium"
-                      DropzoneClickable
-                    >
-                      <p v-if="mobile" class="text-center">
-                        <span v-if="filelist.length === 0">{{
-                          $t('select_files')
-                        }}</span>
-                        <span v-else-if="filelist.length === 1">{{
-                          $t('file_selected')
-                        }}</span>
-                        <i18n
-                          v-else
-                          class="truncate cursor-pointer"
-                          path="files_selected"
-                          tag="span"
-                        >
-                          <template #number>
-                            <span>{{ filelist.length }}</span>
-                          </template>
-                        </i18n>
-                      </p>
-                      <p v-else-if="!mobile" class="text-center">
-                        {{ $t('select_files') }}
-                      </p>
+                  <div
+                    class="flex flex-col items-center justify-between self-stretch"
+                  >
+                    <Plus class="w-8 h-8" dropzone-clickable />
+                    <div class="my-12 flex flex-col items-center">
+                      <div
+                        class="send-area__files mb-6 text-lg text-blue-700 w-full inline-grid font-medium"
+                        DropzoneClickable
+                      >
+                        <p v-if="mobile" class="text-center">
+                          <span v-if="filelist.length === 0">{{
+                            $t('select_files')
+                          }}</span>
+                          <span v-else-if="filelist.length === 1">{{
+                            $t('file_selected')
+                          }}</span>
+                          <i18n
+                            v-else
+                            class="truncate cursor-pointer"
+                            path="files_selected"
+                            tag="span"
+                          >
+                            <template #number>
+                              <span>{{ filelist.length }}</span>
+                            </template>
+                          </i18n>
+                        </p>
+                        <p v-else-if="!mobile" class="text-center">
+                          {{ $t('select_files') }}
+                        </p>
+                      </div>
+                      <HFButton
+                        :value="
+                          !optionsShown
+                            ? $t('show_options')
+                            : $t('hide_options')
+                        "
+                        @click.native="toggleOptions"
+                      />
                     </div>
                     <HFButton
                       :value="
-                        !optionsShown ? $t('show_options') : $t('hide_options')
+                        state === 'zip' || state === 'upload'
+                          ? $t('loading')
+                          : $t('send_now_btn')
                       "
-                      @click.native="toggleOptions"
+                      @click.native="uploadFile"
                     />
                   </div>
-                  <HFButton
-                    :value="
-                      state === 'zip' || state === 'upload'
-                        ? $t('loading')
-                        : $t('send_now_btn')
-                    "
-                    @click.native="uploadFile"
-                  />
                 </div>
-              </div>
-              <div
-                v-show="optionsShown"
-                class="pt-8 md:p-0 md:pl-8 w-full md:w-64 overflow-x-hidden relative"
-              >
-                <div class="overflow-y-auto h-full max-h-full absolute">
-                  <HFOption :name="$t('expiration_time')">
-                    <select
-                      id="duration"
-                      ref="duration"
-                      class="send-area__duration outline-none text-base text-blue-700 font-light bg-opacity-0 bg-white"
+                <div
+                  v-show="optionsShown"
+                  class="w-full md:w-64 overflow-x-hidden relative flex-shrink-0"
+                  :class="{
+                    'ml-8': !mobile
+                  }"
+                >
+                  <div class="overflow-y-auto h-full max-h-full absolute">
+                    <div
+                      v-if="mobile"
+                      class="mb-6 flex items-center"
+                      @click="toggleOptions"
                     >
-                      <option value="1_hour">{{ $t('dur_1_hour') }}</option>
-                      <option value="1_day">{{ $t('dur_1_day') }}</option>
-                      <option value="3_days">{{ $t('dur_3_days') }}</option>
-                      <option value="7_days">{{ $t('dur_7_days') }}</option>
-                      <option value="30_days">{{ $t('dur_30_days') }}</option>
-                      <option value="never">{{ $t('dur_never') }}</option>
-                    </select>
-                  </HFOption>
-                  <HFOption :name="$t('private_file')">
-                    <HFSwitch v-model="privateFile" />
-                  </HFOption>
-                  <HFOption>
-                    <HFInput
-                      v-model="renamedFile"
-                      :placeholder="$t('rename_file')"
-                      :value="
-                        filelist.length === 1
-                          ? filelist[0].name
-                              .split('.')
-                              .slice(0, filelist[0].name.split('.').length - 1)
-                              .join('.')
-                          : undefined
-                      "
+                      <BackArrow class="w-4 mr-2" />
+                      <LittleButton :value="$t('back')" />
+                    </div>
+                    <HFOption :name="$t('expiration_time')">
+                      <select
+                        id="duration"
+                        ref="duration"
+                        class="send-area__duration outline-none text-base text-blue-700 font-light bg-opacity-0 bg-white"
+                      >
+                        <option value="1_hour">{{ $t('dur_1_hour') }}</option>
+                        <option value="1_day">{{ $t('dur_1_day') }}</option>
+                        <option value="3_days">{{ $t('dur_3_days') }}</option>
+                        <option value="7_days">{{ $t('dur_7_days') }}</option>
+                        <option value="30_days">{{ $t('dur_30_days') }}</option>
+                        <option value="never">{{ $t('dur_never') }}</option>
+                      </select>
+                    </HFOption>
+                    <HFOption :name="$t('private_file')">
+                      <HFSwitch v-model="privateFile" />
+                    </HFOption>
+                    <HFOption>
+                      <HFInput
+                        v-model="renamedFile"
+                        :placeholder="$t('rename_file')"
+                      />
+                    </HFOption>
+                    <HFButton
+                      v-show="!moreOptionsShown"
+                      :value="$t('more_options')"
+                      class="more-options__btn"
+                      @click.native="showMoreOptions"
                     />
-                  </HFOption>
-                  <HFButton
-                    v-show="!moreOptionsShown"
-                    :value="$t('more_options')"
-                    class="more-options__btn"
-                    @click.native="showMoreOptions"
-                  />
-                  <HFOption v-show="moreOptionsShown">
-                    <HFInput
-                      v-model="whUploading"
-                      :placeholder="$t('webhook_uploading')"
-                    />
-                  </HFOption>
-                  <HFOption v-show="moreOptionsShown">
-                    <HFInput
-                      v-model="whUploaded"
-                      :placeholder="$t('webhook_uploaded')"
-                    />
-                  </HFOption>
-                  <HFOption v-show="moreOptionsShown">
-                    <HFInput
-                      v-model="whDownloading"
-                      :placeholder="$t('webhook_downloading')"
-                    />
-                  </HFOption>
+                    <HFOption v-show="moreOptionsShown">
+                      <HFInput
+                        v-model="whUploading"
+                        :placeholder="$t('webhook_uploading')"
+                      />
+                    </HFOption>
+                    <HFOption v-show="moreOptionsShown">
+                      <HFInput
+                        v-model="whUploaded"
+                        :placeholder="$t('webhook_uploaded')"
+                      />
+                    </HFOption>
+                    <HFOption v-show="moreOptionsShown">
+                      <HFInput
+                        v-model="whDownloading"
+                        :placeholder="$t('webhook_downloading')"
+                      />
+                    </HFOption>
+                  </div>
                 </div>
               </div>
             </Dropzone>
@@ -416,6 +432,10 @@ export default class Index extends Vue {
     this.host = window.location.host;
     this.origin = window.location.origin;
 
+    if (this.mobile) {
+      this.moreOptionsShown = true;
+    }
+
     this.fileHistory = (JSON.parse(
       localStorage.getItem('fileHistory') ?? '[]'
     ) as { fileId: string; filename: string; expire: string }[])
@@ -449,7 +469,7 @@ export default class Index extends Vue {
   toggleOptions() {
     this.optionsShown = !this.optionsShown;
 
-    if (!this.optionsShown) {
+    if (!this.optionsShown && !this.mobile) {
       this.moreOptionsShown = false;
     }
   }
