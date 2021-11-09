@@ -12,14 +12,14 @@
 			required
 		/>
 
-		<label
-			for="assetsFieldHandle"
-			class="flex-grow flex flex-col md:flex-row"
-			@click.prevent
-		>
-			<slot></slot>
-		</label>
-	</div>
+    <label
+      for="assetsFieldHandle"
+      class="flex-grow flex flex-row justify-center w-full overflow-x-hidden"
+      @click.prevent
+    >
+      <slot></slot>
+    </label>
+  </div>
 </template>
 
 <script lang="ts">
