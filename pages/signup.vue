@@ -21,7 +21,7 @@
           }"
         >
           <CardContent v-if="!signedUp">
-            <ArrowDown class="w-8 h-8 mx-auto" />
+            <Person class="w-8 h-8 mx-auto" />
             <div class="my-8">
               <HFInput
                 v-model="emailAddress"
@@ -85,7 +85,7 @@ export default class Index extends Vue {
         /[a-z]/gm.test(this.password) &&
         /[A-Z]/gm.test(this.password) &&
         /[0-9]/gm.test(this.password) &&
-        /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/gm.test(this.password) &&
+        /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]+/gm.test(this.password) &&
         this.password.length >= 8) ||
       this.password === ''
     );
@@ -167,7 +167,7 @@ export default class Index extends Vue {
             title: this.$tc('min_one_number_in_pw')
           });
         } else if (
-          !/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/gm.test(this.password)
+          !/[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]+/gm.test(this.password)
         ) {
           this.Toast({
             icon: 'error',

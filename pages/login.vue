@@ -21,7 +21,7 @@
           }"
         >
           <CardContent>
-            <ArrowDown class="w-8 h-8 mx-auto" />
+            <Person class="w-8 h-8 mx-auto" />
             <div class="my-8">
               <HFInput
                 v-model="emailAddress"
