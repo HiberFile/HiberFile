@@ -84,6 +84,72 @@
             />
           </div>
         </div>
+        <div class="w-1/2 max-w-sm">
+          <h3 class="mb-8 font-medium text-lg">{{ $t('user_webhooks') }}</h3>
+          <div v-if="userWebhooks !== null" class="mb-10">
+            <!--            <HFInput-->
+            <!--              v-model="password"-->
+            <!--              :pad="true"-->
+            <!--              :placeholder="$t('password')"-->
+            <!--              type="password"-->
+            <!--              autocomplete="current-password"-->
+            <!--              class="mb-4"-->
+            <!--            />-->
+            <ul>
+              <li
+                v-for="(userWebhookType, i) in Object.keys(userWebhooks)"
+                :key="i"
+              >
+                <div class="flex">
+                  <h4 class="mr-4">{{ $t(`webhook_${userWebhookType}`) }}</h4>
+                  <LittleButton
+                    value="+"
+                    color="white"
+                    @click.native="() => addUserWebhook(userWebhookType)"
+                  />
+                </div>
+                <ul v-if="userWebhooks[userWebhookType].length > 0">
+                  <li
+                    v-for="(webhook, j) in userWebhooks[userWebhookType]"
+                    :key="j"
+                  >
+                    <HFInput
+                      v-model="webhook.url"
+                      :pad="true"
+                      :placeholder="$t('webhook_url')"
+                      type="text"
+                      class="mb-4"
+                    >
+                      <div class="flex items-center justify-center pl-2">
+                        <LittleButton
+                          value="Remove"
+                          class="mr-2"
+                          size="sm"
+                          @click.native="
+                            () =>
+                              removeUserWebhook(userWebhookType, j, webhook.id)
+                          "
+                        />
+                        <LittleButton
+                          value="Save"
+                          class="text-sm"
+                          size="sm"
+                          @click.native="
+                            () => saveUserWebhook(userWebhookType, webhook.url)
+                          "
+                        />
+                      </div>
+                    </HFInput>
+                  </li>
+                </ul>
+                <p v-else class="mb-4 text-xs">{{ $t('no_webhooks') }}</p>
+              </li>
+            </ul>
+          </div>
+          <div v-else class="mb-10">
+            <p>{{ $t('loading') }}</p>
+          </div>
+        </div>
       </div>
     </div>
     <Footer />
@@ -104,6 +170,11 @@ export default class Index extends Vue {
   newPassword: string = '';
   password: string = '';
   confirmNewPassword: string = '';
+  userWebhooks: {
+    newFileUploading: { url: string; id: number | null }[];
+    newFileUploaded: { url: string; id: number | null }[];
+    newFileDownloaded: { url: string; id: number | null }[];
+  } | null = null;
 
   get newPasswordConfirmed() {
     return (
@@ -111,7 +182,7 @@ export default class Index extends Vue {
         /[a-z]/gm.test(this.newPassword) &&
         /[A-Z]/gm.test(this.newPassword) &&
         /[0-9]/gm.test(this.newPassword) &&
-        /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/gm.test(this.newPassword) &&
+        /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]+/gm.test(this.newPassword) &&
         this.newPassword.length >= 8) ||
       this.newPassword === ''
     );
@@ -135,6 +206,10 @@ export default class Index extends Vue {
   beforeMount() {
     this.mobile = isMobile();
     this.emailAddress = accountStore.email!;
+  }
+
+  mounted() {
+    this.getUserWebhooks();
   }
 
   goToHome() {
@@ -190,7 +265,6 @@ export default class Index extends Vue {
             title: this.$tc('bad_password')
           });
         } else {
-          console.log(e);
           this.Toast({
             icon: 'error',
             iconColor: '#F63F3C',
@@ -198,6 +272,100 @@ export default class Index extends Vue {
           });
         }
       }
+    }
+  }
+
+  async getUserWebhooks() {
+    try {
+      const response = await this.$axios.get<{
+        webhooks: {
+          newFileUploading: { url: string; id: number }[];
+          newFileUploaded: { url: string; id: number }[];
+          newFileDownloaded: { url: string; id: number }[];
+        };
+      }>(
+        `${process.env.HIBERAPI_URL}/accounts/${accountStore.userId}/webhooks`,
+        {
+          headers: { authorization: `Basic ${accountStore.token}` }
+        }
+      );
+
+      this.userWebhooks = response.data.webhooks;
+    } catch (e) {
+      this.Toast({
+        icon: 'error',
+        iconColor: '#F63F3C',
+        title: this.$tc('unexpected_error')
+      });
+    }
+  }
+
+  addUserWebhook(
+    userWebhookType:
+      | 'newFileUploading'
+      | 'newFileUploaded'
+      | 'newFileDownloaded'
+  ) {
+    const userWebhooks = this.userWebhooks
+      ? this.userWebhooks
+      : {
+          newFileUploading: [],
+          newFileUploaded: [],
+          newFileDownloaded: []
+        };
+
+    userWebhooks[userWebhookType].push({ url: '', id: null });
+    this.userWebhooks = userWebhooks;
+  }
+
+  async removeUserWebhook(
+    userWebhookType:
+      | 'newFileUploading'
+      | 'newFileUploaded'
+      | 'newFileDownloaded',
+    index: number,
+    webhookId: number | null
+  ) {
+    if (this.userWebhooks) {
+      const userWebhooks = this.userWebhooks;
+
+      userWebhooks[userWebhookType].splice(index, 1);
+      this.userWebhooks = userWebhooks;
+
+      if (webhookId)
+        await this.$axios.post(
+          `${process.env.HIBERAPI_URL}/accounts/${accountStore.userId}/webhooks/${webhookId}/delete`,
+          {},
+          { headers: { authorization: `Basic ${accountStore.token}` } }
+        );
+    }
+  }
+
+  async saveUserWebhook(
+    userWebhookType:
+      | 'newFileUploading'
+      | 'newFileUploaded'
+      | 'newFileDownloaded',
+    webhookUrl: string
+  ) {
+    try {
+      await this.$axios.post(
+        `${process.env.HIBERAPI_URL}/accounts/${accountStore.userId}/webhooks/create`,
+        { webhookType: userWebhookType, url: webhookUrl },
+        { headers: { authorization: `Basic ${accountStore.token}` } }
+      );
+
+      this.Toast({
+        icon: 'info',
+        iconColor: '#009BF5',
+        title: this.$tc('webhook_added')
+      });
+    } catch (e) {
+      this.Toast({
+        icon: 'error',
+        iconColor: '#F63F3C',
+        title: this.$tc('unexpected_error')
+      });
     }
   }
 
