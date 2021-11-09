@@ -22,45 +22,46 @@ module.exports = {
   },
   theme: {
     darkSelector: '.dark-mode',
-    backgroundImage: {
-      'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))'
-    },
-    height: {
-      content: 'min-content',
-      12: '3rem',
-      1: '0.25rem',
-      4: '1rem',
-      8: '2rem',
-      full: '100%',
-      auto: 'auto'
-    },
-    maxHeight: {
-      144: '36rem',
-      160: '40rem',
-      full: '100%'
-    },
-    boxShadow: {
-      xl:
-        '0 12px 18px 2px rgb(0 12 51 / 4%), 0 6px 22px 4px rgb(7 27 114 / 12%), 0 6px 10px -4px rgb(14 13 26 / 12%)'
-    },
-    fontFamily: {
-      sans: [
-        'Poppins',
-        'Inter',
-        'system-ui',
-        '-apple-system',
-        'Segoe UI',
-        'Roboto',
-        'Ubuntu',
-        'Cantarell',
-        'Noto Sans',
-        'sans-serif',
-        'BlinkMacSystemFont',
-        'Oxygen',
-        'Fira Sans',
-        'Droid Sans',
-        'Helvetica Neue'
-      ]
+    extend: {
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))'
+      },
+      height: {
+        'min-content': 'min-content'
+      },
+      maxHeight: {
+        144: '36rem',
+        160: '40rem'
+      },
+      width: {
+        'max-content': 'max-content'
+      },
+      maxwidth: {
+        'max-content': 'max-content'
+      },
+      boxShadow: {
+        xl:
+          '0 12px 18px 2px rgb(0 12 51 / 4%), 0 6px 22px 4px rgb(7 27 114 / 12%), 0 6px 10px -4px rgb(14 13 26 / 12%)'
+      },
+      fontFamily: {
+        sans: [
+          'Poppins',
+          'Inter',
+          'system-ui',
+          '-apple-system',
+          'Segoe UI',
+          'Roboto',
+          'Ubuntu',
+          'Cantarell',
+          'Noto Sans',
+          'sans-serif',
+          'BlinkMacSystemFont',
+          'Oxygen',
+          'Fira Sans',
+          'Droid Sans',
+          'Helvetica Neue'
+        ]
+      }
     },
     colors: {
       white: '#ffffff',
