@@ -168,7 +168,7 @@ export default class D extends Vue {
       try {
         const getState = async () => {
           try {
-            this.uploadState = 'loading';
+            if (this.uploadState !== 'waiting') this.uploadState = 'loading';
 
             const result = await downloadFile(
               ((this as unknown) as { id: string }).id,
