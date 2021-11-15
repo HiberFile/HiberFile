@@ -50,7 +50,7 @@
 									<a href="https://fr.matomo.org/"><u>Matomo</u></a>
 								</template>
 								<template v-slot:S3>
-									<a href="https://aws.amazon.com/sdk-for-php/"
+									<a href="https://www.scaleway.com/fr/object-storage/"
 										><u>Amazon S3</u></a
 									>
 								</template>
