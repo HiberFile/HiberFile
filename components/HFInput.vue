@@ -11,7 +11,7 @@
     }"
   >
     <input
-      v-model="value"
+      v-model="inputValue"
       :type="_type"
       class="text-base font-light outline-none w-full flex-grow pr-0"
       :class="{
