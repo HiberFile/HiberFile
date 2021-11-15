@@ -89,9 +89,14 @@
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
+import { accountStore } from '~/utils/store-accessor';
 
 @Component
 export default class Mentions extends Vue {
+  beforeMount() {
+    accountStore.logInLocalStorage();
+  }
+
   goToHome() {
     window.open('https://www.hiberfile.com', '_self');
   }

@@ -70,6 +70,7 @@
 import { Component, Vue } from 'nuxt-property-decorator';
 import isMobile from 'assets/scripts/isMobile';
 import { AxiosError } from 'axios';
+import { accountStore } from '~/utils/store-accessor';
 
 @Component
 export default class Index extends Vue {
@@ -100,6 +101,7 @@ export default class Index extends Vue {
 
   beforeMount() {
     this.mobile = isMobile();
+    accountStore.logInLocalStorage();
   }
 
   goToHome() {

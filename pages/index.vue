@@ -445,6 +445,8 @@ export default class Index extends Vue {
       this.moreOptionsShown = true;
     }
 
+    accountStore.logInLocalStorage();
+
     this.fileHistory = (JSON.parse(
       localStorage.getItem('fileHistory') ?? '[]'
     ) as { fileId: string; filename: string; expire: string }[])

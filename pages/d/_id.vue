@@ -88,6 +88,7 @@ import { Component, Emit, Vue } from 'nuxt-property-decorator';
 import QRCode from 'qrcode';
 import isMobile from 'assets/scripts/isMobile';
 import downloadFile from './../../utils/downloadFile';
+import { accountStore } from '~/utils/store-accessor';
 
 interface RemainingTime {
   day: number;
@@ -118,6 +119,8 @@ export default class D extends Vue {
       '--vh',
       `${window.innerHeight * 0.01}px`
     );
+
+    accountStore.logInLocalStorage();
   }
 
   @Emit()

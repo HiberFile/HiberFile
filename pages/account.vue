@@ -206,6 +206,7 @@ export default class Index extends Vue {
   beforeMount() {
     this.mobile = isMobile();
     this.emailAddress = accountStore.email!;
+    accountStore.logInLocalStorage();
   }
 
   mounted() {

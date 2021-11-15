@@ -25,6 +25,22 @@ export default class Account extends VuexModule {
   }
 
   @Mutation
+  logInLocalStorage() {
+    console.log(localStorage);
+    if (
+      localStorage.getItem('email') &&
+      localStorage.getItem('userId') &&
+      localStorage.getItem('token')
+    ) {
+      this.loggedIn = true;
+      this.email = localStorage.getItem('email');
+      this.userId = localStorage.getItem('userId');
+      this.token = localStorage.getItem('token');
+      console.log(this.loggedIn, this.email, this.userId, this.token);
+    }
+  }
+
+  @Mutation
   logOut() {
     this.loggedIn = false;
     this.email = null;

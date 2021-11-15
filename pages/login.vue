@@ -64,6 +64,7 @@ export default class Index extends Vue {
 
   beforeMount() {
     this.mobile = isMobile();
+    accountStore.logInLocalStorage();
   }
 
   goToHome() {
