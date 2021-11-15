@@ -136,7 +136,7 @@
                         <option value="never">{{ $t('dur_never') }}</option>
                       </select>
                     </HFOption>
-                    <HFOption :name="$t('private_file')">
+                    <HFOption v-if="loggedIn" :name="$t('private_file')">
                       <HFSwitch v-model="privateFile" />
                     </HFOption>
                     <HFOption>
@@ -585,6 +585,13 @@ export default class Index extends Vue {
                 ) {
                   this.timeToShowVuePets = true;
                 }
+              },
+              accountStore.token ?? undefined,
+              this.privateFile ?? undefined,
+              {
+                uploading: this.whUploading,
+                uploaded: this.whUploaded,
+                downloading: this.whDownloading
               }
             );
 

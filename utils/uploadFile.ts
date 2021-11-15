@@ -10,7 +10,14 @@ export default async (
     progress: number,
     remaining: Date | null,
     elapsed: Date
-  ) => void
+  ) => void,
+  token?: string,
+  privateFile?: boolean,
+  webhooks?: {
+    uploading: string | null;
+    uploaded: string | null;
+    downloading: string | null;
+  }
 ) => {
   const minChunksSize = 10_000_000;
   const maxChunksSize = 10_000_000;
@@ -30,10 +37,20 @@ export default async (
     uploadUrls: string[];
     uploadId: string;
     hiberfileId: string;
-  }>(`${apiUrl}/files/create`, {
-    name: file.name,
-    chunksNumber
-  });
+  }>(
+    `${apiUrl}/files/create`,
+    {
+      name: file.name,
+      chunksNumber,
+      private: privateFile,
+      webhooks
+    },
+    token
+      ? {
+          headers: { authorization: `Basic ${token}` }
+        }
+      : {}
+  );
   const { uploadUrls, uploadId, hiberfileId } = data;
 
   storeHiberfileId(hiberfileId);
@@ -71,14 +88,24 @@ export default async (
     })
   );
 
-  await axios.post(`${apiUrl}/files/${hiberfileId}/finish`, {
-    parts: uploadResults.map((result, i) => ({
-      ETag: result.headers.etag,
-      PartNumber: i + 1
-    })),
-    uploadId,
-    expire
-  });
+  await axios.post(
+    `${apiUrl}/files/${hiberfileId}/finish`,
+    {
+      parts: uploadResults.map((result, i) => ({
+        ETag: result.headers.etag,
+        PartNumber: i + 1
+      })),
+      uploadId,
+      expire
+    },
+    privateFile
+      ? {
+          headers: {
+            authorization: `Basic ${token}`
+          }
+        }
+      : undefined
+  );
 
   return hiberfileId;
 };

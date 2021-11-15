@@ -172,7 +172,8 @@ export default class D extends Vue {
 
             const result = await downloadFile(
               ((this as unknown) as { id: string }).id,
-              process.env.HIBERAPI_URL!
+              process.env.HIBERAPI_URL!,
+              accountStore.token ?? undefined
             );
 
             this.fileUrl = result.downloadUrl;
@@ -184,7 +185,7 @@ export default class D extends Vue {
 
             if (
               this.expireIn !== 'finish' &&
-              /[\/.](gif|jpg|jpeg|tiff|png)$/i.test(this.filename!) &&
+              /[/.](gif|jpg|jpeg|tiff|png)$/i.test(this.filename!) &&
               this.fileUrl
             ) {
               const preview = await this.$axios.$get(this.fileUrl, {
