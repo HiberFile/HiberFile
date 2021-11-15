@@ -157,7 +157,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'nuxt-property-decorator';
+import { Component, Watch, Vue } from 'nuxt-property-decorator';
 import isMobile from 'assets/scripts/isMobile';
 import { AxiosError } from 'axios';
 import { accountStore } from '~/store';
@@ -193,6 +193,17 @@ export default class Index extends Vue {
       /[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/gm.test(this.emailAddress) ||
       this.emailAddress === ''
     );
+  }
+
+  get loggedOut() {
+    return !accountStore.loggedIn;
+  }
+
+  @Watch('loggedOut')
+  onLoggedOutChanged() {
+    if (this.loggedOut) {
+      this.goToHome();
+    }
   }
 
   created() {
