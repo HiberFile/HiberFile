@@ -370,6 +370,7 @@ import JSZip from 'jszip';
 import isMobile from 'assets/scripts/isMobile';
 import VuePets from 'vue-pets';
 import 'vue-pets/dist/style.css';
+import { SweetAlertOptions } from 'sweetalert2';
 import uploadFile from './../utils/uploadFile';
 import { accountStore } from '~/store';
 import getUserFiles from '~/utils/getUserFiles';
@@ -494,6 +495,19 @@ export default class Index extends Vue {
     );
   }
 
+  mounted() {
+    if (
+      new URLSearchParams(location.search).get('source') ===
+      'verification-email'
+    ) {
+      this.Toast({
+        icon: 'success',
+        iconColor: '#3EC300',
+        title: this.$tc('successful_email_verification')
+      });
+    }
+  }
+
   async fetchUserFiles() {
     if (
       accountStore &&
@@ -519,7 +533,7 @@ export default class Index extends Vue {
     this.moreOptionsShown = true;
   }
 
-  Toast(options: any) {
+  Toast(options: SweetAlertOptions) {
     return this.$swal.fire(
       Object.assign(
         {
