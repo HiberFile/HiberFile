@@ -1,5 +1,4 @@
-import axios from 'axios';
-import { Module, VuexModule, Mutation } from 'vuex-module-decorators';
+import { Module, Mutation, VuexModule } from 'vuex-module-decorators';
 
 @Module({
   name: 'account',
@@ -50,27 +49,5 @@ export default class Account extends VuexModule {
     localStorage.removeItem('token');
     localStorage.removeItem('userId');
     localStorage.removeItem('email');
-  }
-
-  async files(): Promise<
-    { fileId: string; filename: string; expire: Date }[] | null
-  > {
-    if (this.loggedIn) {
-      const files = (
-        await axios.get<{
-          files: { hiberfileId: string; filename: string; expire: string }[];
-        }>(`${process.env.HIBERAPI_URL}/accounts/${this.userId}/files`, {
-          headers: { authorization: `Basic ${this.token}` }
-        })
-      ).data.files.map((file) => ({
-        ...file,
-        expire: new Date(file.expire),
-        fileId: file.hiberfileId
-      }));
-
-      return files;
-    } else {
-      return null;
-    }
   }
 }

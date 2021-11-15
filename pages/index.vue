@@ -369,6 +369,7 @@ import VuePets from 'vue-pets';
 import 'vue-pets/dist/style.css';
 import uploadFile from './../utils/uploadFile';
 import { accountStore } from '~/store';
+import getUserFiles from '~/utils/getUserFiles';
 
 @Component({
   components: { VuePets }
@@ -473,8 +474,16 @@ export default class Index extends Vue {
   }
 
   async fetchUserFiles() {
-    if (accountStore && accountStore.loggedIn)
-      this.syncFileHistory = await accountStore.files();
+    if (
+      accountStore &&
+      accountStore.loggedIn &&
+      accountStore.userId &&
+      accountStore.token
+    )
+      this.syncFileHistory = await getUserFiles(
+        parseInt(accountStore.userId),
+        accountStore.token
+      );
   }
 
   toggleOptions() {
