@@ -21,7 +21,9 @@
               (!mobile &&
                 !(
                   (filelistNotEmpty && !fileId && !mobile) ||
-                  (!filelistNotEmpty && fileHistory && fileHistory.length > 0)
+                  (!filelistNotEmpty &&
+                    mergedFileHistory &&
+                    mergedFileHistory.length > 0)
                 ))
                 ? 'translateX(calc(50vw - 50% - 2rem))'
                 : 'translateX(0)',
@@ -266,9 +268,10 @@
         <div
           v-show="
             !filelistNotEmpty &&
-            fileHistory &&
-            fileHistory.length > 0 &&
-            !mobile
+            mergedFileHistory &&
+            mergedFileHistory.length > 0 &&
+            !mobile &&
+            !optionsShown
           "
           class="ml-8 min-w-0 absolute h-full overflow-auto"
           style="left: 28rem; width: calc(100% - 30rem)"
@@ -276,7 +279,7 @@
           <p class="text-lg font-medium mb-8">{{ $t('your_links') }}</p>
           <table class="table-fixed w-full">
             <tbody>
-              <tr v-for="file in fileHistory" :key="file.fileId">
+              <tr v-for="file in mergedFileHistory" :key="file.fileId">
                 <td class="text-lg font-normal pr-4 w-5/12 truncate">
                   {{ file.filename }}
                 </td>
@@ -416,6 +419,24 @@ export default class Index extends Vue {
 
   get filelistNotEmpty() {
     return this.filelist.length > 0;
+  }
+
+  get mergedFileHistory() {
+    return this.fileHistory
+      ? this.fileHistory
+          .concat(this.syncFileHistory || [])
+          .filter(
+            (file, index, self) =>
+              index ===
+              self.findIndex(
+                (f) => f.fileId === file.fileId && f.filename === file.filename
+              )
+          )
+      : this.syncFileHistory;
+  }
+
+  get loggedIn() {
+    return accountStore.loggedIn;
   }
 
   @Watch('filelist', {
