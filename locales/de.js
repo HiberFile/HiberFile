@@ -94,6 +94,7 @@ export default {
 	email_address: "E-Mail-Adresse",
 	email_not_valid: "Die E-Mail-Adresse ist nicht gültig.",
 	email_address_required: "Eine E-Mail-Adresse ist erforderlich.",
+	password_reset_email_sent: "Eine E-Mail mit einem Link zum Zurücksetzen des Passworts wurde an Ihre E-Mail-Adresse gesendet.",
 	unexpected_error: 'Es ist ein unerwarteter Fehler aufgetreten. Bitte versuchen Sie es später noch einmal.',
 	login: 'Einloggen',
 	logout: 'Ausloggen',

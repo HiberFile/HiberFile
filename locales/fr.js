@@ -94,6 +94,7 @@ export default {
 	email_address: 'Adresse e-mail',
 	email_not_valid: "L'adresse e-mail n'est pas valide.",
 	email_address_required: "L'adresse e-mail est obligatoire.",
+	password_reset_email_sent: 'Un e-mail vous a été envoyé pour réinitialiser votre mot de passe.',
 	unexpected_error: 'Une erreur inattendue est survenue. Veuillez réessayer plus tard.',
 	login: 'Se connecter',
 	logout: 'Se déconnecter',
