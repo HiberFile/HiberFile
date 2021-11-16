@@ -35,6 +35,12 @@
                 type="password"
                 autocomplete="current-password"
               />
+              <LittleButton
+                class="mt-2 mx-auto"
+                :value="$tc('password_forgotten')"
+                size="xs"
+                @click.native="passwordForgotten"
+              />
             </div>
             <HFButton
               :value="$t('login')"
@@ -88,6 +94,37 @@ export default class Index extends Vue {
         options
       )
     );
+  }
+
+  async passwordForgotten() {
+    if (this.emailAddress.length === 0) {
+      this.Toast({
+        icon: 'error',
+        iconColor: '#F63F3C',
+        title: this.$t('email_address_required')
+      });
+    } else {
+      try {
+        await this.$axios.post(
+          `${process.env.HIBERAPI_URL}/accounts/reset-password/request`,
+          {
+            email: this.emailAddress,
+            language: this.$i18n.locale
+          }
+        );
+        this.Toast({
+          icon: 'success',
+          iconColor: '#3EC300',
+          title: this.$t('password_reset_email_sent')
+        });
+      } catch (e) {
+        this.Toast({
+          icon: 'error',
+          iconColor: '#F63F3C',
+          title: this.$t('unexpected_error')
+        });
+      }
+    }
   }
 
   async login() {
