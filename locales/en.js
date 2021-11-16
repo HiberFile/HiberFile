@@ -37,35 +37,25 @@ export default {
   download: 'Download',
   version: 'Version 2021.2 of July 24, 2021',
   valid_since: 'Valid as of July 24, 2021',
-  what_you_should_know:
-    'Here is absolutely everything you need to know about the HiberFile file sharing service.',
+  what_you_should_know: 'Here is absolutely everything you need to know about the HiberFile file sharing service.',
   data: 'Data',
-  data_content:
-    ": HiberFile receives your files and transmits them to Scaleway's « Amazon S3 » cloud in Paris, France for storage. No one, including the creator of HiberFile, has access to the contents of your files.",
+  data_content: ": HiberFile receives your files and transmits them to Scaleway's « Amazon S3 » cloud in Paris, France for storage. No one, including the creator of HiberFile, has access to the contents of your files.",
   personal_data: 'Personal data',
-  personal_data_phrase:
-    ': Here are the data collected to ensure the operation of HiberFile:',
+  personal_data_phrase: ': Here are the data collected to ensure the operation of HiberFile:',
   ip_adress: 'IP address',
-  ip_adress_content:
-    ': Your IP address is retrieved when downloading and uploading files. It is used to complete the logs on our servers. Without this identifier, it is absolutely impossible to use HiberFile.',
+  ip_adress_content: ': Your IP address is retrieved when downloading and uploading files. It is used to complete the logs on our servers. Without this identifier, it is absolutely impossible to use HiberFile.',
   personal_id: 'Non-traceable personal identifier',
-  personal_id_content:
-    ': Matomo, the external service integrated into HiberFile for analytical purposes, generates a non-traceable identifier allowing you to identify yourself anonymously.',
+  personal_id_content: ': Matomo, the external service integrated into HiberFile for analytical purposes, generates a non-traceable identifier allowing you to identify yourself anonymously.',
   cookies: 'Cookies',
-  cookies_content:
-    ': HiberFile uses cookies only to remember your preferred language. No cookies are used to track you.',
+  cookies_content: ': HiberFile uses cookies only to remember your preferred language. No cookies are used to track you.',
   to_note: 'Please note',
-  to_note_content:
-    ': We will absolutely NEVER collect or process your personal data. At HiberFile, we believe that privacy is strictly confidential and must remain PRIVATE.',
+  to_note_content: ': We will absolutely NEVER collect or process your personal data. At HiberFile, we believe that privacy is strictly confidential and must remain PRIVATE.',
   price: 'Price',
-  price_content:
-    ': The use of this website is completely free of charge. No paid service will be offered to you.',
+  price_content: ': The use of this website is completely free of charge. No paid service will be offered to you.',
   third_party: 'Third-Party services',
-  third_party_content:
-    ': We use {Scaleway} for hosting and {S3} technology for file storage.',
+  third_party_content: ': We use {Scaleway} for hosting and {S3} technology for file storage.',
   support: 'Support',
-  support_content:
-    ': If you need help, want more information, or have a question about HiberFile, feel free to write to us at the following email address: {mail} or send us a private message on Twitter: {twitter}.',
+  support_content: ': If you need help, want more information, or have a question about HiberFile, feel free to write to us at the following email address: {mail} or send us a private message on Twitter: {twitter}.',
   host_legal_notice: 'Legal notice of the host',
   host_legal_notice_content: ': {legal_notice}.',
   scaleway_legal_notice: 'Legal notice of Scaleway',
@@ -75,9 +65,7 @@ export default {
   toast_add_files: 'Add one or more files before sending them.',
   toast_hiberapi_error: 'Unable to access HiberAPI.',
   toast_link_copy: 'Link copied',
-  toast_qr_code:
-    'Scan this QR code to access the download link from another device without having to enter the link manually.',
-
+  toast_qr_code: 'Scan this QR code to access the download link from another device without having to enter the link manually.',
   show_options: 'Show options',
   hide_options: 'Hide options',
   more_options: 'More options',
@@ -86,5 +74,32 @@ export default {
   rename_file: 'Rename the file',
   webhook_uploading: 'Webhook: sending started',
   webhook_uploaded: 'Webhook: sending ended',
-  webhook_downloading: 'Webhook: download started'
+  webhook_downloading: 'Webhook: download started',
+  webhook_url: 'User Webhooks',
+	webhook_added: 'Webhook added',
+	user_webhooks: 'User Webhooks',	
+	no_webhooks: 'No webhook',
+	password: 'Password',
+	confirm_password: 'Confirm',
+	password_not_same: 'The two passwords do not match.',
+	change_password: 'Change the password',
+	current_password: 'Current password',
+	new_password: 'New password',
+	bad_password: 'Incorrect password',
+	confirm_new_password: 'Confirm new password',
+	min_one_lowercase_in_pw: 'The password must contain at least one lowercase letter.',
+	min_one_uppercase_in_pw: 'The password must contain at least one capital letter.',
+	min_one_special_char_in_pw: 'The password must contain at least one special character.',
+	min_eight_char_pw: 'The password must contain at least 8 characters.',
+	email_address: 'E-mail address',
+	email_not_valid: "The e-mail address is not valid.",
+	unexpected_error: 'An unexpected error has occurred. Please try again later.',
+	login: 'Log in',
+	signup: "Sign up",
+	signup_error: "An error occurred during registration. Please try again.",
+	delete_account: 'Delete account',
+	account_deleted: 'Account deleted',
+	confirm: 'Confirm',
+	loading: 'Loading...',
+	password_modified: 'Password changed'
 };

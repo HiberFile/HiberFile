@@ -37,48 +37,35 @@ export default {
 	download: 'Descarregar',
 	version: 'Versão 2021.2 de 24 de Julho de 2021',
 	valid_since: 'Válido a partir de 24 de Julho de 2021',
-	what_you_should_know:
-		'Aqui está absolutamente tudo o que precisa de saber sobre o serviço de partilha de ficheiros HiberFile.',
+	what_you_should_know: 'Aqui está absolutamente tudo o que precisa de saber sobre o serviço de partilha de ficheiros HiberFile.',
 	data: 'Dados',
-	data_content:
-		' : O HiberFile recebe os seus ficheiros e transmite-os para a nuvem S3 da Scaleway Amazon em Paris, França, que os armazena. Ninguém, nem mesmo o criador do HiberFile, tem acesso ao conteúdo dos seus ficheiros.',
+	data_content: ' : O HiberFile recebe os seus ficheiros e transmite-os para a nuvem S3 da Scaleway Amazon em Paris, França, que os armazena. Ninguém, nem mesmo o criador do HiberFile, tem acesso ao conteúdo dos seus ficheiros.',
 	personal_data: 'Dados pessoais',
-	personal_data_phrase:
-		' : Aqui estão os dados recolhidos para assegurar que o HiberFile funciona :',
+	personal_data_phrase: ' : Aqui estão os dados recolhidos para assegurar que o HiberFile funciona :',
 	ip_adress: 'Endereço IP',
-	ip_adress_content:
-		' : O seu endereço IP é recolhido durante os carregamentos e descarregamentos de ficheiros. Isto é utilizado para completar os registos nos nossos servidores. Sem este identificador, é absolutamente impossível utilizar o HiberFile.',
+	ip_adress_content: ' : O seu endereço IP é recolhido durante os carregamentos e descarregamentos de ficheiros. Isto é utilizado para completar os registos nos nossos servidores. Sem este identificador, é absolutamente impossível utilizar o HiberFile.',
 	personal_id: 'Identificador pessoal não rastreável',
-	personal_id_content:
-		' : Matomo, o serviço externo integrado com o HiberFile para fins analíticos, gera um identificador não rastreável que o identifica de forma anónima.',
+	personal_id_content: ' : Matomo, o serviço externo integrado com o HiberFile para fins analíticos, gera um identificador não rastreável que o identifica de forma anónima.',
 	cookies: 'Cookies',
-	cookies_content:
-		' : O HiberFile utiliza cookies apenas para recordar a sua língua preferida. Não serão utilizados cookies para o rastrear.',
+	cookies_content: ' : O HiberFile utiliza cookies apenas para recordar a sua língua preferida. Não serão utilizados cookies para o rastrear.',
 	to_note: 'A notar',
-	to_note_content:
-		' : NUNCA iremos absolutamente NUNCA recolher e processar os seus dados pessoais. No HiberFile, acreditamos que a privacidade é estritamente confidencial e deve permanecer PRIVADA.',
+	to_note_content: ' : NUNCA iremos absolutamente NUNCA recolher e processar os seus dados pessoais. No HiberFile, acreditamos que a privacidade é estritamente confidencial e deve permanecer PRIVADA.',
 	price: 'Tarifa',
-	price_content:
-		' : A utilização deste website é completamente gratuita. Não serão oferecidos serviços pagos.',
+	price_content: ' : A utilização deste website é completamente gratuita. Não serão oferecidos serviços pagos.',
 	third_party: 'Serviços de terceiros',
-	third_party_content:
-		' : Utilizamos a tecnologia {Scaleway} para alojamento e {S3} para armazenamento de ficheiros.',
+	third_party_content: ' : Utilizamos a tecnologia {Scaleway} para alojamento e {S3} para armazenamento de ficheiros.',
 	support: 'Apoio',
-	support_content:
-		' : Se precisar de ajuda, quiser alguma informação ou tiver uma pergunta sobre o HiberFile, escreva-nos para {mail} ou envie-nos uma mensagem privada no Twitter: {twitter}.',
+	support_content: ' : Se precisar de ajuda, quiser alguma informação ou tiver uma pergunta sobre o HiberFile, escreva-nos para {mail} ou envie-nos uma mensagem privada no Twitter: {twitter}.',
 	host_legal_notice: "Mentions légales de l'hébergeur",
 	host_legal_notice_content: ' : {legal_notice}.',
 	scaleway_legal_notice: 'Menções legais do Scaleway',
 	hiberfile_created: 'HiberFile foi criado com ❤️ em 🇨🇭.',
-	toast_max_size:
-		'O(s) ficheiro(s) é(são) demasiado grande(s). O tamanho não deve exceder os 20 GB.',
+	toast_max_size: 'O(s) ficheiro(s) é(são) demasiado grande(s). O tamanho não deve exceder os 20 GB.',
 	toast_send_error: 'Ocorreu um erro durante o envio do seu ficheiro.',
 	toast_add_files: 'Acrescentar um ou mais ficheiros antes de os enviar.',
 	toast_hiberapi_error: 'Incapaz de aceder ao HiberAPI.',
 	toast_link_copy: 'Link copiado',
-	toast_qr_code:
-		'Digitalize este QR code para aceder ao link de descarga a partir de outro dispositivo sem ter de introduzir manualmente o link.',
-
+	toast_qr_code: 'Digitalize este QR code para aceder ao link de descarga a partir de outro dispositivo sem ter de introduzir manualmente o link.',
 	show_options: 'Mostrar opções',
 	hide_options: 'Ocultar opções',
 	more_options: 'Mostrar opções avançadas',
@@ -87,5 +74,33 @@ export default {
 	rename_file: 'Renomear ficheiro',
 	webhook_uploading: 'Webhook: o uploading já começou',
 	webhook_uploaded: 'Webhook: o carregamento já terminou',
-	webhook_downloading: 'Webhook: o carregamento já começou'
+	webhook_downloading: 'Webhook: o carregamento já começou',
+
+	webhook_url: 'URL do Webhook',
+	webhook_added: 'Webhook adicionado',
+	user_webhooks: 'Webhooks do utilizador',	
+	no_webhooks: 'Sem webhook',
+	password: 'Palavra-passe',
+	confirm_password: 'Confirmar',
+	password_not_same: 'As duas palavras-passe não coincidem.',
+	change_password: 'Alterar palavra-passe',
+	current_password: 'Palavra-passe actual',
+	new_password: 'Nova palavra-passe',
+	bad_password: 'Palavra-passe incorrecta',
+	confirm_new_password: 'Confirmar nova palavra-passe',
+	min_one_lowercase_in_pw: 'A palavra-passe deve conter pelo menos uma letra minúscula.',
+	min_one_uppercase_in_pw: 'A palavra-passe deve conter pelo menos uma letra maiúscula.',
+	min_one_special_char_in_pw: 'A palavra-passe deve conter pelo menos um carácter especial.',
+	min_eight_char_pw: 'A palavra-passe deve conter pelo menos 8 caracteres.',
+	email_address: 'E-mail',
+	email_not_valid: "O e-mail não é válido.",
+	unexpected_error: 'Ocorreu um erro inesperado. Por favor, tente novamente mais tarde.',
+	login: 'Iniciar Sessão',
+	signup: "Inscrever-se",
+	signup_error: "Ocorreu um erro durante o registo. Por favor, tente novamente.",
+	delete_account: 'Apagar a conta',
+	account_deleted: 'Conta apagada',
+	confirm: 'Confirme',
+	loading: 'Carregamento...',
+	password_modified: 'Senha alterada'
 };
