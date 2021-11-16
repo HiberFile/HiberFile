@@ -93,6 +93,7 @@ export default {
 	min_eight_char_pw: 'The password must contain at least 8 characters.',
 	email_address: 'E-mail address',
 	email_not_valid: "The e-mail address is not valid.",
+  email_address_required: 'The e-mail address is required.',
 	unexpected_error: 'An unexpected error has occurred. Please try again later.',
 	login: 'Log in',
 	signup: "Sign up",

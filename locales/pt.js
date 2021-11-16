@@ -75,7 +75,6 @@ export default {
 	webhook_uploading: 'Webhook: o uploading já começou',
 	webhook_uploaded: 'Webhook: o carregamento já terminou',
 	webhook_downloading: 'Webhook: o carregamento já começou',
-
 	webhook_url: 'URL do Webhook',
 	webhook_added: 'Webhook adicionado',
 	user_webhooks: 'Webhooks do utilizador',	
@@ -94,6 +93,7 @@ export default {
 	min_eight_char_pw: 'A palavra-passe deve conter pelo menos 8 caracteres.',
 	email_address: 'E-mail',
 	email_not_valid: "O e-mail não é válido.",
+	email_address_required: 'O e-mail é obrigatório.',
 	unexpected_error: 'Ocorreu um erro inesperado. Por favor, tente novamente mais tarde.',
 	login: 'Iniciar Sessão',
 	signup: "Inscrever-se",

@@ -93,6 +93,7 @@ export default {
 	min_eight_char_pw: 'La contraseña debe contener al menos 8 caracteres.',
 	email_address: 'Correo electrónico',
 	email_not_valid: "El correo electrónico no es válido.",
+	email_address_required: 'El correo electrónico es obligatorio.',
 	unexpected_error: 'Se ha producido un error inesperado. Por favor, inténtelo más tarde.',
 	login: 'Iniciar sesión',
 	signup: "Crear cuenta",
