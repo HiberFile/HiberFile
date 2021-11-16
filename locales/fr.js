@@ -101,5 +101,6 @@ export default {
 	account_deleted: 'Compte supprimé',
 	confirm: 'Confirmer',
 	loading: 'Chargement...',
-	password_modified: 'Mot de passe modifié'
+	password_modified: 'Mot de passe modifié',
+	password_forgotten: 'Mot de passe oublié'
 };

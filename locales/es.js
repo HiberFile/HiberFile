@@ -101,5 +101,6 @@ export default {
 	account_deleted: 'Cuenta eliminada',
 	confirm: 'Confirmar',
 	loading: 'Cargando...',
-	password_modified: 'Contraseña cambiada'
+	password_modified: 'Contraseña cambiada',
+	password_forgotten: 'Contraseña olvidada'
 };

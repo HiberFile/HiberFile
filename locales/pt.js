@@ -102,5 +102,6 @@ export default {
 	account_deleted: 'Conta apagada',
 	confirm: 'Confirme',
 	loading: 'Carregamento...',
-	password_modified: 'Senha alterada'
+	password_modified: 'Senha alterada',
+	password_forgotten: 'Esqueci-me da palavra-passe'
 };
