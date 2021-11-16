@@ -106,5 +106,6 @@ export default {
 	confirm: 'Confermare',
 	loading: 'Caricamento...',
 	password_modified: 'Password cambiata',
-	password_forgotten: 'Password dimenticata'
+	password_forgotten: 'Password dimenticata',
+	account_content: "Quando crei il tuo account, la tua password viene cancellata con Bcrypt. Le tue credenziali sono conservate in modo sicuro sui nostri server. Il tuo account ti permette di creare link privati, memorizzare facilmente i tuoi link e gestire i webhooks."
 };

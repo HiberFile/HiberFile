@@ -106,5 +106,6 @@ export default {
 	confirm: 'Konfirmand',
 	loading: 'Laden...',
 	password_modified: 'Passwort geändert',
-	password_forgotten: 'Passwort vergessen'
+	password_forgotten: 'Passwort vergessen',
+	account_content: "Bei der Erstellung Ihres Kontos wird Ihr Passwort mithilfe von Bcrypt gehasht. Ihre Zugangsdaten werden sicher auf unseren Servern gespeichert. Ihr Konto ermöglicht es Ihnen, private Links zu erstellen, Ihre Links einfach zu behalten und Webhooks zu verwalten."
 };

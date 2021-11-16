@@ -106,5 +106,6 @@ export default {
 	confirm: 'Confirmar',
 	loading: 'Cargando...',
 	password_modified: 'Contraseña cambiada',
-	password_forgotten: 'Contraseña olvidada'
+	password_forgotten: 'Contraseña olvidada',
+	account_content: "Cuando creas tu cuenta, tu contraseña está cifrada con Bcrypt. Sus credenciales se almacenan de forma segura en nuestros servidores. Su cuenta le permite crear enlaces privados, almacenar fácilmente sus enlaces y gestionar los webhooks."
 };
