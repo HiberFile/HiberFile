@@ -107,5 +107,5 @@ export default {
 	loading: 'Chargement...',
 	password_modified: 'Mot de passe modifié',
 	password_forgotten: 'Mot de passe oublié',
-	account_content: "Lors de la création de votre compte, votre mot de passe est hashé à l'aide de Bcrypt. Vos identifiants sont enregistrés de manière sécurisée sur nos serveurs. Votre compte vous permet de créer des liens privés, de conserver vos liens en toute simplicité et de gérer les webhooks."
+	account_content: " : Lors de la création de votre compte, votre mot de passe est hashé à l'aide de Bcrypt. Vos identifiants sont enregistrés de manière sécurisée sur nos serveurs. Votre compte vous permet de créer des liens privés, de conserver vos liens en toute simplicité et de gérer les webhooks."
 };

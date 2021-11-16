@@ -107,5 +107,5 @@ export default {
 	loading: 'Loading...',
 	password_modified: 'Password changed',
   password_forgotten: 'Password forgotten',
-  account_content: "When you create your account, your password is hashed using Bcrypt. Your credentials are stored securely on our servers. Your account allows you to create private links, easily store your links and manage webhooks."
+  account_content: " : When you create your account, your password is hashed using Bcrypt. Your credentials are stored securely on our servers. Your account allows you to create private links, easily store your links and manage webhooks."
 };

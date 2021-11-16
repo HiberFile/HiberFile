@@ -107,5 +107,5 @@ export default {
 	loading: 'Carregamento...',
 	password_modified: 'Senha alterada',
 	password_forgotten: 'Esqueci-me da palavra-passe',
-	account_content: "Quando cria a sua conta, a sua palavra-passe é hashed usando Bcrypt. As suas credenciais são armazenadas em segurança nos nossos servidores. A sua conta permite-lhe criar ligações privadas, armazenar facilmente as suas ligações e gerir os webhooks."
+	account_content: " : Quando cria a sua conta, a sua palavra-passe é hashed usando Bcrypt. As suas credenciais são armazenadas em segurança nos nossos servidores. A sua conta permite-lhe criar ligações privadas, armazenar facilmente as suas ligações e gerir os webhooks."
 };
