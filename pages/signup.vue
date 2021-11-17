@@ -43,8 +43,22 @@
                 :placeholder="$t('confirm_password')"
                 type="password"
                 autocomplete="new-password"
+                class="mb-4"
                 :error="passwordConfirmed"
               />
+              <CheckBox v-model="acceptedTerms" class="mx-auto justify-center">
+                <i18n
+                  class="text-blue-700 ml-4 text-sm cursor-pointer"
+                  path="accept_terms"
+                  tag="p"
+                >
+                  <template #mentions>
+                    <nuxt-link :to="localePath('/mentions')">
+                      <u>{{ $t('legal_notice').toLowerCase() }}</u>
+                    </nuxt-link>
+                  </template>
+                </i18n>
+              </CheckBox>
             </div>
             <HFButton
               :value="$t('signup')"
@@ -78,6 +92,7 @@ export default class Index extends Vue {
   password: string = '';
   confirmPassword: string = '';
   signedUp: boolean = false;
+  acceptedTerms: boolean = false;
 
   get passwordConfirmed() {
     return (
@@ -128,7 +143,7 @@ export default class Index extends Vue {
 
   async signup() {
     try {
-      if (this.emailValid && this.passwordConfirmed) {
+      if (this.emailValid && this.passwordConfirmed && this.acceptedTerms) {
         await this.$axios.post(`${process.env.HIBERAPI_URL}/accounts/signup`, {
           email: this.emailAddress,
           password: this.password,
@@ -187,6 +202,12 @@ export default class Index extends Vue {
           icon: 'error',
           iconColor: '#F63F3C',
           title: this.$tc('email_not_valid')
+        });
+      } else if (!this.acceptedTerms) {
+        this.Toast({
+          icon: 'error',
+          iconColor: '#F63F3C',
+          title: this.$tc('must_accept_terms')
         });
       }
     } catch (e) {
