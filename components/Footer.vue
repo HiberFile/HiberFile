@@ -1,7 +1,16 @@
 <template>
   <footer class="text-white flex flex-row justify-end flex-shrink-0">
     <div class="text-right font-light text-xs">
-      <a href="https://blog.hiberfile.com/" class="underline">Blog</a>
+      <div class="flex justify-end">
+        <a
+          href="https://github.com/hiberfile/hiberfile"
+          target="_blank"
+          class="underline"
+          >GitHub</a
+        >
+        &nbsp;-&nbsp;
+        <a href="https://blog.hiberfile.com/" class="underline">Blog</a>
+      </div>
       <div class="block">
         <a
           :href="
