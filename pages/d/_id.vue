@@ -180,6 +180,8 @@ export default class D extends Vue {
             this.filename = result.filename;
             this.expire = result.expire;
 
+            document.title = this.filename;
+
             this.expireCalc();
             setInterval(this.expireCalc, 1000);
 
