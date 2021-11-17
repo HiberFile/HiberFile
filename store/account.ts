@@ -25,7 +25,6 @@ export default class Account extends VuexModule {
 
   @Mutation
   logInLocalStorage() {
-    console.log(localStorage);
     if (
       localStorage.getItem('email') &&
       localStorage.getItem('userId') &&
@@ -35,7 +34,6 @@ export default class Account extends VuexModule {
       this.email = localStorage.getItem('email');
       this.userId = localStorage.getItem('userId');
       this.token = localStorage.getItem('token');
-      console.log(this.loggedIn, this.email, this.userId, this.token);
     }
   }
 
