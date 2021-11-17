@@ -56,7 +56,7 @@ export default class Input extends Vue {
   private _type: string | undefined;
   private _pad: boolean | undefined;
 
-  inputValue: string = '';
+  private inputValue: string = '';
 
   beforeMount() {
     this._type = this.type ?? 'text';
