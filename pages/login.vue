@@ -45,7 +45,6 @@
             <HFButton
               :value="$t('login')"
               class="mx-auto"
-              style="width: min-content"
               @click.native="login"
             />
           </CardContent>
