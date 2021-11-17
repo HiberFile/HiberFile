@@ -93,13 +93,19 @@ export default {
 	min_eight_char_pw: 'Le mot de passe doit contenir au minimum 8 caractères.',
 	email_address: 'Adresse e-mail',
 	email_not_valid: "L'adresse e-mail n'est pas valide.",
+	email_address_required: "L'adresse e-mail est obligatoire.",
+	password_reset_email_sent: 'Un e-mail vous a été envoyé pour réinitialiser votre mot de passe.',
 	unexpected_error: 'Une erreur inattendue est survenue. Veuillez réessayer plus tard.',
 	login: 'Se connecter',
+	logout: 'Se déconnecter',
 	signup: "S'inscrire",
 	signup_error: "Une erreur est survenue lors de l'inscription. Veuillez recommencer.",
 	delete_account: 'Supprimer le compte',
 	account_deleted: 'Compte supprimé',
+	account: 'Compte',
 	confirm: 'Confirmer',
 	loading: 'Chargement...',
-	password_modified: 'Mot de passe modifié'
+	password_modified: 'Mot de passe modifié',
+	password_forgotten: 'Mot de passe oublié',
+	account_content: " : Lors de la création de votre compte, votre mot de passe est hashé à l'aide de Bcrypt. Vos identifiants sont enregistrés de manière sécurisée sur nos serveurs. Votre compte vous permet de créer des liens privés, de conserver vos liens en toute simplicité et de gérer les webhooks."
 };

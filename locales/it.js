@@ -93,13 +93,19 @@ export default {
 	min_eight_char_pw: 'La password deve contenere almeno 8 caratteri.',
 	email_address: 'E-mail',
 	email_not_valid: "L'e-mail non è valida.",
+	email_address_required: 'E-mail obbligatoria.',
+	password_reset_email_sent: 'Ti abbiamo inviato una e-mail con le istruzioni per reimpostare la password.',
 	unexpected_error: 'Si è verificato un errore inaspettato. Si prega di riprovare più tardi.',
 	login: 'Accedi',
+	logout: 'Esci',
 	signup: "Crea un account",
 	signup_error: "Si è verificato un errore durante la registrazione. Si prega di riprovare.",
 	delete_account: "Cancellare l'account",
 	account_deleted: 'Account cancellato',
+	account: 'Account',
 	confirm: 'Confermare',
 	loading: 'Caricamento...',
-	password_modified: 'Password cambiata'
+	password_modified: 'Password cambiata',
+	password_forgotten: 'Password dimenticata',
+	account_content: " : Quando crei il tuo account, la tua password viene cancellata con Bcrypt. Le tue credenziali sono conservate in modo sicuro sui nostri server. Il tuo account ti permette di creare link privati, memorizzare facilmente i tuoi link e gestire i webhooks."
 };

@@ -75,7 +75,6 @@ export default {
 	webhook_uploading: 'Webhook: o uploading já começou',
 	webhook_uploaded: 'Webhook: o carregamento já terminou',
 	webhook_downloading: 'Webhook: o carregamento já começou',
-
 	webhook_url: 'URL do Webhook',
 	webhook_added: 'Webhook adicionado',
 	user_webhooks: 'Webhooks do utilizador',	
@@ -94,13 +93,19 @@ export default {
 	min_eight_char_pw: 'A palavra-passe deve conter pelo menos 8 caracteres.',
 	email_address: 'E-mail',
 	email_not_valid: "O e-mail não é válido.",
+	email_address_required: 'O e-mail é obrigatório.',
+	password_reset_email_sent: 'Foi enviado um e-mail para o seu endereço de e-mail com instruções para redefinir a sua palavra-passe.',
 	unexpected_error: 'Ocorreu um erro inesperado. Por favor, tente novamente mais tarde.',
 	login: 'Iniciar Sessão',
+	logout: 'Terminar Sessão',
 	signup: "Inscrever-se",
 	signup_error: "Ocorreu um erro durante o registo. Por favor, tente novamente.",
 	delete_account: 'Apagar a conta',
 	account_deleted: 'Conta apagada',
+	account: 'Conta',
 	confirm: 'Confirme',
 	loading: 'Carregamento...',
-	password_modified: 'Senha alterada'
+	password_modified: 'Senha alterada',
+	password_forgotten: 'Esqueci-me da palavra-passe',
+	account_content: " : Quando cria a sua conta, a sua palavra-passe é hashed usando Bcrypt. As suas credenciais são armazenadas em segurança nos nossos servidores. A sua conta permite-lhe criar ligações privadas, armazenar facilmente as suas ligações e gerir os webhooks."
 };

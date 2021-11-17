@@ -93,13 +93,19 @@ export default {
 	min_eight_char_pw: 'The password must contain at least 8 characters.',
 	email_address: 'E-mail address',
 	email_not_valid: "The e-mail address is not valid.",
+  email_address_required: 'The e-mail address is required.',
+  password_reset_email_sent: 'An e-mail has been sent to you with instructions to reset your password.',
 	unexpected_error: 'An unexpected error has occurred. Please try again later.',
 	login: 'Log in',
+  logout: 'Log out',
 	signup: "Sign up",
 	signup_error: "An error occurred during registration. Please try again.",
 	delete_account: 'Delete account',
 	account_deleted: 'Account deleted',
+  account: 'Account',
 	confirm: 'Confirm',
 	loading: 'Loading...',
-	password_modified: 'Password changed'
+	password_modified: 'Password changed',
+  password_forgotten: 'Password forgotten',
+  account_content: " : When you create your account, your password is hashed using Bcrypt. Your credentials are stored securely on our servers. Your account allows you to create private links, easily store your links and manage webhooks."
 };

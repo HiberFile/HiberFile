@@ -93,13 +93,19 @@ export default {
 	min_eight_char_pw: 'La contraseña debe contener al menos 8 caracteres.',
 	email_address: 'Correo electrónico',
 	email_not_valid: "El correo electrónico no es válido.",
+	email_address_required: 'El correo electrónico es obligatorio.',
+	password_reset_email_sent: 'Se ha enviado un correo electrónico con instrucciones para restablecer la contraseña.',
 	unexpected_error: 'Se ha producido un error inesperado. Por favor, inténtelo más tarde.',
 	login: 'Iniciar sesión',
+	logout: 'Cerrar sesión',
 	signup: "Crear cuenta",
 	signup_error: "Se ha producido un error durante el registro. Por favor, inténtalo de nuevo.",
 	delete_account: 'Eliminar la cuenta',
 	account_deleted: 'Cuenta eliminada',
+	account: 'Cuenta',
 	confirm: 'Confirmar',
 	loading: 'Cargando...',
-	password_modified: 'Contraseña cambiada'
+	password_modified: 'Contraseña cambiada',
+	password_forgotten: 'Contraseña olvidada',
+	account_content: " : Cuando creas tu cuenta, tu contraseña está cifrada con Bcrypt. Sus credenciales se almacenan de forma segura en nuestros servidores. Su cuenta le permite crear enlaces privados, almacenar fácilmente sus enlaces y gestionar los webhooks."
 };

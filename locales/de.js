@@ -93,13 +93,19 @@ export default {
 	min_eight_char_pw: 'Das Passwort muss mindestens 8 Zeichen enthalten',
 	email_address: "E-Mail-Adresse",
 	email_not_valid: "Die E-Mail-Adresse ist nicht gültig.",
+	email_address_required: "Eine E-Mail-Adresse ist erforderlich.",
+	password_reset_email_sent: "Eine E-Mail mit einem Link zum Zurücksetzen des Passworts wurde an Ihre E-Mail-Adresse gesendet.",
 	unexpected_error: 'Es ist ein unerwarteter Fehler aufgetreten. Bitte versuchen Sie es später noch einmal.',
 	login: 'Einloggen',
+	logout: 'Ausloggen',
 	signup: "Anmeldung",
 	signup_error: "Bei der Registrierung ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.",
 	delete_account: 'Löschen Sie das Konto',
 	account_deleted: 'Konto gelöscht',
+	account: 'Konto',
 	confirm: 'Konfirmand',
 	loading: 'Laden...',
-	password_modified: 'Passwort geändert'
+	password_modified: 'Passwort geändert',
+	password_forgotten: 'Passwort vergessen',
+	account_content: " : Bei der Erstellung Ihres Kontos wird Ihr Passwort mithilfe von Bcrypt gehasht. Ihre Zugangsdaten werden sicher auf unseren Servern gespeichert. Ihr Konto ermöglicht es Ihnen, private Links zu erstellen, Ihre Links einfach zu behalten und Webhooks zu verwalten."
 };

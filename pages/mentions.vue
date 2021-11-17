@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="p-8 font-sans gradient-radial flex-grow min-h-screen text-white flex flex-col max-w-full"
-  >
+  <div class="p-8 font-sans gradient-radial flex-grow min-h-screen text-white flex flex-col max-w-full">
     <Header :onclicklogo="goToHome" />
     <main>
       <div>
@@ -17,6 +15,10 @@
             <li class="mb-4">
               <b>{{ $t('data') }}</b
               >{{ $t('data_content') }}
+            </li>
+            <li class="mb-4">
+              <b>{{ $t('account') }}</b
+              >{{ $t('account_content') }}
             </li>
             <li class="mb-4">
               <b>{{ $t('personal_data') }}</b
