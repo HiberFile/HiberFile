@@ -173,6 +173,7 @@ export default class D extends Vue {
             this.fileUrl = result.downloadUrl;
             this.filename = result.filename;
             this.expire = result.expire;
+            this.uploadState = null;
 
             document.title = this.filename;
 
