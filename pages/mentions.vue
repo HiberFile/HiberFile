@@ -1,5 +1,5 @@
 <template>
-  <div class="p-8 font-sans gradient-radial flex-grow min-h-screen text-white flex flex-col max-w-full">
+  <div>
     <Header :onclicklogo="goToHome" />
     <main>
       <div>

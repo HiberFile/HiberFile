@@ -1,7 +1,14 @@
 <template>
-  <div id="root" class="overflow-hidden">
+  <div id="root" class="overflow-hidden flex flex-col h-screen">
     <client-only>
-      <Nuxt />
+      <DonationBanner />
+      <Nuxt
+        class="p-8 font-sans gradient-radial flex-grow text-white flex flex-col max-w-full"
+        :style="{
+          'min-height': mobile ? 'calc(var(--vh, 1vh) * 100)' : '',
+          'overflow-y': mobile ? 'hidden' : ''
+        }"
+      />
     </client-only>
 
     <!-- make tailwind doesn't purge dark-mode -->
@@ -11,17 +18,21 @@
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
+import isMobile from '~/assets/scripts/isMobile';
 
 @Component
 export default class Default extends Vue {
+  mobile: boolean | null = null;
+
   beforeMount() {
+    this.mobile = isMobile();
     if (this.$el) {
       document.querySelector('html')!.style.background = getComputedStyle(
         this.$el
       ).background;
       window
         .matchMedia('(prefers-color-scheme: dark)')
-        .addEventListener('change', (e) => {
+        .addEventListener('change', () => {
           document.querySelector('html')!.style.background = getComputedStyle(
             this.$el
           ).background;

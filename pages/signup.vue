@@ -1,11 +1,5 @@
 <template>
-  <div
-    class="p-8 font-sans gradient-radial flex-grow min-h-screen text-white flex flex-col max-w-full"
-    :style="{
-      'min-height': mobile ? 'calc(var(--vh, 1vh) * 100)' : '',
-      'overflow-y': mobile ? 'hidden' : ''
-    }"
-  >
+  <div>
     <Header :onclicklogo="goToHome" />
     <div class="flex-grow flex flex-row items-center justify-start my-8">
       <div
