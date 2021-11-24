@@ -43,13 +43,21 @@
               <CheckBox v-model="acceptedTerms" class="mx-auto justify-center">
                 <i18n
                   class="text-blue-700 ml-4 text-sm cursor-pointer"
-                  path="accept_terms"
+                  path="accept_conditions"
                   tag="p"
                 >
                   <template #mentions>
                     <nuxt-link :to="localePath('/mentions')">
                       <u>{{ $t('legal_notice').toLowerCase() }}</u>
                     </nuxt-link>
+                  </template>
+                  <template #terms_of_use>
+                    <a
+                      href="/terms_of_use.txt"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      ><u>{{ $t('terms_of_use').toLowerCase() }}</u></a
+                    >
                   </template>
                 </i18n>
               </CheckBox>
@@ -201,7 +209,7 @@ export default class Index extends Vue {
         this.Toast({
           icon: 'error',
           iconColor: '#F63F3C',
-          title: this.$tc('must_accept_terms')
+          title: this.$tc('must_accept_conditions')
         });
       }
     } catch (e) {
