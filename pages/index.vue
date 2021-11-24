@@ -208,22 +208,19 @@
                 >
                   <HFButton
                     :value="$t('copy_in_clipboard')"
-                    :style="{
-                      'text-align': fileId && vuePetsShown ? 'start' : 'center'
-                    }"
+                    class="text-center"
                     @click.native="copyLink"
                   />
                   <HFButton
                     v-if="!mobile"
                     :value="$t('show_qr')"
-                    :style="{
-                      'text-align': fileId && vuePetsShown ? 'start' : 'center'
-                    }"
+                    class="text-center"
                     @click.native="showQR"
                   />
                   <HFButton
                     v-else-if="mobile"
                     :value="$t('share')"
+                    class="text-center"
                     @click.native="shareLink"
                   />
                 </div>
