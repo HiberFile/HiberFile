@@ -70,21 +70,15 @@ export default class Header extends Vue {
   }
 
   goToLogin() {
-    this.$router.push({
-      path: '/login'
-    });
+    this.$router.push(this.localePath('/login'));
   }
 
   goToSignup() {
-    this.$router.push({
-      path: '/signup'
-    });
+    this.$router.push(this.localePath('/signup'));
   }
 
   goToAccount() {
-    this.$router.push({
-      path: '/account'
-    });
+    this.$router.push(this.localePath('/account'));
   }
 
   logout() {

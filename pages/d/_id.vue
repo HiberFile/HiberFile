@@ -269,9 +269,7 @@ export default class D extends Vue {
   }
 
   goToHome() {
-    this.$router.push({
-      path: '/'
-    });
+    this.$router.push(this.localePath('/'));
   }
 }
 </script>

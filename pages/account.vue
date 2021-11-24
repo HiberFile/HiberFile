@@ -202,9 +202,7 @@ export default class Index extends Vue {
 
   created() {
     if (accountStore.email === null) {
-      this.$router.push({
-        path: '/'
-      });
+      this.$router.push(this.localePath('/'));
     }
   }
 
@@ -219,7 +217,7 @@ export default class Index extends Vue {
   }
 
   goToHome() {
-    this.$router.push('/');
+    this.$router.push(this.localePath('/'));
   }
 
   Toast(options: any) {

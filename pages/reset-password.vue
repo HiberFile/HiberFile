@@ -77,7 +77,7 @@ export default class Index extends Vue {
   }
 
   goToHome() {
-    this.$router.push('/');
+    this.$router.push(this.localePath('/'));
   }
 
   Toast(options: any) {
