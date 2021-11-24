@@ -172,29 +172,13 @@
           </CardContent>
           <CardContent v-else>
             <div>
-              <div
-                class="file-ready flex flex-col"
-                :class="{
-                  'items-center': !(fileId && vuePetsShown),
-                  'items-start': fileId && vuePetsShown
-                }"
-              >
+              <div class="file-ready flex flex-col items-center">
                 <Loader v-if="state === 'upload'" class="w-8 h-8" />
                 <Check v-else-if="state !== 'error'" class="w-8 h-8" />
                 <Cross v-else class="w-8 h-8" />
-                <div
-                  class="my-12 flex flex-col w-full"
-                  :class="{
-                    'items-center': !(fileId && vuePetsShown),
-                    'items-start': fileId && vuePetsShown
-                  }"
-                >
+                <div class="my-12 flex flex-col w-full items-center">
                   <h4
-                    class="text-lg text-center text-blue-700 font-medium mb-6"
-                    :class="{
-                      'text-center': !(fileId && vuePetsShown),
-                      'text-start': fileId && vuePetsShown
-                    }"
+                    class="text-lg text-center text-blue-700 font-medium mb-6 text-center"
                   >
                     {{
                       state === 'error'
@@ -342,11 +326,12 @@
         </div>
         <div
           v-if="vuePetsShown && fileId"
-          class="absolute"
-          style="left: 100%; transform: translate(-100%, -100%)"
+          class="absolute z-0"
+          style="left: 100%; transform: translateY(-100%)"
           :style="{
-            width: `${(mainCardPosition.left + mainCardPosition.right) / 2}px`,
-            height: `calc(${mainCardPosition.top}px - 3rem)`
+            width: `${mainCardPosition.width}px`,
+            height: `calc(${mainCardPosition.top}px - 3rem)`,
+            left: `calc(${mainCardPosition.left}px - 2rem)`
           }"
         >
           <VuePets class="w-full h-full" />
@@ -370,7 +355,15 @@ import { accountStore } from '~/store';
 import getUserFiles from '~/utils/getUserFiles';
 
 @Component({
-  components: { VuePets }
+  components: { VuePets },
+  computed: {
+    mainCardPosition: {
+      cache: false,
+      get() {
+        return (this.$refs.mainCard as Vue).$el.getBoundingClientRect();
+      }
+    }
+  }
 })
 export default class Index extends Vue {
   filelist: Array<File> = [];
@@ -401,12 +394,10 @@ export default class Index extends Vue {
   optionsShown: boolean = false;
   moreOptionsShown: boolean = false;
 
-  get vuePetsShown() {
-    return !this.mobile && this.elapsed && this.remaining;
-  }
+  mainCardPosition!: { cache: boolean; get(): DOMRect };
 
-  get mainCardPosition() {
-    return (this.$refs.mainCard as Vue).$el.getBoundingClientRect();
+  get vuePetsShown() {
+    return !this.mobile;
   }
 
   get filelistNotEmpty() {
