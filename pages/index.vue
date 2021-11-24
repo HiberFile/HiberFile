@@ -400,12 +400,9 @@ export default class Index extends Vue {
 
   optionsShown: boolean = false;
   moreOptionsShown: boolean = false;
-  timeToShowVuePets: boolean = false;
 
   get vuePetsShown() {
-    return (
-      !this.mobile && this.elapsed && this.remaining && this.timeToShowVuePets
-    );
+    return !this.mobile && this.elapsed && this.remaining;
   }
 
   get mainCardPosition() {
@@ -613,16 +610,6 @@ export default class Index extends Vue {
                 this.uploadProgress = progress;
                 this.remaining = remaining;
                 this.elapsed = elapsed;
-
-                if (
-                  !this.timeToShowVuePets &&
-                  this.remaining?.getTime() &&
-                  this.elapsed.getTime() > 10_000 &&
-                  this.remaining?.getTime() > 60_000 - this.elapsed.getTime() &&
-                  this.remaining?.getTime() > 20_000
-                ) {
-                  this.timeToShowVuePets = true;
-                }
               },
               accountStore.token ?? undefined,
               this.privateFile ?? undefined,
