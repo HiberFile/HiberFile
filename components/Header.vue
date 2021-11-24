@@ -1,7 +1,7 @@
 <template>
   <header class="h-min-content flex justify-between items-start flex-shrink-0">
     <div class="inline-block" @click="onclicklogo">
-      <Logo class="hiberfile-logo cursor-pointer z-50" />
+      <Logo class="hiberfile-logo cursor-pointer z-50 relative" />
       <p v-show="!mobile" class="font-light mt-8" style="width: 14rem">
         {{ $t('share_file_header') }}
       </p>
