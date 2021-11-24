@@ -81,6 +81,16 @@
                 </template>
               </i18n>
             </li>
+            <li class="mb-4">
+              <b>{{ $t('legal_notice_more') }}</b>
+              <i18n path="legal_notice_more_click_here" tag="span">
+                <template #legal_notice>
+                  <a href="/legal_notice.txt"
+                    ><u>{{ $t('click_here') }}</u></a
+                  >
+                </template>
+              </i18n>
+            </li>
           </ul>
         </div>
       </div>
