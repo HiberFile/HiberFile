@@ -3,7 +3,7 @@
     <Header :onclicklogo="setAsHome" />
     <div class="flex-grow flex flex-row items-center justify-start my-8">
       <div
-        class="flex flex-row items-start justify-start w-full relative h-auto"
+        class="flex flex-row items-start justify-start w-full relative h-auto max-w-3xl"
       >
         <MainCard
           ref="mainCard"
@@ -20,8 +20,7 @@
                     mergedFileHistory.length > 0)
                 ))
                 ? 'translateX(calc(50vw - 50% - 2rem))'
-                : 'translateX(0)',
-            width: fileId && vuePetsShown ? '100%' : '28rem'
+                : 'translateX(0)'
           }"
           dropzone-style
           dropzone-extend

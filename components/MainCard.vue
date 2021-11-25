@@ -1,6 +1,6 @@
 <template>
   <main
-    class="max-w-3xl flex flex-col justify-center"
+    class="max-w-full flex flex-col justify-center"
     style="width: 28rem; min-height: 20rem"
   >
     <div
