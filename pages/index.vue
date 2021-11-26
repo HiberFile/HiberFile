@@ -389,11 +389,12 @@ export default class Index extends Vue {
 
   optionsShown: boolean = false;
   moreOptionsShown: boolean = false;
+  vuePetsTimeout: boolean = false;
 
   mainCardPosition!: { cache: boolean; get(): DOMRect };
 
   get vuePetsShown() {
-    return !this.mobile;
+    return !this.mobile && this.vuePetsTimeout;
   }
 
   get filelistNotEmpty() {
@@ -576,6 +577,10 @@ export default class Index extends Vue {
           try {
             this.state = 'upload';
 
+            setTimeout(() => {
+              this.vuePetsTimeout = true;
+            }, 5000);
+
             this.filename = fileToUpload?.name;
 
             const expireStr = (this.$refs.duration as HTMLInputElement).value;
@@ -717,6 +722,7 @@ export default class Index extends Vue {
     this.filelist = [];
     this.fileId = null;
     this.uploadProgress = null;
+    this.vuePetsTimeout = false;
     // window.open('https://www.hiberfile.com', '_self');
   }
 }
