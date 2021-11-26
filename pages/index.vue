@@ -211,16 +211,16 @@
                     @click.native="copyLink"
                   />
                   <HFButton
-                    v-if="!mobile"
-                    :value="$t('show_qr')"
-                    class="text-center"
-                    @click.native="showQR"
-                  />
-                  <HFButton
-                    v-else-if="mobile"
+                    v-if="shareAvailable && mobile"
                     :value="$t('share')"
                     class="text-center"
                     @click.native="shareLink"
+                  />
+                  <HFButton
+                    v-else-if="!mobile"
+                    :value="$t('show_qr')"
+                    class="text-center"
+                    @click.native="showQR"
                   />
                 </div>
                 <!-- <HFButton
@@ -398,6 +398,10 @@ export default class Index extends Vue {
 
   get filelistNotEmpty() {
     return this.filelist.length > 0;
+  }
+
+  get shareAvailable() {
+    return navigator.share !== undefined;
   }
 
   get mergedFileHistory() {

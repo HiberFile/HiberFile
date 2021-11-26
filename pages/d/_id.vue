@@ -59,14 +59,14 @@
                 @click.native="download"
               />
               <HFButton
-                v-if="filename && !mobile"
-                :value="$t('show_qr')"
-                @click.native="showQR"
-              />
-              <HFButton
-                v-else-if="filename && mobile"
+                v-if="shareAvailable && filename && mobile"
                 :value="$t('share')"
                 @click.native="shareLink"
+              />
+              <HFButton
+                v-else-if="filename"
+                :value="$t('show_qr')"
+                @click.native="showQR"
               />
             </div>
           </CardContent>
@@ -105,6 +105,10 @@ export default class D extends Vue {
   uploadState: 'waiting' | 'error' | 'loading' | null = 'waiting';
   filePreview: string | null = null;
   mobile: boolean | null = null;
+
+  get shareAvailable() {
+    return navigator.share !== undefined;
+  }
 
   beforeMount() {
     this.mobile = isMobile();
