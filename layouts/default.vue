@@ -1,5 +1,5 @@
 <template>
-  <div id="root" class="overflow-hidden flex flex-col h-screen">
+  <div id="root" class="overflow-hidden flex flex-col">
     <client-only>
       <DonationBanner />
       <Nuxt

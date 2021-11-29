@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="h-screen">
     <Header :onclicklogo="goToHome" />
     <div class="flex-grow flex flex-row items-center justify-start my-8">
       <div
