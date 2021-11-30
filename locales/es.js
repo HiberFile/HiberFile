@@ -18,7 +18,7 @@ export default {
 	data: 'Datos',
 	data_content: ' : HiberFile recibe sus archivos y los transmite a la nube Amazon S3 de Scaleway en París, Francia, que los almacena. Nadie, ni siquiera el creador de HiberFile, tiene acceso al contenido de tus archivos.',
 	delete_account: 'Eliminar la cuenta',
-	donation_banner: 'HiberFile necesita donaciones para funcionar. Si quieres ayudar, {legal_notice}.',
+	donation_banner: 'HiberFile necesita donaciones para funcionar. Si quieres ayudar, {click_here}.',
 	download: 'Descargar',
 	download_now: 'Descargue su archivo ahora.',
 	download_soon: 'Pronto podrá descargar su archivo.',
