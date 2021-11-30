@@ -36,7 +36,6 @@
             <HFButton
               :value="$t('change_password')"
               class="mx-auto"
-              style="width: min-content"
               @click.native="changePassword"
             />
           </CardContent>
