@@ -121,6 +121,6 @@ export default {
 	legal_notice_more_click_here: 'Pour accéder aux mentions légales complètes, {legal_notice}.',
 	donation_banner: 'HiberFile a besoin de dons pour fonctionner. Si vous désirez aider, {click_here}.',
 	click_here: 'cliquez ici',
-	acception_conditions: 'J’accepte les {terms_of_use} et je confirme avoir lu les {mentions}.',
+	accept_conditions: 'J’accepte les {terms_of_use} et je confirme avoir lu les {mentions}.',
 	mentions: 'mentions légales'
 };
