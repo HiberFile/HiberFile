@@ -5,6 +5,7 @@
   "scripts": {
     "current-git-sha": "NUXT_ENV_CURRENT_GIT_SHA=`git rev-parse --short HEAD`",
     "dev": "npm run current-git-sha nuxt-ts",
+    "test": "jest",
     "build": "nuxt-ts build",
     "start": "npm run current-git-sha nuxt-ts start",
     "generate": "nuxt-ts generate",
