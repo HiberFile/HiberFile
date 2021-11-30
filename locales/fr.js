@@ -116,8 +116,11 @@ export default {
 	please_fill_fields: 'Veuillez remplir tous les champs.',
 	reset_password_error: 'Une erreur est survenue lors de la réinitialisation du mot de passe.',
 	successful_email_verification: 'Votre adresse e-mail a été vérifiée avec succès.',
-	terms_of_use: 'Conditions d’utilisation',
+	terms_of_use: 'conditions d’utilisation',
 	user_already_exists: 'Un utilisateur avec cette adresse e-mail existe déjà.',
 	legal_notice_more_click_here: 'Pour accéder aux mentions légales complètes, {legal_notice}.',
-	donation_banner: 'HiberFile a besoin de dons pour fonctionner. Si vous désirez aider, {click_here}.'
+	donation_banner: 'HiberFile a besoin de dons pour fonctionner. Si vous désirez aider, {click_here}.',
+	click_here: 'cliquez ici',
+	acception_conditions: 'J’accepte les {terms_of_use} et je confirme avoir lu les {mentions}.',
+	mentions: 'mentions légales'.
 };
