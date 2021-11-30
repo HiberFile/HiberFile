@@ -26,7 +26,8 @@ export default class Index extends Vue {
   opened = false;
 
   beforeMount() {
-    if (new Date().getDay() === 5) this.opened = true;
+    const day = new Date().getDay();
+    if (day === 2 || day === 5) this.opened = true;
   }
 
   close() {
