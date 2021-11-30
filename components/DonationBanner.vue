@@ -14,7 +14,7 @@
         >
       </template>
     </i18n>
-    <Cross @click.native="close" class="h-2 w-2 cursor-pointer" />
+    <Cross class="h-2 w-2 cursor-pointer" @click.native="close" />
   </div>
 </template>
 
@@ -26,7 +26,7 @@ export default class Index extends Vue {
   opened = false;
 
   beforeMount() {
-    if (new Date().getDate() === 5) this.opened = true;
+    if (new Date().getDay() === 5) this.opened = true;
   }
 
   close() {
