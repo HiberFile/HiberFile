@@ -54,7 +54,7 @@ export default {
     loading: 'Loading...',
     login: 'Log in',
     logout: 'Log out',
-    max_file_size: '(up to {number}GB)',
+    max_filesize: '(up to {number}GB)',
     mentions: 'legal notices',
     min_eight_char_pw: 'The password must contain at least 8 characters.',
     min_one_lowercase_in_pw: 'The password must contain at least one lowercase letter.',

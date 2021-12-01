@@ -54,7 +54,7 @@ export default {
 	loading: 'Caricamento...',
 	login: 'Accedi',
 	logout: 'Esci',
-	max_file_size: '(fino a {number} GB)',
+	max_filesize: '(fino a {number} GB)',
 	mentions: 'avvisi legali',
 	min_eight_char_pw: 'La password deve contenere almeno 8 caratteri.',
 	min_one_lowercase_in_pw: 'La password deve contenere almeno una lettera minuscola.',

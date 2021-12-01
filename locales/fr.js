@@ -54,7 +54,7 @@ export default {
 	loading: 'Chargement...',
 	login: 'Se connecter',
 	logout: 'Se déconnecter',
-	max_file_size: "(jusqu'à {number} Go)",
+	max_filesize: "(jusqu'à {number} Go)",
 	mentions: 'mentions légales',
 	min_eight_char_pw: 'Le mot de passe doit contenir au minimum 8 caractères.',
 	min_one_lowercase_in_pw: 'Le mot de passe doit contenir au minimum une lettre minuscule.',

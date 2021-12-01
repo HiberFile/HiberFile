@@ -54,7 +54,7 @@ export default {
 	loading: 'Carregamento...',
 	login: 'Iniciar Sessão',
 	logout: 'Terminar Sessão',
-	max_file_size: '(até {number} GB)',
+	max_filesize: '(até {number} GB)',
 	mentions: 'avisos jurídicos',
 	min_eight_char_pw: 'A palavra-passe deve conter pelo menos 8 caracteres.',
 	min_one_lowercase_in_pw: 'A palavra-passe deve conter pelo menos uma letra minúscula.',

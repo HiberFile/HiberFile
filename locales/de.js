@@ -54,7 +54,7 @@ export default {
 	loading: 'Laden...',
 	login: 'Einloggen',
 	logout: 'Ausloggen',
-	max_file_size: '(bis zu {number} GB)',
+	max_filesize: '(bis zu {number} GB)',
 	mentions: 'rechtliche Hinweise',
 	min_eight_char_pw: 'Das Passwort muss mindestens 8 Zeichen enthalten',
 	min_one_lowercase_in_pw: 'Das Passwort muss mindestens einen Kleinbuchstaben enthalten',

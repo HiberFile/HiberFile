@@ -54,7 +54,7 @@ export default {
 	loading: 'Cargando...',
 	login: 'Iniciar sesión',
 	logout: 'Cerrar sesión',
-	max_file_size: '(hasta {number} GB)',
+	max_filesize: '(hasta {number} GB)',
 	mentions: 'avisos legales',
 	min_eight_char_pw: 'La contraseña debe contener al menos 8 caracteres.',
 	min_one_lowercase_in_pw: 'La contraseña debe contener al menos una letra minúscula.',
