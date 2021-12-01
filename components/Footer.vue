@@ -3,6 +3,13 @@
     <div class="text-right font-light text-xs">
       <div class="flex justify-end">
         <a
+          href="https://fr.liberapay.com/hiberfile/"
+          target="_blank"
+          class="underline"
+          >{{ $t('donate') }}</a
+        >
+        &nbsp;-&nbsp;
+        <a
           href="https://github.com/hiberfile/hiberfile"
           target="_blank"
           class="underline"

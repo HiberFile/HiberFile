@@ -1,7 +1,7 @@
 <template>
   <div id="root" class="overflow-hidden flex flex-col">
     <client-only>
-      <DonationBanner />
+      <!--      <DonationBanner />-->
       <Nuxt
         class="p-8 font-sans gradient-radial flex-grow text-white flex flex-col max-w-full"
         :style="{
