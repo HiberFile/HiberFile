@@ -91,14 +91,26 @@
                         @click.native="toggleOptions"
                       />
                     </div>
-                    <HFButton
-                      :value="
-                        state === 'zip' || state === 'upload'
-                          ? $t('loading')
-                          : $t('send_now_btn')
-                      "
-                      @click.native="uploadFile"
-                    />
+                    <div>
+                      <HFButton
+                        :value="
+                          state === 'zip' || state === 'upload'
+                            ? $t('loading')
+                            : $t('send_now_btn')
+                        "
+                        @click.native="uploadFile"
+                      />
+                      <i18n
+                        v-if="state !== 'upload' && state !== 'zip'"
+                        class="text-blue-700 text-sm"
+                        path="max_filesize"
+                        tag="p"
+                      >
+                        <template #number>
+                          <span>50</span>
+                        </template>
+                      </i18n>
+                    </div>
                   </div>
                 </div>
                 <div
