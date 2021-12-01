@@ -9,7 +9,8 @@
     <div
       class="flex"
       :class="{
-        'flex-col-reverse': mobile
+        'flex-col-reverse': mobile,
+        'items-end': mobile
       }"
     >
       <div
