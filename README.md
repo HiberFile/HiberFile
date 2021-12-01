@@ -5,33 +5,26 @@
     alt="HiberFile"
   />
 </p>
-
 <p align="center">
   <a href="https://github.com/hiberfile/hiberfile/stargazers"
     ><img
       src="https://img.shields.io/github/stars/hiberfile/hiberfile?style=flat-square"
       alt="GitHub Stars"
-  /></a>
+  /></a> 
   <a href="LICENSE"
     ><img
       src="https://img.shields.io/github/license/hiberfile/hiberfile?style=flat-square"
       alt="GPL-3.0 License"
-  /></a>
+  /></a>  
   <a href=""
     ><img
       src="https://img.shields.io/github/languages/top/hiberfile/hiberfile?style=flat-square"
-      alt="Top language"/></a
-  ><br />
-  <a href="https://discord.gg/ctCa8H9"
-    ><img
-      src="https://img.shields.io/discord/694930747953381516?label=discord&logoColor=7289da&style=flat-square"
-      alt="Chat on Discord"
-  /></a>
+          alt="Top language"/></a>
   <a href="https://twitter.com/HiberFile"
     ><img
       src="https://img.shields.io/badge/twitter-@HiberFile-1DA1F3?style=flat-square"
       alt="Follow @HiberFile on Twitter"
-  /></a>
+  /></a> 
 </p>
 
 <p align="center">
@@ -75,14 +68,23 @@ We created HiberFile to make it easy for casual users to share large files (up t
    ```sh
    cd hiberfile && npm install
    ```
+   
+3. Create the .env file and edit it (here is [an example](/.env.example)):
 
-3. Launch the dev server (optional):
+   ```sh
+   cp .env.example .env
+   [OPTIONAL] nano .env
+   ```
+   
+   > Note that you can use your favorite editor instead of `nano`, like `vi` or `mcedit`.
+
+4. Launch the dev server (optional):
 
    ```sh
    npm run dev
    ```
 
-4. Build and deploy:
+5. Build and deploy:
 
    ```sh
    npm run build && npm run generate && npm run start
@@ -90,7 +92,7 @@ We created HiberFile to make it easy for casual users to share large files (up t
 
 ## 🤝 Contributing
 
-If you are interested in helping contribute to **HiberFile**, feel free to let us know on our [Discord server](https://discord.gg/ctCa8H9).
+If you are interested in helping contribute to **HiberFile**, feel free to open a pull request.
 
 If you are fluent in a non-English or non-French language, we greatly appreciate any help translating our website in other languages.
 
