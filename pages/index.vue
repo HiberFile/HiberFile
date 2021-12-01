@@ -102,7 +102,7 @@
                       />
                       <i18n
                         v-if="state !== 'upload' && state !== 'zip'"
-                        class="text-blue-700 text-sm"
+                        class="text-blue-700 text-sm text-center"
                         path="max_filesize"
                         tag="p"
                       >
