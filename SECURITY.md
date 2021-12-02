@@ -19,3 +19,4 @@ To report a Vulnerability, you can :
 - Open an issue (https://github.com/HiberFile/HiberFile/issues)
 - Open a pull request (https://github.com/HiberFile/HiberFile/pulls)
 - Send us an email (hiberfile@hiberfile.com)
+- Send us a direct message (https://twitter.com/hiberfile)
