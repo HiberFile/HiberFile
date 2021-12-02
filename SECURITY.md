@@ -6,8 +6,8 @@ The following table shows the currently versions which are being supported with 
 
 | Version | Supported          |
 | ------- | ------------------ |
-| v1      | :x:                |
-| v2      | :x:                |
+| v1.0    | :x:                |
+| v2.0    | :x:                |
 | 2021.1  | :x:                |
 | 2021.2  | :x:                |
 | 2021.3  | :white_check_mark: |
