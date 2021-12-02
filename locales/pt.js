@@ -58,6 +58,7 @@ export default {
 	mentions: 'avisos jurídicos',
 	min_eight_char_pw: 'A palavra-passe deve conter pelo menos 8 caracteres.',
 	min_one_lowercase_in_pw: 'A palavra-passe deve conter pelo menos uma letra minúscula.',
+  min_one_number_in_pw: 'A palavra-passe deve conter pelo menos um número.',
 	min_one_special_char_in_pw: 'A palavra-passe deve conter pelo menos um carácter especial.',
 	min_one_uppercase_in_pw: 'A palavra-passe deve conter pelo menos uma letra maiúscula.',
 	more_options: 'Mostrar opções avançadas',
