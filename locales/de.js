@@ -58,6 +58,7 @@ export default {
 	mentions: 'rechtliche Hinweise',
 	min_eight_char_pw: 'Das Passwort muss mindestens 8 Zeichen enthalten',
 	min_one_lowercase_in_pw: 'Das Passwort muss mindestens einen Kleinbuchstaben enthalten',
+  min_one_number_in_pw: 'Das Passwort muss mindestens eine Zahl enthalten.',
 	min_one_special_char_in_pw: 'Das Passwort muss mindestens ein Sonderzeichen enthalten',
 	min_one_uppercase_in_pw: 'Das Passwort muss mindestens einen Großbuchstaben enthalten',
 	more_options: 'Erweiterte Optionen anzeigen',
