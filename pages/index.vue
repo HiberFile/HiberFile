@@ -260,7 +260,7 @@
             !optionsShown
           "
           class="ml-8 min-w-0 absolute h-full overflow-auto"
-          style="left: 28rem; width: calc(100% - 30rem)"
+          style="left: 28rem; width: calc(100% - 5rem)"
         >
           <p class="text-lg font-medium mb-8">{{ $t('your_links') }}</p>
           <table class="table-fixed w-full">
@@ -302,7 +302,7 @@
         <div
           v-show="filelistNotEmpty && !fileId && !mobile && !optionsShown"
           class="ml-8 min-w-0 absolute h-full overflow-auto"
-          style="left: 28rem; width: calc(100% - 30rem)"
+          style="left: 28rem; width: calc(100% - 5rem)"
         >
           <p class="text-lg font-medium mb-8">
             <span v-if="filelist.length === 1">{{ $t('file_selected') }}</span>
