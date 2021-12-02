@@ -58,6 +58,7 @@ export default {
     mentions: 'legal notices',
     min_eight_char_pw: 'The password must contain at least 8 characters.',
     min_one_lowercase_in_pw: 'The password must contain at least one lowercase letter.',
+    min_one_number_in_pw: 'THe password must contain at least one number.',
     min_one_special_char_in_pw: 'The password must contain at least one special character.',
     min_one_uppercase_in_pw: 'The password must contain at least one capital letter.',
     more_options: 'More options',
