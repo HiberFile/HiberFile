@@ -14,4 +14,8 @@ The following table shows the currently versions which are being supported with 
 
 ## Reporting a Vulnerability
 
-Use this section to report a vulnerability.
+To report a Vulnerability, you can :
+
+- Open an issue (https://github.com/HiberFile/HiberFile/issues)
+- Open a pull request (https://github.com/HiberFile/HiberFile/pulls)
+- Send us an email (hiberfile@hiberfile.com)
