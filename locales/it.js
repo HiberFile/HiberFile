@@ -58,6 +58,7 @@ export default {
 	mentions: 'avvisi legali',
 	min_eight_char_pw: 'La password deve contenere almeno 8 caratteri.',
 	min_one_lowercase_in_pw: 'La password deve contenere almeno una lettera minuscola.',
+  min_one_number_in_pw: 'La password deve contenere almeno un numero.',
 	min_one_special_char_in_pw: 'La password deve contenere almeno un carattere speciale.',
 	min_one_uppercase_in_pw: 'La password deve contenere almeno una lettera maiuscola.',
 	more_options: 'Mostra opzioni avanzate',
