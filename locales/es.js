@@ -58,6 +58,7 @@ export default {
 	mentions: 'avisos legales',
 	min_eight_char_pw: 'La contraseña debe contener al menos 8 caracteres.',
 	min_one_lowercase_in_pw: 'La contraseña debe contener al menos una letra minúscula.',
+  min_one_number_in_pw: 'La contraseña debe contener al menos un número.',
 	min_one_special_char_in_pw: 'La contraseña debe contener al menos un carácter especial.',
 	min_one_uppercase_in_pw: 'La contraseña debe contener al menos una letra mayúscula.',
 	more_options: 'Mostrar opciones avanzadas',
