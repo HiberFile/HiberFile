@@ -16,7 +16,7 @@
           >GitHub</a
         >
         &nbsp;-&nbsp;
-        <a href="https://blog.hiberfile.com/" class="underline">Blog</a>
+        <a href="https://twitter.com/hiberfile" class="underline">Twitter</a>
       </div>
       <div class="block">
         <a
