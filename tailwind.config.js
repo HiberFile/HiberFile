@@ -45,7 +45,7 @@ module.exports = {
       },
       fontFamily: {
         sans: [
-          'Poppins',
+          'Metropolis',
           'Inter',
           'system-ui',
           '-apple-system',
