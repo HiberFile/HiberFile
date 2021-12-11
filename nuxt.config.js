@@ -19,7 +19,7 @@ export default {
         hid: 'description',
         name: 'description',
         content:
-          'HiberFile - Service de partage de fichiers rapide, simple et gratuit.'
+          'HiberFile - Fast, simple and free file sharing service.'
       }
     ],
     script: [
