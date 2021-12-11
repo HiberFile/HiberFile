@@ -48,7 +48,7 @@
 
 ## ❓ Why
 
-We created HiberFile to make it easy for casual users to share large files (up to 20GB). HiberFile is a free, convenient, fast and secure platform.
+We created HiberFile to make it easy for casual users to share large files (up to 50GB). HiberFile is a free, convenient, fast and secure platform.
 ## 🚀 Quick start
 
 ### Prerequisites
