@@ -1,29 +1,29 @@
 {
-	"compilerOptions": {
-		"target": "ES2016",
-		"module": "ESNext",
-		"moduleResolution": "Node",
-		"lib": ["ESNext", "ESNext.AsyncIterable", "DOM"],
-		"esModuleInterop": true,
-		"allowJs": true,
-		"sourceMap": true,
-		"strict": true,
-		"noEmit": true,
-		"experimentalDecorators": true,
-		"baseUrl": ".",
-		"paths": {
-			"~/*": ["./*"],
-			"@/*": ["./*"]
-		},
-		"types": [
+  "compilerOptions": {
+    "target": "ES2016",
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "lib": ["ESNext", "ESNext.AsyncIterable", "DOM"],
+    "esModuleInterop": true,
+    "allowJs": true,
+    "sourceMap": true,
+    "strict": true,
+    "noEmit": true,
+    "experimentalDecorators": true,
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["./*"],
+      "@/*": ["./*"]
+    },
+    "types": [
       "jest",
-			"@types/node",
-			"@nuxt/types",
-			"@nuxtjs/color-mode",
-			"@nuxtjs/axios",
-			"nuxt-i18n",
-			"vue-sweetalert2"
-		]
-	},
-	"exclude": ["node_modules", ".nuxt", "dist", "archive"]
+      "@types/node",
+      "@nuxt/types",
+      "@nuxtjs/color-mode",
+      "@nuxtjs/axios",
+      "nuxt-i18n",
+      "vue-sweetalert2"
+    ]
+  },
+  "exclude": ["node_modules", ".nuxt", "dist", "archive"]
 }
