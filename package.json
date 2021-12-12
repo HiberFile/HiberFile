@@ -11,7 +11,8 @@
     "generate": "nuxt-ts generate",
     "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "lint:style": "stylelint **/*.{vue,css} --ignore-path .gitignore",
-    "lint": "npm run lint:js && npm run lint:style"
+    "lint": "npm run lint:js && npm run lint:style",
+    "prettify": "npx prettier --write \"./**/*.ts\" && npx prettier --write \"./**/*.json\""
   },
   "dependencies": {
     "@nuxt/typescript-runtime": "^2.1.0",
@@ -26,12 +27,13 @@
     "dropzone": "^5.9.2",
     "eslint-plugin-vue": "^7.18.0",
     "jszip": "^3.7.0",
-    "nuxt": "^2.13.3",
+    "nuxt": "^2.15.8",
     "nuxt-i18n": "^6.26.0",
     "nuxt-property-decorator": "^2.9.1",
     "qrcode": "^1.4.4",
     "queue": "^6.0.2",
     "uuid": "^8.3.2",
+    "vue": "^2.6.14",
     "vue-pets": "^1.0.18",
     "vue-sweetalert2": "^4.3.1"
   },
