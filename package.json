@@ -26,11 +26,12 @@
     "dropzone": "^5.9.2",
     "eslint-plugin-vue": "^7.18.0",
     "jszip": "^3.7.0",
-    "nuxt": "^2.15.4",
+    "nuxt": "^2.13.3",
     "nuxt-i18n": "^6.26.0",
     "nuxt-property-decorator": "^2.9.1",
     "qrcode": "^1.4.4",
     "queue": "^6.0.2",
+    "uuid": "^8.3.2",
     "vue-pets": "^1.0.18",
     "vue-sweetalert2": "^4.3.1"
   },
@@ -59,6 +60,6 @@
     "stylelint": "^13.13.0",
     "stylelint-config-prettier": "^8.0.2",
     "stylelint-config-standard": "^22.0.0",
-    "tailwindcss-dark-mode": "^1.1.7"
+    "tailwindcss-dark-mode": "^1.1.4"
   }
 }
