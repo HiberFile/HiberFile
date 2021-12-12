@@ -30,4 +30,4 @@ Example:
 ]
 ```
 
-> You can find a full example in [`extensions.json`](extensions.json).
+You can find a full example in [`extensions.json`](extensions.json).
