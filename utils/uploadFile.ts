@@ -80,7 +80,7 @@ export default async (
   }, 1000);
 
   const q = queue({
-    concurrency: Math.ceil(1_000_000_000 / chunksSize),
+    concurrency: Math.ceil(5_000_000_000 / chunksSize),
     autostart: true
   });
 
