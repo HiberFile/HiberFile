@@ -20,9 +20,9 @@ export default async (
     downloading: string | null;
   }
 ): Promise<string> => {
-  const minChunksSize = 10_000_000;
-  const maxChunksSize = 10_000_000;
-  const minChunksNumber = 20;
+  const minChunksSize = 50_000_000;
+  const maxChunksSize = 50_000_000;
+  const minChunksNumber = 10;
 
   const chunksSize =
     file.size / minChunksNumber <= minChunksSize
@@ -80,7 +80,7 @@ export default async (
   }, 1000);
 
   const q = queue({
-    concurrency: Math.ceil(5_000_000_000 / chunksSize),
+    concurrency: Math.ceil(2_500_000_000 / chunksSize),
     autostart: true
   });
 
