@@ -1,29 +1,21 @@
 {
-	"compilerOptions": {
-		"target": "ES2016",
-		"module": "ESNext",
-		"moduleResolution": "Node",
-		"lib": ["ESNext", "ESNext.AsyncIterable", "DOM"],
-		"esModuleInterop": true,
-		"allowJs": true,
-		"sourceMap": true,
-		"strict": true,
-		"noEmit": true,
-		"experimentalDecorators": true,
-		"baseUrl": ".",
-		"paths": {
-			"~/*": ["./*"],
-			"@/*": ["./*"]
-		},
-		"types": [
-      "jest",
-			"@types/node",
-			"@nuxt/types",
-			"@nuxtjs/color-mode",
-			"@nuxtjs/axios",
-			"nuxt-i18n",
-			"vue-sweetalert2"
-		]
-	},
-	"exclude": ["node_modules", ".nuxt", "dist", "archive"]
+  "compilerOptions": {
+    "target": "ES2018",
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "lib": ["ESNext", "ESNext.AsyncIterable", "DOM"],
+    "esModuleInterop": true,
+    "allowJs": true,
+    "sourceMap": true,
+    "strict": true,
+    "noEmit": true,
+    "experimentalDecorators": true,
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["./*"],
+      "@/*": ["./*"]
+    },
+    "types": ["@nuxt/types", "@types/node"]
+  },
+  "exclude": ["node_modules", ".nuxt", "dist"]
 }
