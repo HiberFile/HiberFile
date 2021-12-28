@@ -17,4 +17,18 @@ const countChunks = (file: Blob, opts: {
   return chunkNumber;
 }
 
+const chunkFile = (file: Blob) => {
+  const chunkNumber = countChunks(file);
+  const chunks = [];
+
+  for (let i = 0; i < chunkNumber; i++) {
+    const offset = i * (file.size / chunkNumber);
+    const chunk = file.slice(offset, offset + file.size / chunkNumber);
+    chunks.push(chunk);
+  }
+
+  return chunks;
+}
+
 export { countChunks }
+export default chunkFile
