@@ -9,9 +9,9 @@ describe('countChunks', () => {
 
     Object.defineProperty(file, 'size', { value: fileSize });
 
-    const chunksCount = countChunks(file, { maxChunksNumber });
+    const chunkNumber = countChunks(file, { maxChunksNumber });
 
-    expect(chunksCount).not.toBeGreaterThan(maxChunksNumber);
+    expect(chunkNumber).not.toBeGreaterThan(maxChunksNumber);
   })
 
   it('should not make chunks larger than the max chunk size', () => {
@@ -22,9 +22,9 @@ describe('countChunks', () => {
 
     Object.defineProperty(file, 'size', { value: fileSize });
 
-    const chunksCount = countChunks(file, { maxChunkSize });
+    const chunkNumber = countChunks(file, { maxChunkSize });
 
-    expect(fileSize / chunksCount).not.toBeGreaterThan(maxChunkSize);
+    expect(fileSize / chunkNumber).not.toBeGreaterThan(maxChunkSize);
   })
 
   it('should not make more chunks than the minimal chunk size allows', () => {
@@ -33,8 +33,8 @@ describe('countChunks', () => {
 
     Object.defineProperty(file, 'size', { value: fileSize });
 
-    const chunksCount = countChunks(file, { minChunkSize: fileSize * 2 });
+    const chunkNumber = countChunks(file, { minChunkSize: fileSize * 2 });
 
-    expect(chunksCount).toBe(1);
+    expect(chunkNumber).toBe(1);
   })
 })
