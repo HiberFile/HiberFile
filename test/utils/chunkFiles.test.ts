@@ -4,7 +4,7 @@ describe('countChunks', () => {
   it('should not make more chunks than the maximum', () => {
     const maxChunksNumber = 1000;
 
-    const file = new File([], 'test.js');
+    const file = new Blob([]);
     const fileSize = 100 * 1024 ** 3;
 
     Object.defineProperty(file, 'size', { value: fileSize });
@@ -17,7 +17,7 @@ describe('countChunks', () => {
   it('should not make chunks larger than the max chunk size', () => {
     const maxChunkSize = 1024 ** 3;
 
-    const file = new File([], 'test.js');
+    const file = new Blob([]);
     const fileSize = 200 * 1024 ** 3;
 
     Object.defineProperty(file, 'size', { value: fileSize });
@@ -28,7 +28,7 @@ describe('countChunks', () => {
   })
 
   it('should not make more chunks than the minimal chunk size allows', () => {
-    const file = new File([], 'test.js');
+    const file = new Blob([]);
     const fileSize = 1024 * 2;
 
     Object.defineProperty(file, 'size', { value: fileSize });
