@@ -1,4 +1,5 @@
-import { countChunks } from "~/utils/chunkFiles";
+import chunkFile, { countChunks } from "~/utils/chunkFile";
+import createEmptyFileOfSize from "~/utils/createEmptyFileOfSize";
 
 describe('countChunks', () => {
   it('should not make more chunks than the maximum', () => {
@@ -37,4 +38,19 @@ describe('countChunks', () => {
 
     expect(chunkNumber).toBe(1);
   })
+})
+
+describe('chunkFile', () => {
+  it('should correctly chunk file of 100MB', () => {
+    const file = createEmptyFileOfSize(100 * 1024 ** 2);
+
+    const chunkNumber = countChunks(file);
+    const chunks = chunkFile(file);
+
+    expect(chunks.length).toBe(chunkNumber);
+
+    const mergedFile = new Blob(chunks);
+
+    expect(mergedFile.size).toBe(file.size);
+  });
 })
