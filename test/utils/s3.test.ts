@@ -14,9 +14,11 @@ describe('s3Client', () => {
       Expires: new Date(Date.now() + 1000),
     });
 
-    expect(s3MultipartUpload.length).toBe(chunkNumber);
+    expect(s3MultipartUpload.uploadId).toBeDefined();
 
-    s3MultipartUpload.forEach((s3PartUpload, i) => {
+    expect(s3MultipartUpload.parts.length).toBe(chunkNumber);
+
+    s3MultipartUpload.parts.forEach((s3PartUpload, i) => {
       expect(s3PartUpload).toBeDefined();
       expect(s3PartUpload.url).toContain(process.env.AWS_BUCKET_NAME);
       expect(s3PartUpload.url).toContain('test-key');
