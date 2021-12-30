@@ -39,6 +39,17 @@ describe('countChunks', () => {
 
     expect(chunkNumber).toBe(1);
   })
+
+  it('should not make chunks smaller than the minimal chunk size allows', () => {
+    const file = new Blob([]);
+    const fileSize = 8 * 1024 ** 2;
+
+    Object.defineProperty(file, 'size', { value: fileSize });
+
+    const chunkNumber = countChunks(file, { minChunkSize: 5 * 1024 ** 2 });
+
+    expect(chunkNumber).toBe(1);
+  })
 })
 
 describe('chunkFile', () => {
