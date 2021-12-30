@@ -5,6 +5,7 @@ import {
   CreateMultipartUploadCommandInput
 } from "@aws-sdk/client-s3";
 import {getSignedUrl} from "@aws-sdk/s3-request-presigner";
+import moment from "moment";
 
 require('dotenv').config();
 
@@ -27,6 +28,8 @@ export const createS3MultipartUpload = async (chunkNumber: number, customCreateM
     ...customCreateMultipartUploadOptions,
   };
 
+  const expiration = moment(customCreateMultipartUploadOptions.Expires);
+
   const createMultipartUploadCommand = new CreateMultipartUploadCommand(createMultipartUploadOptions);
   const {UploadId: uploadId} = await s3Client.send(createMultipartUploadCommand);
 
@@ -40,7 +43,9 @@ export const createS3MultipartUpload = async (chunkNumber: number, customCreateM
           PartNumber: i + 1,
         });
 
-        const url = await getSignedUrl(s3Client, uploadPartCommand);
+        const url = await getSignedUrl(s3Client, uploadPartCommand, {
+          expiresIn: expiration.diff(moment(), 'seconds'),
+        });
 
         return {
           url,
