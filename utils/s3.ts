@@ -25,6 +25,7 @@ export const s3Client = new S3Client({
 export const createS3MultipartUpload = async (chunkNumber: number, customCreateMultipartUploadOptions: Partial<CreateMultipartUploadCommandInput> & { Key: string }) => {
   const createMultipartUploadOptions: CreateMultipartUploadCommandInput = {
     Bucket: process.env.AWS_BUCKET_NAME,
+    Expires: moment().add(1, 'hour').toDate(),
     ...customCreateMultipartUploadOptions,
   };
 
