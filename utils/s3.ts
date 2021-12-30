@@ -28,22 +28,25 @@ export const createS3MultipartUpload = async (chunkNumber: number, customCreateM
   };
 
   const createMultipartUploadCommand = new CreateMultipartUploadCommand(createMultipartUploadOptions);
-  const {UploadId} = await s3Client.send(createMultipartUploadCommand);
+  const {UploadId: uploadId} = await s3Client.send(createMultipartUploadCommand);
 
-  return await Promise.all(
-    Array.from(Array(chunkNumber).keys()).map(async (i) => {
-      const uploadPartCommand = new UploadPartCommand({
-        ...createMultipartUploadOptions,
-        UploadId,
-        PartNumber: i + 1,
-      });
+  return {
+    uploadId,
+    parts: await Promise.all(
+      Array.from(Array(chunkNumber).keys()).map(async (i) => {
+        const uploadPartCommand = new UploadPartCommand({
+          ...createMultipartUploadOptions,
+          UploadId: uploadId,
+          PartNumber: i + 1,
+        });
 
-      const url = await getSignedUrl(s3Client, uploadPartCommand);
+        const url = await getSignedUrl(s3Client, uploadPartCommand);
 
-      return {
-        url,
-        partNumber: i + 1,
-      };
-    })
-  );
+        return {
+          url,
+          partNumber: i + 1,
+        };
+      })
+    )
+  };
 }
