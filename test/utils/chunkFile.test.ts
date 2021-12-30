@@ -1,5 +1,6 @@
+import fs from "fs";
+import path from "path";
 import chunkFile, { countChunks } from "~/utils/chunkFile";
-import createEmptyFileOfSize from "~/utils/createEmptyFileOfSize";
 
 describe('countChunks', () => {
   it('should not make more chunks than the maximum', () => {
@@ -42,7 +43,7 @@ describe('countChunks', () => {
 
 describe('chunkFile', () => {
   it('should correctly chunk file of 100MB', () => {
-    const file = createEmptyFileOfSize(100 * 1024 ** 2);
+    const file = new Blob([fs.readFileSync(path.join(__dirname, 'test_image.jpeg'))]);
 
     const chunkNumber = countChunks(file);
     const chunks = chunkFile(file);
