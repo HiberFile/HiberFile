@@ -7,7 +7,7 @@ const countChunks = (file: Blob, opts: {
   const {maxChunksNumber = 1000, simultaneouslyRequests = 6, minChunkSize = 5 * 1024 ** 2, maxChunkSize = 5 * 1024 ** 3} = opts;
 
   let chunkNumber = file.size / minChunkSize < simultaneouslyRequests ?
-    Math.ceil(file.size / minChunkSize) :
+    Math.floor(file.size / minChunkSize) :
     simultaneouslyRequests;
 
   while (minChunkSize < file.size / chunkNumber && file.size / chunkNumber >= maxChunkSize && chunkNumber < maxChunksNumber) {
