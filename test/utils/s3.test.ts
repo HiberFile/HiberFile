@@ -5,7 +5,9 @@ describe('s3Client', () => {
   it('should create a new S3 client', () => {
     expect(s3Client).toBeInstanceOf(S3Client);
   });
+})
 
+describe('createS3MultipartUpload', () => {
   it('should create a list of presigned urls', async () => {
     const chunkNumber = 10;
 
