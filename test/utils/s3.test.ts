@@ -1,6 +1,11 @@
-import { S3Client } from "@aws-sdk/client-s3";
+import * as fs from "fs";
+import * as path from "path";
+import {S3Client} from "@aws-sdk/client-s3";
 import moment from "moment";
-import {createS3MultipartUpload, s3Client} from "~/utils/s3";
+import {s3Client, createS3MultipartUpload, uploadFileS3Multipart} from "~/utils/s3";
+import chunkFile from "~/utils/chunkFile";
+
+jest.setTimeout(30000);
 
 describe('s3Client', () => {
   it('should create a new S3 client', () => {
@@ -35,6 +40,35 @@ describe('createS3MultipartUpload', () => {
       const expiresAt = date.add(parseFloat(s3PartUpload.url.match(/X-Amz-Expires=(\d+)/)?.[1]  ?? '0'), 's');
 
       expect(expiresAt.diff(expiration, 's')).toBeLessThanOrEqual(1);
+    });
+  });
+})
+
+describe('uploadFileS3Multipart', () => {
+  it('should upload a file to S3', async () => {
+    const file = new Blob([fs.readFileSync(path.join(__dirname, 'test_image.jpeg'))]);
+    const chunks = chunkFile(file);
+
+    const s3MultipartUpload = await createS3MultipartUpload(chunks.length, {
+      Key: 'test-key',
+      Expires: moment().add(3, 'minute').toDate(),
+    });
+
+    const s3MultipartUploading = await uploadFileS3Multipart(chunks, s3MultipartUpload);
+
+    expect(s3MultipartUploading).toBeDefined();
+    expect(s3MultipartUploading.parts.length).toBe(chunks.length);
+
+    const eTags: string[] = [];
+
+    s3MultipartUploading.parts.forEach((s3PartUpload, i) => {
+      expect(s3PartUpload).toBeDefined();
+      expect(s3PartUpload.partNumber).toBe(i + 1);
+      expect(s3PartUpload.eTag).toBeDefined();
+
+      expect(eTags).not.toContain(s3PartUpload.eTag);
+
+      eTags.push(s3PartUpload.eTag);
     });
   });
 })
