@@ -2,7 +2,10 @@ import {
   S3Client,
   CreateMultipartUploadCommand,
   UploadPartCommand,
-  CreateMultipartUploadCommandInput, CompleteMultipartUploadCommandInput, CompleteMultipartUploadCommand,
+  CreateMultipartUploadCommandInput,
+  CompleteMultipartUploadCommandInput,
+  CompleteMultipartUploadCommand,
+  GetObjectCommandInput, GetObjectCommand,
 } from "@aws-sdk/client-s3";
 import {getSignedUrl} from "@aws-sdk/s3-request-presigner";
 import queue from 'queue';
@@ -105,4 +108,16 @@ export const completeS3MultipartUpload = (uploadId: string,
 
   const completeMultipartUploadCommand = new CompleteMultipartUploadCommand(completeMultipartUploadOptions);
   return s3Client.send(completeMultipartUploadCommand);
+}
+
+export const getS3FileDownloadUrl = (key: string, customGetObjectCommandOptions: Partial<GetObjectCommandInput> = {}) => {
+  const getObjectCommandOptions: GetObjectCommandInput = {
+    Bucket: process.env.AWS_BUCKET_NAME,
+    Key: key,
+    ...customGetObjectCommandOptions,
+  };
+
+  return getSignedUrl(s3Client, new GetObjectCommand(getObjectCommandOptions), {
+    expiresIn: moment().add(1, 'hour').second(),
+  });
 }
