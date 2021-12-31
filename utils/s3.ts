@@ -2,7 +2,7 @@ import {
   S3Client,
   CreateMultipartUploadCommand,
   UploadPartCommand,
-  CreateMultipartUploadCommandInput,
+  CreateMultipartUploadCommandInput, CompleteMultipartUploadCommandInput, CompleteMultipartUploadCommand,
 } from "@aws-sdk/client-s3";
 import {getSignedUrl} from "@aws-sdk/s3-request-presigner";
 import queue from 'queue';
@@ -91,4 +91,18 @@ export const uploadFileS3Multipart = (
       });
     });
   }))
+}
+
+export const completeS3MultipartUpload = (uploadId: string,
+                                          parts: {PartNumber: number, ETag: string}[],
+                                          customCompleteMultipartUploadOptions: Partial<CompleteMultipartUploadCommandInput> & { Key: string }) => {
+  const completeMultipartUploadOptions: CompleteMultipartUploadCommandInput = {
+    Bucket: process.env.AWS_BUCKET_NAME,
+    UploadId: uploadId,
+    MultipartUpload: {Parts: parts},
+    ...customCompleteMultipartUploadOptions,
+  };
+
+  const completeMultipartUploadCommand = new CompleteMultipartUploadCommand(completeMultipartUploadOptions);
+  return s3Client.send(completeMultipartUploadCommand);
 }
