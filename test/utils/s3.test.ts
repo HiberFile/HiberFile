@@ -2,7 +2,7 @@ import * as fs from "fs";
 import * as path from "path";
 import {S3Client} from "@aws-sdk/client-s3";
 import moment from "moment";
-import {s3Client, createS3MultipartUpload, uploadFileS3Multipart} from "~/utils/s3";
+import {s3Client, createS3MultipartUpload, uploadFileS3Multipart, completeS3MultipartUpload} from "~/utils/s3";
 import chunkFile from "~/utils/chunkFile";
 
 jest.setTimeout(30000);
@@ -70,5 +70,41 @@ describe('uploadFileS3Multipart', () => {
 
       eTags.push(s3PartUpload.eTag);
     });
+  });
+})
+
+describe('completeS3MultipartUpload', () => {
+  it('should complete a multipart upload', async () => {
+    const fileToUpload = new Blob([fs.readFileSync(path.join(__dirname, 'test_image.jpeg'))]);
+    const chunks = chunkFile(fileToUpload);
+
+    const expiration = moment().add(3, 'minute').toDate();
+    const key = 'test-key'
+
+    const s3MultipartUpload = await createS3MultipartUpload(chunks.length, {
+      Key: key,
+      Expires: expiration,
+    });
+
+    expect(s3MultipartUpload.uploadId).toBeDefined();
+
+    if (s3MultipartUpload.uploadId) {
+      const s3MultipartUploading = await uploadFileS3Multipart(chunks, s3MultipartUpload);
+
+      const s3CompleteMultipartUpload = await completeS3MultipartUpload(
+        s3MultipartUpload.uploadId,
+        s3MultipartUploading.parts.map(s3PartUpload => ({
+          ETag: s3PartUpload.eTag,
+          PartNumber: s3PartUpload.partNumber,
+        })),
+        {Key: 'test-key'}
+      );
+
+      expect(s3CompleteMultipartUpload.$metadata.httpStatusCode).toBe(200);
+
+      expect(s3CompleteMultipartUpload.Location).toContain(process.env.AWS_BUCKET_NAME);
+      expect(s3CompleteMultipartUpload.Location).toContain(key);
+      expect(s3CompleteMultipartUpload.Key).toBe(key);
+    }
   });
 })
