@@ -97,7 +97,7 @@ describe('completeS3MultipartUpload', () => {
           ETag: s3PartUpload.eTag,
           PartNumber: s3PartUpload.partNumber,
         })),
-        {Key: 'test-key'}
+        {Key: key}
       );
 
       expect(s3CompleteMultipartUpload.$metadata.httpStatusCode).toBe(200);
