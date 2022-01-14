@@ -18,9 +18,13 @@
   "dependencies": {
     "@aws-sdk/client-s3": "^3.45.0",
     "@aws-sdk/s3-request-presigner": "^3.45.0",
+    "@koa/router": "^10.1.1",
+    "@types/koa": "^2.13.4",
+    "@types/koa__router": "^8.0.11",
     "axios": "^0.24.0",
     "core-js": "^3.19.3",
     "dotenv": "^10.0.0",
+    "koa": "^2.13.4",
     "moment": "^2.29.1",
     "nuxt": "^2.15.8",
     "queue": "^6.0.2",
