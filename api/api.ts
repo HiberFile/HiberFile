@@ -4,14 +4,15 @@ import bodyParser from "koa-bodyparser";
 
 import registerRoutes from "./registerRoutes";
 
-const app = new Koa()
-const router = new Router()
+const app = new Koa();
+const router = new Router();
 
-registerRoutes(app)
+app.use(bodyParser());
 
-app.use(router.routes())
-app.use(router.allowedMethods())
-app.use(bodyParser())
+registerRoutes(app);
+
+app.use(router.routes());
+app.use(router.allowedMethods());
 
 export default {
   path: '/api',
