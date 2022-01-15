@@ -33,5 +33,5 @@ describe("FileModel", () => {
     expect(foundFile!.createdAt).toBeDefined();
     expect(foundFile!.expiresAt).toBeDefined()
     expect(foundFile!.expiresAt.getTime()).toBe(expiresAt.getTime());
-  })
+  });
 });
