@@ -85,7 +85,6 @@ describe('UserModel', () => {
     expect(foundUser2!.password).toBe('test-password123');
     expect(foundUser2!.files.length).toBe(1);
     expect(foundUser2!.files[0].id).toBe(fileId);
-    expect(foundUser2!.files[0]._id).toBe(fileId);
     expect(foundUser2!.files[0].createdAt).toBeDefined();
     expect(foundUser2!.files[0].expiresAt).toBeDefined()
     expect(foundUser2!.files[0].expiresAt.getTime()).toBe(expiresAt.getTime());
