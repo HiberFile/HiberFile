@@ -1,10 +1,10 @@
 import Router from '@koa/router';
 
-import filesControllers from '../controllers/files.controllers';
+import FilesControllers from '../controllers/files.controllers';
 
 const router = new Router();
 
-router.get('/files/:id', filesControllers.getFile);
-router.post('/files', filesControllers.createFile);
+router.get('/files/:id', FilesControllers.getFile);
+router.post('/files', FilesControllers.createFile);
 
 export default router

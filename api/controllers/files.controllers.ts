@@ -5,7 +5,7 @@ import {HydratedDocument} from "mongoose";
 import FileModel, {IFile} from './../models/file.model';
 import generateId from "~/utils/generateId";
 
-export default class FilesController {
+export default class FilesControllers {
   public static async getFile(ctx: koa.Context) {
     const paramsSchema = joi.object().keys({
       id: joi.string().required().length(8).alphanum(),
