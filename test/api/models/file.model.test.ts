@@ -81,12 +81,6 @@ describe("FileModel", () => {
         model: 'User'
       });
 
-    expect(foundFile).toBeDefined();
-    expect(foundFile!.name).toBe('test');
-    expect(foundFile!._id).toBe(id);
-    expect(foundFile!.createdAt).toBeDefined();
-    expect(foundFile!.expiresAt).toBeDefined()
-    expect(foundFile!.expiresAt.getTime()).toBe(expiresAt.getTime());
     expect(foundFile!.user).toBeDefined();
     expect(foundFile!.user.id).toBeDefined();
     expect(foundFile!.user.id).toBe(foundUser!.id);
