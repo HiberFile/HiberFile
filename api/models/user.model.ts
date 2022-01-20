@@ -21,7 +21,6 @@ const userSchema = new mongoose.Schema({
   },
   token: {
     type: String,
-    unique: true,
   },
   files: [
     {
