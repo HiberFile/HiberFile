@@ -1,10 +1,6 @@
 import mongoose from 'mongoose';
 import moment from "moment";
 
-import connectMongoose from "~/utils/connectMongoose";
-
-connectMongoose();
-
 export interface IFile extends mongoose.Document {
   _id: string;
   name: string;

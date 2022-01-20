@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import Koa, {Context} from "koa";
 
 require('dotenv').config();
 
@@ -6,7 +7,7 @@ if (!process.env.MONGO_URI || !process.env.MONGO_USERNAME || !process.env.MONGO_
   throw new Error("MONGO_URI, MONGO_USERNAME and MONGO_PASSWORD environment variables must be set");
 }
 
-export default async () => {
+const connectMongoose = async () => {
   if (mongoose.connection.readyState === 0) {
     await mongoose.connect(
       process.env.MONGO_URI as string,
@@ -17,3 +18,11 @@ export default async () => {
     );
   }
 }
+
+const connectMongooseMiddleware: Koa.Middleware = async (_: Context, next: Function) => {
+  await connectMongoose();
+  await next();
+}
+
+export default connectMongooseMiddleware;
+export {connectMongoose};

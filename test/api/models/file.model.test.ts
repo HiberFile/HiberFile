@@ -3,6 +3,7 @@ import {HydratedDocument} from "mongoose";
 
 import FileModel, {IFile} from "~/api/models/file.model";
 import generateId from "~/utils/generateId";
+import {connectMongoose} from "~/api/middleware/connectMongoose.middleware";
 
 describe("FileModel", () => {
   it("should be defined", () => {
@@ -10,6 +11,8 @@ describe("FileModel", () => {
   });
 
   it('should create a file in the database and return it', async () => {
+    await connectMongoose();
+
     let id: string;
 
     do {
