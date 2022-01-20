@@ -89,4 +89,50 @@ describe('UserModel', () => {
     expect(foundUser2!.files[0].expiresAt).toBeDefined()
     expect(foundUser2!.files[0].expiresAt.getTime()).toBe(expiresAt.getTime());
   });
+
+  it('should throw an error because the email is already used', async () => {
+    await connectMongoose();
+
+    await UserModel.deleteOne({
+      email: 'test@test.com'
+    });
+
+    const user: HydratedDocument<IUser> = new UserModel({
+      email: 'test@test.com',
+      password: 'test'
+    });
+
+    await user.save();
+
+    const user2: HydratedDocument<IUser> = new UserModel({
+      email: 'test@test.com',
+      password: 'test'
+    });
+
+    await expect(user2.save()).rejects.toThrow();
+  });
+
+  it('should throw an error because no email is provided', async () => {
+    await connectMongoose();
+
+    const user: HydratedDocument<IUser> = new UserModel({
+      password: 'test'
+    });
+
+    await expect(user.save()).rejects.toThrow();
+  });
+
+  it('should throw an error because no password is provided', async () => {
+    await connectMongoose();
+
+    await UserModel.deleteOne({
+      email: 'test@test.com'
+    });
+
+    const user: HydratedDocument<IUser> = new UserModel({
+      email: 'test@test.com'
+    });
+
+    await expect(user.save()).rejects.toThrow();
+  });
 });
