@@ -2,7 +2,7 @@ import moment from "moment";
 import {HydratedDocument} from "mongoose";
 
 import FileModel, {IFile} from "~/api/models/file.model";
-import generateId from "~/utils/generateId";
+import generateRandomString from "~/utils/generateRandomString";
 import {connectMongoose} from "~/api/middleware/connectMongoose.middleware";
 import UserModel, {IUser} from "~/api/models/user.model";
 
@@ -17,7 +17,7 @@ describe("api/models/file", () => {
     let id: string;
 
     do {
-      id = generateId(8);
+      id = generateRandomString(8);
     } while (await FileModel.findById(id));
 
     const expiresAt = moment(Date.now()).add(1, 'hour').toDate()
@@ -61,7 +61,7 @@ describe("api/models/file", () => {
     let id: string;
 
     do {
-      id = generateId(8);
+      id = generateRandomString(8);
     } while (await FileModel.findById(id));
 
     const expiresAt = moment(Date.now()).add(1, 'hour').toDate()

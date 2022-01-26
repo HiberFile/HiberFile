@@ -2,7 +2,7 @@ import {HydratedDocument} from "mongoose";
 import moment from "moment";
 
 import UserModel, {IUser} from "~/api/models/user.model";
-import generateId from "~/utils/generateId";
+import generateId from "~/utils/generateRandomString";
 import FileModel, {IFile} from "~/api/models/file.model";
 import {connectMongoose} from "~/api/middleware/connectMongoose.middleware";
 
