@@ -6,7 +6,7 @@ import generateId from "~/utils/generateId";
 import {connectMongoose} from "~/api/middleware/connectMongoose.middleware";
 import UserModel, {IUser} from "~/api/models/user.model";
 
-describe("FileModel", () => {
+describe("api/models/file", () => {
   it("should be defined", () => {
     expect(FileModel).toBeDefined();
   });

@@ -3,7 +3,7 @@ import api from "~/api/api";
 import UserModel from "~/api/models/user.model";
 import {connectMongoose} from "~/api/middleware/connectMongoose.middleware";
 
-describe("Users routes", () => {
+describe("api/routes/users", () => {
   it('should create a user', async () => {
     await connectMongoose();
 

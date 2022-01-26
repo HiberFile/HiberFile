@@ -1,7 +1,7 @@
 import request from "supertest";
 import api from "~/api/api";
 
-describe("Files routes", () => {
+describe("api/routes/files", () => {
   it('should create a file and get it', async () => {
     const postRes = await request(api.handler)
       .post("/files")
