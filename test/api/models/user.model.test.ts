@@ -106,14 +106,20 @@ describe('api/models/user', () => {
 
     expect(foundUser).toBeDefined();
 
-    foundUser!.tokens.push('test-token');
+    const expiresAt = moment(Date.now()).add(1, 'hour').toDate()
+
+    foundUser!.tokens.push({
+      token: 'test-token',
+      expiresAt,
+    });
     await foundUser!.save();
 
     const foundUser2 = await UserModel.findOne({email: 'test@test.com'});
 
     expect(foundUser2).toBeDefined();
     expect(foundUser2!.tokens.length).toBe(1);
-    expect(foundUser2!.tokens[0]).toBe('test-token');
+    expect(foundUser2!.tokens[0].token).toBe('test-token');
+    expect(foundUser2!.tokens[0].expiresAt.getTime()).toBe(expiresAt.getTime());
   });
 
   it('should throw an error because the email is already used', async () => {

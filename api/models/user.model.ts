@@ -5,7 +5,10 @@ export interface IUser extends mongoose.Document {
   _id: string;
   email: string;
   password: string;
-  tokens: string[];
+  tokens: {
+    token: string;
+    expiresAt: Date;
+  }[];
   files: IFile[];
 }
 
@@ -20,7 +23,10 @@ const userSchema = new mongoose.Schema({
     required: true,
   },
   tokens: [{
-    type: String,
+    type: new mongoose.Schema({
+      token: String,
+      expiresAt: Date,
+    }),
     default: [],
   }],
   files: [
