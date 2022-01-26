@@ -21,7 +21,6 @@ describe('api/models/user', () => {
     const user: HydratedDocument<IUser> = new UserModel({
       email: 'test@test.com',
       password: 'test-password123',
-      token: 'test-token',
     });
 
     await user.save();
@@ -31,7 +30,7 @@ describe('api/models/user', () => {
     expect(foundUser).toBeDefined();
     expect(foundUser!.email).toBe('test@test.com');
     expect(foundUser!.password).toBe('test-password123');
-    expect(foundUser!.token).toBe('test-token');
+    expect(foundUser!.tokens.length).toBe(0);
     expect(foundUser!.files.length).toBe(0);
   });
 
@@ -53,7 +52,6 @@ describe('api/models/user', () => {
 
     expect(foundUser).toBeDefined();
     expect(foundUser!.files.length).toBe(0);
-    expect(foundUser!.token).toBeUndefined();
 
     let fileId: string;
 
@@ -88,6 +86,34 @@ describe('api/models/user', () => {
     expect(foundUser2!.files[0].createdAt).toBeDefined();
     expect(foundUser2!.files[0].expiresAt).toBeDefined()
     expect(foundUser2!.files[0].expiresAt.getTime()).toBe(expiresAt.getTime());
+  });
+
+  it('should create a user with a token in the database and return it', async () => {
+    await connectMongoose();
+
+    await UserModel.deleteOne({
+      email: 'test@test.com'
+    })
+
+    const user: HydratedDocument<IUser> = new UserModel({
+      email: 'test@test.com',
+      password: 'test-password123',
+    });
+
+    await user.save();
+
+    const foundUser = await UserModel.findOne({email: 'test@test.com'});
+
+    expect(foundUser).toBeDefined();
+
+    foundUser!.tokens.push('test-token');
+    await foundUser!.save();
+
+    const foundUser2 = await UserModel.findOne({email: 'test@test.com'});
+
+    expect(foundUser2).toBeDefined();
+    expect(foundUser2!.tokens.length).toBe(1);
+    expect(foundUser2!.tokens[0]).toBe('test-token');
   });
 
   it('should throw an error because the email is already used', async () => {
