@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import connectMongoose from "~/utils/connectMongoose";
+import {connectMongoose} from "~/api/middleware/connectMongoose.middleware";
 
 describe('connectMongoose', () => {
   it('should connect to mongoose', async () => {
