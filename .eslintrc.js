@@ -13,5 +13,6 @@ module.exports = {
   // add your custom rules here
   rules: {
     'import/no-named-as-default-member': 'off',
+    'import/named': 'off',
   },
 }
