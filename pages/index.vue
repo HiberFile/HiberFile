@@ -138,7 +138,7 @@
                         <option value="1_hour">{{ $t('dur_1_hour') }}</option>
                         <option value="1_day">{{ $t('dur_1_day') }}</option>
                         <option value="3_days">{{ $t('dur_3_days') }}</option>
-                        <option value="7_days">{{ $t('dur_7_days') }}</option>
+                        <option selected value="7_days">{{ $t('dur_7_days') }}</option>
                         <option value="30_days">{{ $t('dur_30_days') }}</option>
                       </select>
                     </HFOption>
