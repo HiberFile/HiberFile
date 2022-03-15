@@ -140,7 +140,6 @@
                         <option value="3_days">{{ $t('dur_3_days') }}</option>
                         <option value="7_days">{{ $t('dur_7_days') }}</option>
                         <option value="30_days">{{ $t('dur_30_days') }}</option>
-                        <option value="never">{{ $t('dur_never') }}</option>
                       </select>
                     </HFOption>
                     <HFOption v-if="loggedIn" :name="$t('private_file')">
