@@ -1,3 +1,7 @@
+/**
+ * @jest-environment jsdom
+ */
+
 import fs from "fs";
 import path from "path";
 import chunkFile, { countChunks } from "~/utils/chunkFile";
