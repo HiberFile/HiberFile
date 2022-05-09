@@ -578,7 +578,7 @@ export default class Index extends Vue {
 
         this.filesize = fileToUpload.size / 1_000_000_000;
 
-        if (this.filesize >= 53.7) {
+        if (this.filesize >= 17) {
           this.Toast({
             icon: 'info',
             iconColor: '#009BF5',
