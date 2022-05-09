@@ -42,9 +42,7 @@ describe("api/models/file", () => {
   it('should create a file in the database, attach it to a user and return it', async () => {
     await connectMongoose();
 
-    await UserModel.deleteOne({
-      email: 'test@test.com'
-    })
+    await UserModel.deleteOne({email: "test@test.com"});
 
     const user: HydratedDocument<IUser> = new UserModel({
       email: 'test@test.com',
@@ -82,7 +80,53 @@ describe("api/models/file", () => {
       });
 
     expect(foundFile!.user).toBeDefined();
-    expect(foundFile!.user.id).toBeDefined();
-    expect(foundFile!.user.id).toBe(foundUser!.id);
+    expect(foundFile!.user!.id).toBeDefined();
+    expect(foundFile!.user!.id).toBe(foundUser!.id);
+  });
+
+  it('should create a private file in the database', async () => {
+    await connectMongoose();
+
+    let id: string;
+
+    do {
+      id = generateRandomString(8);
+    } while (await FileModel.findById(id));
+
+    const file: HydratedDocument<IFile> = new FileModel({
+      _id: id,
+      name: 'test',
+      private: true,
+    });
+
+    await file.save();
+
+    const foundFile = await FileModel.findById(file._id);
+
+    expect(foundFile).toBeDefined();
+    expect(foundFile!.private).toBe(true);
+  });
+
+  it('should create a file with a password', async () => {
+    await connectMongoose();
+
+    let id: string;
+
+    do {
+      id = generateRandomString(8);
+    } while (await FileModel.findById(id));
+
+    const file: HydratedDocument<IFile> = new FileModel({
+      _id: id,
+      name: 'test',
+      password: 'test-password123',
+    });
+
+    await file.save();
+
+    const foundFile = await FileModel.findById(file._id);
+
+    expect(foundFile).toBeDefined();
+    expect(foundFile!.password).toBe('test-password123');
   });
 });

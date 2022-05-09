@@ -7,7 +7,9 @@ export interface IFile extends mongoose.Document {
   name: string;
   createdAt: Date;
   expiresAt: Date;
-  user: IUser;
+  password?: string;
+  private?: boolean;
+  user?: IUser;
 }
 
 const fileSchema = new mongoose.Schema<IFile>({
@@ -29,6 +31,14 @@ const fileSchema = new mongoose.Schema<IFile>({
       const now = new Date();
       return moment(now).add(1, 'days').toDate();
     },
+  },
+  password: {
+    type: String,
+    required: false,
+  },
+  private: {
+    type: Boolean,
+    required: false,
   },
   user: {
     type: String,
