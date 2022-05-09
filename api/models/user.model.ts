@@ -1,16 +1,46 @@
 import mongoose from "mongoose";
 import {IFile} from "~/api/models/file.model";
 
+export interface IToken extends mongoose.Document {
+  token: string;
+  expiresAt: Date;
+}
+
+export interface IWebhook extends mongoose.Document {
+  url: string;
+  events: ('new-upload' | 'upload-completed' | 'file-downloaded')[];
+}
+
 export interface IUser extends mongoose.Document {
   _id: string;
   email: string;
   password: string;
-  tokens: {
-    token: string;
-    expiresAt: Date;
-  }[];
+  tokens: IToken[];
+  webhooks: IWebhook[];
   files: IFile[];
 }
+
+const tokenSchema = new mongoose.Schema({
+  token: {
+    type: String,
+    required: true,
+  },
+  expiresAt: {
+    type: Date,
+    required: true,
+  },
+});
+
+const webhookSchema = new mongoose.Schema({
+  url: {
+    type: String,
+    required: true,
+  },
+  events: {
+    type: [String],
+    required: true,
+  },
+});
 
 const userSchema = new mongoose.Schema({
   email: {
@@ -23,10 +53,11 @@ const userSchema = new mongoose.Schema({
     required: true,
   },
   tokens: [{
-    type: new mongoose.Schema({
-      token: String,
-      expiresAt: Date,
-    }),
+    type: tokenSchema,
+    default: [],
+  }],
+  webhooks: [{
+    type: webhookSchema,
     default: [],
   }],
   files: [
@@ -37,4 +68,8 @@ const userSchema = new mongoose.Schema({
   ],
 });
 
+const TokenModel = mongoose.model<IToken>("Token", tokenSchema);
+const WebhookModel = mongoose.model<IWebhook>("Webhook", webhookSchema);
+
 export default mongoose.model<IUser>("User", userSchema);
+export {TokenModel, WebhookModel}
