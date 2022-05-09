@@ -108,7 +108,7 @@ export default {
 	toast_add_files: 'Fügen Sie eine oder mehrere Dateien hinzu, bevor Sie sie senden.',
 	toast_hiberapi_error: 'Zugriff auf HiberAPI nicht möglich.',
 	toast_link_copy: 'Link kopiert',
-	toast_max_size: 'Die Datei(en) sind zu groß. Die Größe sollte 50 GB nicht überschreiten.',
+	toast_max_size: 'Die Datei(en) sind zu groß. Die Größe sollte 15 GB nicht überschreiten.',
 	toast_qr_code: 'Scannen Sie diesen QR-Code, um den Download-Link von einem anderen Gerät aus aufzurufen, ohne den Link manuell eingeben zu müssen.',
 	toast_send_error: 'Beim Senden Ihrer Datei ist ein Fehler aufgetreten.',
 	unexpected_error: 'Es ist ein unerwarteter Fehler aufgetreten. Bitte versuchen Sie es später noch einmal.',
