@@ -1,10 +1,10 @@
 import moment from "moment";
 import {HydratedDocument} from "mongoose";
 
-import FileModel, {IFile} from "~/api/models/file.model";
+import FileModel, {IFile} from "~/server/api/models/file.model";
 import generateRandomString from "~/utils/generateRandomString";
-import {connectMongoose} from "~/api/middleware/connectMongoose.middleware";
-import UserModel, {IUser} from "~/api/models/user.model";
+import {connectMongoose} from "~/server/api/middleware/connectMongoose.middleware";
+import UserModel, {IUser} from "~/server/api/models/user.model";
 
 describe("api/models/file", () => {
   it("should be defined", () => {

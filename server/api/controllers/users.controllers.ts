@@ -5,11 +5,9 @@ import bcrypt from "bcrypt";
 import moment from "moment";
 import jwt from "jsonwebtoken";
 
-import UserModel, {IUser, TokenModel, WebhookModel} from "~/api/models/user.model";
+import UserModel, {IUser, TokenModel, WebhookModel} from "./../models/user.model";
 
 const { JWT_SECRET } = process.env;
-
-require('dotenv').config();
 
 export default class UsersControllers {
   public static async createUser(ctx: Koa.Context) {

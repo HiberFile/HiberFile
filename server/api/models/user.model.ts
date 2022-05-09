@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import {IFile} from "~/api/models/file.model";
+import {IFile} from "./../models/file.model";
 
 export interface IToken extends mongoose.Document {
   token: string;
@@ -68,8 +68,8 @@ const userSchema = new mongoose.Schema({
   ],
 });
 
-const TokenModel = mongoose.model<IToken>("Token", tokenSchema);
-const WebhookModel = mongoose.model<IWebhook>("Webhook", webhookSchema);
+const TokenModel = mongoose.models.Token || mongoose.model<IToken>("Token", tokenSchema);
+const WebhookModel = mongoose.models.Webhook || mongoose.model<IWebhook>("Webhook", webhookSchema);
 
-export default mongoose.model<IUser>("User", userSchema);
+export default mongoose.models.User || mongoose.model<IUser>("User", userSchema);
 export {TokenModel, WebhookModel}

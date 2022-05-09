@@ -1,8 +1,6 @@
 import mongoose from "mongoose";
 import Koa, {Context} from "koa";
 
-require('dotenv').config();
-
 if (!process.env.MONGO_URI || !process.env.MONGO_USERNAME || !process.env.MONGO_PASSWORD) {
   throw new Error("MONGO_URI, MONGO_USERNAME and MONGO_PASSWORD environment variables must be set");
 }

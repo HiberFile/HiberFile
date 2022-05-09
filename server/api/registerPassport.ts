@@ -8,18 +8,16 @@ import bcrypt from "bcrypt";
 import {Strategy as AnonymousStrategy} from "passport-anonymous";
 import session from "koa-session";
 
-import SessionModel from '~/api/models/session.model';
-import UserModel, {IUser} from "~/api/models/user.model";
+import SessionModel from './models/session.model';
+import UserModel, {IUser} from "./models/user.model";
 
 const JWT_SECRET = crypto.randomBytes(64).toString('base64');
 process.env.JWT_SECRET = JWT_SECRET;
 
-require('dotenv').config();
-
 const {APP_SECRET} = process.env;
 
 if (!APP_SECRET) {
-    throw new Error('APP_SECRET must be defined');
+  throw new Error('APP_SECRET must be defined');
 }
 
 passport.use(new BearerStrategy(
@@ -92,14 +90,14 @@ export default (app: Koa) => {
       },
       async set(id, sess, _, data) {
         if (data.changed || data.rolling) {
-          const record = { _id: id, data, updatedAt: new Date() };
-          await SessionModel.findByIdAndUpdate(id, record, { upsert: true, safe: true });
+          const record = {_id: id, data, updatedAt: new Date()};
+          await SessionModel.findByIdAndUpdate(id, record, {upsert: true, safe: true});
         }
 
         return sess;
       },
       async destroy(id: string) {
-        await SessionModel.deleteOne({ _id: id });
+        await SessionModel.deleteOne({_id: id});
       }
     },
     externalKey: {

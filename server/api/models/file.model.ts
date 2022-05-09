@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import moment from "moment";
-import {IUser} from "~/api/models/user.model";
+import {IUser} from "./user.model";
 
 export interface IFile extends mongoose.Document {
   _id: string;
@@ -46,4 +46,4 @@ const fileSchema = new mongoose.Schema<IFile>({
   },
 });
 
-export default mongoose.model<IFile>('File', fileSchema);
+export default mongoose.models.File || mongoose.model<IFile>('File', fileSchema);

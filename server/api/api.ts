@@ -2,9 +2,9 @@ import Koa from 'koa'
 import Router from '@koa/router'
 import bodyParser from "koa-bodyparser";
 
-import registerPassport from "~/api/registerPassport";
-import registerRoutes from "~/api/registerRoutes";
-import connectMongooseMiddleware from "~/api/middleware/connectMongoose.middleware";
+import registerPassport from "./registerPassport";
+import registerRoutes from "./registerRoutes";
+import connectMongooseMiddleware from "./middleware/connectMongoose.middleware";
 
 const app = new Koa();
 const router = new Router();

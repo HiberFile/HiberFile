@@ -1,7 +1,7 @@
 import Koa from "koa";
 
-import filesRoutes from "~/api/routes/files.routes";
-import usersRoutes from "~/api/routes/users.routes";
+import filesRoutes from "./routes/files.routes";
+import usersRoutes from "./routes/users.routes";
 
 export default (app: Koa) => {
   app.use(filesRoutes.routes());

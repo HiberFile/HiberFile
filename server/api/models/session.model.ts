@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import {IUser} from "~/api/models/user.model";
+import {IUser} from "./user.model";
 
 export interface ISession extends mongoose.Document {
   _id: string;
@@ -18,4 +18,4 @@ const sessionSchema = new mongoose.Schema({
   },
 });
 
-export default mongoose.model<ISession>("Session", sessionSchema);
+export default mongoose.models.Session || mongoose.model<ISession>("Session", sessionSchema);

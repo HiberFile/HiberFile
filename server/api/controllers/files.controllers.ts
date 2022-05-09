@@ -4,7 +4,7 @@ import {HydratedDocument} from "mongoose";
 import bcrypt from "bcrypt";
 
 import FileModel, {IFile} from './../models/file.model';
-import generateId from "~/utils/generateRandomString";
+import generateId from "./../../../utils/generateRandomString";
 
 export default class FilesControllers {
   public static async getFile(ctx: Koa.Context) {

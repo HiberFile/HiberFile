@@ -12,8 +12,6 @@ import queue from 'queue';
 import moment from "moment";
 import axios, {AxiosRequestConfig} from "axios";
 
-require('dotenv').config();
-
 if (!process.env.AWS_ACCESS_KEY_ID || !process.env.AWS_SECRET_ACCESS_KEY || !process.env.AWS_BUCKET_NAME) {
   throw new Error('AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY and AWS_BUCKET_NAME environment variables must be set');
 }
