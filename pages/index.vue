@@ -107,7 +107,7 @@
                         tag="p"
                       >
                         <template #number>
-                          <span>50</span>
+                          <span>15</span>
                         </template>
                       </i18n>
                     </div>
