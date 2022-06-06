@@ -20,9 +20,9 @@ export default async (
     downloading: string | null;
   }
 ): Promise<string> => {
-  const minChunksSize = 500_000_000;
-  const maxChunksSize = 500_000_000;
-  const minChunksNumber = 5;
+  const minChunksSize = 10_000_000;
+  const maxChunksSize = 10_000_000;
+  const minChunksNumber = 20;
 
   const chunksSize =
     file.size / minChunksNumber <= minChunksSize
