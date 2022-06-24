@@ -28,7 +28,7 @@
           target="_blank"
           >v2021.3</a
         >
-        - © 2021 HiberFile Team -
+        - © 2022 HiberFile Team -
         <nuxt-link :to="localePath('/mentions')">
           <u>{{ $t('legal_notice') }}</u></nuxt-link
         >
